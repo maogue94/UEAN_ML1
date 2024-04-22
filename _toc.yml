@@ -1,0 +1,19 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: Cuadernos/introduccion
+chapters:
+- file: Cuadernos/Intro a Python y Pandas
+- file: Cuadernos/Minutos y segundos
+- file: Cuadernos/Graficos
+- file: Cuadernos/Medidas Estadisticas
+- file: Cuadernos/Visualización en Python
+- file: Cuadernos/Manipulación, Limpieza y Exploración de Datos
+- file: Cuadernos/Aprendizaje Automático
+- file: Cuadernos/Árboles de Decisión
+- file: Cuadernos/Estadisticos de Validación
+- file: Cuadernos/Modelos de Clasificación I
+- file: Cuadernos/Modelos de Clasificación II
+- file: Cuadernos/Ejercicio K Means
+

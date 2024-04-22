@@ -1,0 +1,1706 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Visualización de datos con Python &#8212; Introducción a Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Cuadernos/Visualización en Python';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Manipulación, Limpieza y Exploración de Datos" href="Manipulaci%C3%B3n%2C%20Limpieza%20y%20Exploraci%C3%B3n%20de%20Datos.html" />
+    <link rel="prev" title="Medidas estadísticas" href="Medidas%20Estadisticas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="introduccion.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Introducción a Machine Learning - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Introducción a Machine Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="introduccion.html">
+                    Introducción al Machine Learning
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Intro%20a%20Python%20y%20Pandas.html">Introducción a Python y Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Minutos%20y%20segundos.html">Uso de Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Graficos.html">Trabajemos en algunos gráficos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Medidas%20Estadisticas.html">Medidas estadísticas</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Visualización de datos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Manipulaci%C3%B3n%2C%20Limpieza%20y%20Exploraci%C3%B3n%20de%20Datos.html">Manipulación, Limpieza y Exploración de Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aprendizaje%20Autom%C3%A1tico.html">Introducción al Aprendizaje Automático en Mercadeo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Estadisticos%20de%20Validaci%C3%B3n.html">Estadísticos de Validación de un Modelo de Clasificación Supervisada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modelos%20de%20Clasificaci%C3%B3n%20I.html">Primer resumen sobre modelos de clasificación supervisada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modelos%20de%20Clasificaci%C3%B3n%20II.html">Segundo resumen sobre modelos de clasificación supervisada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ejercicio%20K%20Means.html">Algoritmos Clúster</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Izainea/seminario-de-programacion" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Izainea/seminario-de-programacion/issues/new?title=Issue%20on%20page%20%2FCuadernos/Visualización en Python.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Cuadernos/Visualización en Python.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Visualización de datos con Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">Carga de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-datos">Visualización de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-de-datos-numericos">Gráficos de datos numéricos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-para-dos-variables">Gráficos para dos variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-para-variables-categoricas">Gráficos para variables categóricas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cambio-dataset">Cambio dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Gráficos de datos numéricos</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="visualizacion-de-datos-con-python">
+<h1>Visualización de datos con Python<a class="headerlink" href="#visualizacion-de-datos-con-python" title="Link to this heading">#</a></h1>
+<p>Nuevamente cargamos el dataset de ifood para hacer una exploración de los datos. Para este caso, vamos a hacer una exploración de los datos desde las medidas de tendencia central y dispersión. Así mismo, vamos a hacer una exploración de los datos categóricos que aquí se encuentran escritos como variables dummy.</p>
+<section id="carga-de-datos">
+<h2>Carga de datos<a class="headerlink" href="#carga-de-datos" title="Link to this heading">#</a></h2>
+<p>Recordemos que para cargar los datos debe hacer clic en el panel izquierdo en el botón de exploración de archivos. En ese menu tendra la opción de subir algunos datos.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Recuerde que para cargar los datos debe hacer clic en el panel izquierdo en el botón de exploración de archivos. En ese menu tendra la opción de subir algunos datos. En Google Colab, el archivo se borrará una vez que se cierre el entorno.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Load the dataset from the user&#39;s Google Drive</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;ifood_df.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Show DataFrame</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Income</th>
+      <th>Kidhome</th>
+      <th>Teenhome</th>
+      <th>Recency</th>
+      <th>MntWines</th>
+      <th>MntFruits</th>
+      <th>MntMeatProducts</th>
+      <th>MntFishProducts</th>
+      <th>MntSweetProducts</th>
+      <th>MntGoldProds</th>
+      <th>...</th>
+      <th>marital_Together</th>
+      <th>marital_Widow</th>
+      <th>education_2n Cycle</th>
+      <th>education_Basic</th>
+      <th>education_Graduation</th>
+      <th>education_Master</th>
+      <th>education_PhD</th>
+      <th>MntTotal</th>
+      <th>MntRegularProds</th>
+      <th>AcceptedCmpOverall</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58138.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>58</td>
+      <td>635</td>
+      <td>88</td>
+      <td>546</td>
+      <td>172</td>
+      <td>88</td>
+      <td>88</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1529</td>
+      <td>1441</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>46344.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>38</td>
+      <td>11</td>
+      <td>1</td>
+      <td>6</td>
+      <td>2</td>
+      <td>1</td>
+      <td>6</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>21</td>
+      <td>15</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>71613.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>26</td>
+      <td>426</td>
+      <td>49</td>
+      <td>127</td>
+      <td>111</td>
+      <td>21</td>
+      <td>42</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>734</td>
+      <td>692</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>26646.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>26</td>
+      <td>11</td>
+      <td>4</td>
+      <td>20</td>
+      <td>10</td>
+      <td>3</td>
+      <td>5</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>48</td>
+      <td>43</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>58293.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>94</td>
+      <td>173</td>
+      <td>43</td>
+      <td>118</td>
+      <td>46</td>
+      <td>27</td>
+      <td>15</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>407</td>
+      <td>392</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 39 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="c1"># Load the dataset from the user&#39;s Google Drive</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;ifood_df.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Show DataFrame</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Income</th>
+      <th>Kidhome</th>
+      <th>Teenhome</th>
+      <th>Recency</th>
+      <th>MntWines</th>
+      <th>MntFruits</th>
+      <th>MntMeatProducts</th>
+      <th>MntFishProducts</th>
+      <th>MntSweetProducts</th>
+      <th>MntGoldProds</th>
+      <th>...</th>
+      <th>marital_Together</th>
+      <th>marital_Widow</th>
+      <th>education_2n Cycle</th>
+      <th>education_Basic</th>
+      <th>education_Graduation</th>
+      <th>education_Master</th>
+      <th>education_PhD</th>
+      <th>MntTotal</th>
+      <th>MntRegularProds</th>
+      <th>AcceptedCmpOverall</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58138.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>58</td>
+      <td>635</td>
+      <td>88</td>
+      <td>546</td>
+      <td>172</td>
+      <td>88</td>
+      <td>88</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1529</td>
+      <td>1441</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>46344.0</td>
+      <td>1</td>
+      <td>1</td>
+      <td>38</td>
+      <td>11</td>
+      <td>1</td>
+      <td>6</td>
+      <td>2</td>
+      <td>1</td>
+      <td>6</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>21</td>
+      <td>15</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>71613.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>26</td>
+      <td>426</td>
+      <td>49</td>
+      <td>127</td>
+      <td>111</td>
+      <td>21</td>
+      <td>42</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>734</td>
+      <td>692</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>26646.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>26</td>
+      <td>11</td>
+      <td>4</td>
+      <td>20</td>
+      <td>10</td>
+      <td>3</td>
+      <td>5</td>
+      <td>...</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>0</td>
+      <td>48</td>
+      <td>43</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>58293.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>94</td>
+      <td>173</td>
+      <td>43</td>
+      <td>118</td>
+      <td>46</td>
+      <td>27</td>
+      <td>15</td>
+      <td>...</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>1</td>
+      <td>407</td>
+      <td>392</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 39 columns</p>
+</div></div></div>
+</div>
+</section>
+<section id="visualizacion-de-datos">
+<h2>Visualización de datos<a class="headerlink" href="#visualizacion-de-datos" title="Link to this heading">#</a></h2>
+<p>La visualización de datos es una parte fundamental en el análisis de datos. Los gráficos nos permiten comprender y comunicar de manera efectiva la información contenida en los datos.</p>
+<p>En este notebook, utilizaremos las siguientes bibliotecas para crear gráficos:</p>
+<ul class="simple">
+<li><p>Matplotlib: una biblioteca de trazado de gráficos en 2D que produce figuras de calidad de publicación en una variedad de formatos impresos y entornos interactivos en todas las plataformas.</p></li>
+<li><p>Seaborn: una biblioteca de visualización de datos basada en Matplotlib que proporciona una interfaz de alto nivel para dibujar gráficos estadísticos atractivos y informativos.</p></li>
+<li><p>Plotly: una biblioteca de visualización interactiva que permite crear gráficos interactivos y personalizables.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Las librerias son modulos de python que contienen funciones y objetos que pueden ser utilizados para realizar tareas específicas. En este caso, las librerias matplotlib, seaborn y plotly son librerias de visualización de datos. Recuerda que ya hemos cargado pandas y numpy. Cada vez que se inicializa el entorno de ejecución, es necesario volver a cargar las librerias y deben incluirse todas las librerias que se van a utilizar en el notebook.</p>
+</div>
+<section id="graficos-de-datos-numericos">
+<h3>Gráficos de datos numéricos<a class="headerlink" href="#graficos-de-datos-numericos" title="Link to this heading">#</a></h3>
+<p>Vamos a hacer una exploración de los datos numéricos que se encuentran en el dataset. Para ello, vamos a hacer un análisis de las medidas de tendencia central y dispersión. Así mismo, vamos a hacer un análisis de la distribución de los datos.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Recuerda que los datos numéricos son aquellos que se pueden sumar, restar, multiplicar o dividir. En este caso, vamos a hacer un análisis de las variables numéricas que se encuentran en el dataset.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+
+<span class="c1">## Gráficos para la variable &#39;Recency&#39;</span>
+
+<span class="c1"># Histograma</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Recency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Frecuencia&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Histograma de Recency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/6ff017679330c404282ec5a93a9e5d3a049a897126432fc0e2f1d3266118fcde.png" src="../_images/6ff017679330c404282ec5a93a9e5d3a049a897126432fc0e2f1d3266118fcde.png" />
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>El comando bins es utilizado para definir el número de intervalos en los que se va a dividir el histograma.</p>
+</div>
+<div class="admonition-ejercicio admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Realiza un análisis de las variables numéricas que se encuentran en el dataset. ¿Como se interpreta el gráfico si se modifica varias veces el comando <code class="docutils literal notranslate"><span class="pre">bins</span></code>?</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Boxplot</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Boxplot de Recency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/571ec3105a2dfa038fe90b1d2b643ee9e0c35fed2791bce75ce2babf3342606d.png" src="../_images/571ec3105a2dfa038fe90b1d2b643ee9e0c35fed2791bce75ce2babf3342606d.png" />
+</div>
+</div>
+<div class="admonition-ejercicio admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>¿Cómo se interpreta el gráfico boxplot? ¿Qué información nos da este gráfico?</p>
+</div>
+</section>
+<section id="graficos-para-dos-variables">
+<h3>Gráficos para dos variables<a class="headerlink" href="#graficos-para-dos-variables" title="Link to this heading">#</a></h3>
+<p>En el caso de las variables que tenemos en el dataset, resultaría interesante ver la relación entre ‘Recency’ y ‘Income’. Para ello, vamos a hacer un gráfico de dispersión.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>El gráfico de dispersión es un gráfico que utiliza coordenadas cartesianas para mostrar los valores de dos variables para un conjunto de datos. Los datos se muestran como una colección de puntos, cada uno con el valor de una variable que determina la posición en el eje horizontal y el valor de la otra variable que determina la posición en el eje vertical.</p>
+</div>
+<div class="admonition-ejercicio admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Realiza un gráfico de dispersión entre las variables ‘Recency’ e ‘Income’. ¿Qué relación observas entre estas dos variables?</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Gráfico de dispersión</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Recency&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Income&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Recency&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;Income&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Gráfico de dispersión de Recency vs Income&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/4b217bfa10acbf8ca1530587bc0e0f453f1f7c2ec01387d41ae2430634dea203.png" src="../_images/4b217bfa10acbf8ca1530587bc0e0f453f1f7c2ec01387d41ae2430634dea203.png" />
+</div>
+</div>
+</section>
+<section id="graficos-para-variables-categoricas">
+<h3>Gráficos para variables categóricas<a class="headerlink" href="#graficos-para-variables-categoricas" title="Link to this heading">#</a></h3>
+<p>En este dataset no hay variables categoricas, pero vamos a hacer un análisis de las variables dummy que se encuentran en el dataset.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Las variables dummy son variables que toman el valor de 0 o 1 para indicar la presencia o ausencia de una categoría.</p>
+</div>
+<div class="admonition-ejercicio admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>¿Cuáles son las variables dummy que se encuentran en el dataset? Realiza un análisis de estas variables.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Income&#39;, &#39;Kidhome&#39;, &#39;Teenhome&#39;, &#39;Recency&#39;, &#39;MntWines&#39;, &#39;MntFruits&#39;,
+       &#39;MntMeatProducts&#39;, &#39;MntFishProducts&#39;, &#39;MntSweetProducts&#39;,
+       &#39;MntGoldProds&#39;, &#39;NumDealsPurchases&#39;, &#39;NumWebPurchases&#39;,
+       &#39;NumCatalogPurchases&#39;, &#39;NumStorePurchases&#39;, &#39;NumWebVisitsMonth&#39;,
+       &#39;AcceptedCmp3&#39;, &#39;AcceptedCmp4&#39;, &#39;AcceptedCmp5&#39;, &#39;AcceptedCmp1&#39;,
+       &#39;AcceptedCmp2&#39;, &#39;Complain&#39;, &#39;Z_CostContact&#39;, &#39;Z_Revenue&#39;, &#39;Response&#39;,
+       &#39;Age&#39;, &#39;Customer_Days&#39;, &#39;marital_Divorced&#39;, &#39;marital_Married&#39;,
+       &#39;marital_Single&#39;, &#39;marital_Together&#39;, &#39;marital_Widow&#39;,
+       &#39;education_2n Cycle&#39;, &#39;education_Basic&#39;, &#39;education_Graduation&#39;,
+       &#39;education_Master&#39;, &#39;education_PhD&#39;, &#39;MntTotal&#39;, &#39;MntRegularProds&#39;,
+       &#39;AcceptedCmpOverall&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<p>En este caso las variables dummy son <code class="docutils literal notranslate"><span class="pre">'marital_Divorced',</span> <span class="pre">'marital_Married','marital_Single',</span> <span class="pre">'marital_Together',</span> <span class="pre">'marital_Widow'</span></code>, el siguiente código permitira convertirla en una sola variable.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;marital_Divorced&#39;</span><span class="p">,</span> <span class="s1">&#39;marital_Married&#39;</span><span class="p">,</span><span class="s1">&#39;marital_Single&#39;</span><span class="p">,</span> <span class="s1">&#39;marital_Together&#39;</span><span class="p">,</span> <span class="s1">&#39;marital_Widow&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0         marital_Single
+1         marital_Single
+2       marital_Together
+3       marital_Together
+4        marital_Married
+              ...       
+2200     marital_Married
+2201    marital_Together
+2202    marital_Divorced
+2203    marital_Together
+2204     marital_Married
+Name: marital, Length: 2205, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La función idxmax() devuelve el índice de la primera aparición del valor máximo.</p>
+</div>
+<div class="admonition-ejercicio admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>¿Cómo comprobarías que los datos están bien definidos, esto es,  que no se repiten valores en las variables dummy?</p>
+</div>
+<p>Quitamos de la variable df[‘marital’] el prefijo ‘marital_’ y lo guardamos en la variable df[‘marital’].</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;marital_&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0         Single
+1         Single
+2       Together
+3       Together
+4        Married
+          ...   
+2200     Married
+2201    Together
+2202    Divorced
+2203    Together
+2204     Married
+Name: marital, Length: 2205, dtype: object
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;marital_&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>la función <code class="docutils literal notranslate"><span class="pre">.str</span></code> permite acceder a los métodos de las cadenas de texto y transforma cada elemento de la serie como cadena de texto.</p>
+<p>En este caso <code class="docutils literal notranslate"><span class="pre">.replace</span></code> reemplaza el prefijo ‘marital_’ por un espacio vacío.</p>
+</div>
+<div class="admonition-ejercicio admonition">
+<p class="admonition-title">Ejercicio</p>
+<p>Realiza transformaciones a las cadenas de texto con las siguientes funciones: <code class="docutils literal notranslate"><span class="pre">.lower()</span></code>, <code class="docutils literal notranslate"><span class="pre">.upper()</span></code>, <code class="docutils literal notranslate"><span class="pre">.capitalize()</span></code>, <code class="docutils literal notranslate"><span class="pre">.title()</span></code>. ¿Qué hace cada una de estas funciones?</p>
+<p><code class="docutils literal notranslate"><span class="pre">df['marital']</span> <span class="pre">=</span> <span class="pre">df['marital'].str.lower()</span></code></p>
+</div>
+<p>Ya que tenemos una variable categórica, vamos a hacer un análisis de la distribución de los datos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Tabla de frecuencias</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>marital
+Married     854
+Together    568
+Single      477
+Divorced    230
+Widow        76
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Gráfico de barras</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightblue&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;marital&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/5d2a97d068298ab373748f1cdefca0464836108db50f433a01fcf8ad2198e444.png" src="../_images/5d2a97d068298ab373748f1cdefca0464836108db50f433a01fcf8ad2198e444.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Otra forma de hacerlo</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">countplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;marital&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;Blues&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\cizai\AppData\Local\Temp\ipykernel_3176\2871616048.py:3: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.countplot(x=&#39;marital&#39;, data=df, palette=&#39;Blues&#39;)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;marital&#39;, ylabel=&#39;count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/3c99fb5dce55f3a1f920025fb695b75050fb80bd0ff83318b0799cf555acd903.png" src="../_images/3c99fb5dce55f3a1f920025fb695b75050fb80bd0ff83318b0799cf555acd903.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Gráfico de pastel</span>
+
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;pie&#39;</span><span class="p">,</span> <span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;lightcoral&#39;</span><span class="p">,</span> <span class="s1">&#39;lightskyblue&#39;</span><span class="p">,</span> <span class="s1">&#39;lightpink&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: ylabel=&#39;count&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/b82887507e8c23433ed4a22d8f33d1921a7464d00a7104d0b873b08dd8a6ebe0.png" src="../_images/b82887507e8c23433ed4a22d8f33d1921a7464d00a7104d0b873b08dd8a6ebe0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Otra forma de hacerlo</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">pie</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(),</span> 
+        <span class="n">labels</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;marital&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> 
+        <span class="n">autopct</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%1.1f%%</span><span class="s1">&#39;</span><span class="p">,</span> 
+        <span class="n">colors</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;lightblue&#39;</span><span class="p">,</span> <span class="s1">&#39;lightgreen&#39;</span><span class="p">,</span> <span class="s1">&#39;lightcoral&#39;</span><span class="p">,</span> <span class="s1">&#39;lightskyblue&#39;</span><span class="p">,</span> <span class="s1">&#39;lightpink&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/54a1bb9a2b3403efe1d9ea239104caa7424904910af17cd42d9fdd891109bd9c.png" src="../_images/54a1bb9a2b3403efe1d9ea239104caa7424904910af17cd42d9fdd891109bd9c.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Scatterplot para tres variables</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;Recency&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Income&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;marital&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;Recency&#39;, ylabel=&#39;Income&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/b398cc2efa22df7acc370703452e70d2f58b223b113c9b5c753b97e3d566372b.png" src="../_images/b398cc2efa22df7acc370703452e70d2f58b223b113c9b5c753b97e3d566372b.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Boxplot </span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">boxplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s1">&#39;marital&#39;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;Recency&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\cizai\AppData\Local\Temp\ipykernel_3176\3472656058.py:3: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.boxplot(x=&#39;marital&#39;, y=&#39;Recency&#39;, data=df, palette=&#39;viridis&#39;)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Axes: xlabel=&#39;marital&#39;, ylabel=&#39;Recency&#39;&gt;
+</pre></div>
+</div>
+<img alt="../_images/a2f67d02cd0ab9da0efaaa23b0587e0c812a8a984341eac26a92c71e541decb9.png" src="../_images/a2f67d02cd0ab9da0efaaa23b0587e0c812a8a984341eac26a92c71e541decb9.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="cambio-dataset">
+<h2>Cambio dataset<a class="headerlink" href="#cambio-dataset" title="Link to this heading">#</a></h2>
+<p>El dataset que se encuentra en el archivo <code class="docutils literal notranslate"><span class="pre">ifood.csv</span></code> muestra registros con distribuciones poco probables. Por esta razón, vamos a cambiar el dataset por uno que muestre una distribución más normal.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Recuerda que para cargar los datos debe hacer clic en el panel izquierdo en el botón de exploración de archivos. En ese menu tendra la opción de subir algunos datos. En Google Colab, el archivo se borrará una vez que se cierre el entorno.</p>
+</div>
+<p>El link para descargar el archivo es el siguiente: <a class="reference external" href="https://raw.githubusercontent.com/Izainea/mercadeia/master/ifood_simulado.csv">https://raw.githubusercontent.com/Izainea/mercadeia/master/ifood_simulado.csv</a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Este dataset se puede cargar directamente desde la web con el siguiente comando:</p>
+<p><code class="docutils literal notranslate"><span class="pre">df</span> <span class="pre">=</span> <span class="pre">pd.read_csv('https://raw.githubusercontent.com/Izainea/mercadeia/master/ifood_simulado.csv')</span></code></p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">df_modificado</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;ifood_simulado.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">FileNotFoundError</span><span class="g g-Whitespace">                         </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">18</span><span class="p">],</span> <span class="n">line</span> <span class="mi">5</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="g g-Whitespace">      </span><span class="mi">3</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="ne">----&gt; </span><span class="mi">5</span> <span class="n">df_modificado</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;ifood_simulado.csv&quot;</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\io\parsers\readers.py:948,</span> in <span class="ni">read_csv</span><span class="nt">(filepath_or_buffer, sep, delimiter, header, names, index_col, usecols, dtype, engine, converters, true_values, false_values, skipinitialspace, skiprows, skipfooter, nrows, na_values, keep_default_na, na_filter, verbose, skip_blank_lines, parse_dates, infer_datetime_format, keep_date_col, date_parser, date_format, dayfirst, cache_dates, iterator, chunksize, compression, thousands, decimal, lineterminator, quotechar, quoting, doublequote, escapechar, comment, encoding, encoding_errors, dialect, on_bad_lines, delim_whitespace, low_memory, memory_map, float_precision, storage_options, dtype_backend)</span>
+<span class="g g-Whitespace">    </span><span class="mi">935</span> <span class="n">kwds_defaults</span> <span class="o">=</span> <span class="n">_refine_defaults_read</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">936</span>     <span class="n">dialect</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">937</span>     <span class="n">delimiter</span><span class="p">,</span>
+   <span class="p">(</span><span class="o">...</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">944</span>     <span class="n">dtype_backend</span><span class="o">=</span><span class="n">dtype_backend</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">945</span> <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">946</span> <span class="n">kwds</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwds_defaults</span><span class="p">)</span>
+<span class="ne">--&gt; </span><span class="mi">948</span> <span class="k">return</span> <span class="n">_read</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="n">kwds</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\io\parsers\readers.py:611,</span> in <span class="ni">_read</span><span class="nt">(filepath_or_buffer, kwds)</span>
+<span class="g g-Whitespace">    </span><span class="mi">608</span> <span class="n">_validate_names</span><span class="p">(</span><span class="n">kwds</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;names&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
+<span class="g g-Whitespace">    </span><span class="mi">610</span> <span class="c1"># Create the parser.</span>
+<span class="ne">--&gt; </span><span class="mi">611</span> <span class="n">parser</span> <span class="o">=</span> <span class="n">TextFileReader</span><span class="p">(</span><span class="n">filepath_or_buffer</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">613</span> <span class="k">if</span> <span class="n">chunksize</span> <span class="ow">or</span> <span class="n">iterator</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">614</span>     <span class="k">return</span> <span class="n">parser</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\io\parsers\readers.py:1448,</span> in <span class="ni">TextFileReader.__init__</span><span class="nt">(self, f, engine, **kwds)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1445</span>     <span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">kwds</span><span class="p">[</span><span class="s2">&quot;has_index_names&quot;</span><span class="p">]</span>
+<span class="g g-Whitespace">   </span><span class="mi">1447</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="p">:</span> <span class="n">IOHandles</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="ne">-&gt; </span><span class="mi">1448</span> <span class="bp">self</span><span class="o">.</span><span class="n">_engine</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_make_engine</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">engine</span><span class="p">)</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\io\parsers\readers.py:1705,</span> in <span class="ni">TextFileReader._make_engine</span><span class="nt">(self, f, engine)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1703</span>     <span class="k">if</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">   </span><span class="mi">1704</span>         <span class="n">mode</span> <span class="o">+=</span> <span class="s2">&quot;b&quot;</span>
+<span class="ne">-&gt; </span><span class="mi">1705</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="o">=</span> <span class="n">get_handle</span><span class="p">(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1706</span>     <span class="n">f</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1707</span>     <span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1708</span>     <span class="n">encoding</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1709</span>     <span class="n">compression</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;compression&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1710</span>     <span class="n">memory_map</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;memory_map&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1711</span>     <span class="n">is_text</span><span class="o">=</span><span class="n">is_text</span><span class="p">,</span>
+<span class="g g-Whitespace">   </span><span class="mi">1712</span>     <span class="n">errors</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;encoding_errors&quot;</span><span class="p">,</span> <span class="s2">&quot;strict&quot;</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1713</span>     <span class="n">storage_options</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;storage_options&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span>
+<span class="g g-Whitespace">   </span><span class="mi">1714</span> <span class="p">)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1715</span> <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<span class="g g-Whitespace">   </span><span class="mi">1716</span> <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">handles</span><span class="o">.</span><span class="n">handle</span>
+
+<span class="nn">File ~\miniconda3\Lib\site-packages\pandas\io\common.py:863,</span> in <span class="ni">get_handle</span><span class="nt">(path_or_buf, mode, encoding, compression, memory_map, is_text, errors, storage_options)</span>
+<span class="g g-Whitespace">    </span><span class="mi">858</span> <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+<span class="g g-Whitespace">    </span><span class="mi">859</span>     <span class="c1"># Check whether the filename is to be opened in binary mode.</span>
+<span class="g g-Whitespace">    </span><span class="mi">860</span>     <span class="c1"># Binary mode does not support &#39;encoding&#39; and &#39;newline&#39;.</span>
+<span class="g g-Whitespace">    </span><span class="mi">861</span>     <span class="k">if</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span> <span class="ow">and</span> <span class="s2">&quot;b&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">862</span>         <span class="c1"># Encoding</span>
+<span class="ne">--&gt; </span><span class="mi">863</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span>
+<span class="g g-Whitespace">    </span><span class="mi">864</span>             <span class="n">handle</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">865</span>             <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">866</span>             <span class="n">encoding</span><span class="o">=</span><span class="n">ioargs</span><span class="o">.</span><span class="n">encoding</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">867</span>             <span class="n">errors</span><span class="o">=</span><span class="n">errors</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">868</span>             <span class="n">newline</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span>
+<span class="g g-Whitespace">    </span><span class="mi">869</span>         <span class="p">)</span>
+<span class="g g-Whitespace">    </span><span class="mi">870</span>     <span class="k">else</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">871</span>         <span class="c1"># Binary mode</span>
+<span class="g g-Whitespace">    </span><span class="mi">872</span>         <span class="n">handle</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">handle</span><span class="p">,</span> <span class="n">ioargs</span><span class="o">.</span><span class="n">mode</span><span class="p">)</span>
+
+<span class="ne">FileNotFoundError</span>: [Errno 2] No such file or directory: &#39;ifood_simulado.csv&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id1">
+<h3>Gráficos de datos numéricos<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>Vamos a hacer una exploración de los datos numéricos que se encuentran en el dataset. Para ello, vamos a hacer un análisis de las medidas de tendencia central y dispersión. Así mismo, vamos a hacer un análisis de la distribución de los datos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Diferencias entre datasets</span>
+<span class="c1">## Columnas que no están en el dataset original</span>
+
+<span class="n">df_modificado</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Education_Level&#39;, &#39;Marital_Status&#39;], dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Columnas del dataset original que no están en el dataset modificado</span>
+
+<span class="n">df</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">df_modificado</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;education_2n Cycle&#39;, &#39;education_Basic&#39;, &#39;education_Graduation&#39;,
+       &#39;education_Master&#39;, &#39;education_PhD&#39;, &#39;marital&#39;, &#39;marital_Divorced&#39;,
+       &#39;marital_Married&#39;, &#39;marital_Single&#39;, &#39;marital_Together&#39;,
+       &#39;marital_Widow&#39;],
+      dtype=&#39;object&#39;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_modificado</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Marital_Status</th>
+      <th>Kidhome</th>
+      <th>Teenhome</th>
+      <th>Education_Level</th>
+      <th>Income</th>
+      <th>Recency</th>
+      <th>MntWines</th>
+      <th>MntFruits</th>
+      <th>MntMeatProducts</th>
+      <th>MntFishProducts</th>
+      <th>...</th>
+      <th>Customer_Days</th>
+      <th>MntRegularProds</th>
+      <th>NumCatalogPurchases</th>
+      <th>NumDealsPurchases</th>
+      <th>NumStorePurchases</th>
+      <th>NumWebPurchases</th>
+      <th>NumWebVisitsMonth</th>
+      <th>Response</th>
+      <th>Z_CostContact</th>
+      <th>Z_Revenue</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Single</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Master</td>
+      <td>74927</td>
+      <td>39</td>
+      <td>156</td>
+      <td>17</td>
+      <td>82</td>
+      <td>18</td>
+      <td>...</td>
+      <td>566</td>
+      <td>293</td>
+      <td>5</td>
+      <td>2</td>
+      <td>3</td>
+      <td>1</td>
+      <td>4</td>
+      <td>1</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Widow</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Master</td>
+      <td>95766</td>
+      <td>22</td>
+      <td>192</td>
+      <td>17</td>
+      <td>101</td>
+      <td>28</td>
+      <td>...</td>
+      <td>3103</td>
+      <td>369</td>
+      <td>1</td>
+      <td>7</td>
+      <td>0</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Married</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Graduation</td>
+      <td>59676</td>
+      <td>46</td>
+      <td>50</td>
+      <td>7</td>
+      <td>57</td>
+      <td>46</td>
+      <td>...</td>
+      <td>565</td>
+      <td>192</td>
+      <td>3</td>
+      <td>6</td>
+      <td>0</td>
+      <td>5</td>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Married</td>
+      <td>2</td>
+      <td>2</td>
+      <td>Graduation</td>
+      <td>59663</td>
+      <td>2</td>
+      <td>0</td>
+      <td>39</td>
+      <td>0</td>
+      <td>62</td>
+      <td>...</td>
+      <td>1582</td>
+      <td>171</td>
+      <td>4</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+      <td>4</td>
+      <td>0</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Single</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Graduation</td>
+      <td>66230</td>
+      <td>42</td>
+      <td>152</td>
+      <td>15</td>
+      <td>69</td>
+      <td>20</td>
+      <td>...</td>
+      <td>2250</td>
+      <td>268</td>
+      <td>1</td>
+      <td>4</td>
+      <td>5</td>
+      <td>6</td>
+      <td>4</td>
+      <td>0</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>10320</th>
+      <td>Married</td>
+      <td>0</td>
+      <td>1</td>
+      <td>Master</td>
+      <td>82990</td>
+      <td>35</td>
+      <td>91</td>
+      <td>19</td>
+      <td>73</td>
+      <td>56</td>
+      <td>...</td>
+      <td>3960</td>
+      <td>286</td>
+      <td>4</td>
+      <td>3</td>
+      <td>1</td>
+      <td>3</td>
+      <td>1</td>
+      <td>1</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>10321</th>
+      <td>Single</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Graduation</td>
+      <td>82357</td>
+      <td>40</td>
+      <td>155</td>
+      <td>16</td>
+      <td>90</td>
+      <td>23</td>
+      <td>...</td>
+      <td>3978</td>
+      <td>306</td>
+      <td>4</td>
+      <td>2</td>
+      <td>1</td>
+      <td>2</td>
+      <td>2</td>
+      <td>0</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>10322</th>
+      <td>Widow</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Master</td>
+      <td>75732</td>
+      <td>80</td>
+      <td>133</td>
+      <td>18</td>
+      <td>69</td>
+      <td>22</td>
+      <td>...</td>
+      <td>198</td>
+      <td>266</td>
+      <td>2</td>
+      <td>2</td>
+      <td>1</td>
+      <td>4</td>
+      <td>6</td>
+      <td>0</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>10323</th>
+      <td>Single</td>
+      <td>0</td>
+      <td>0</td>
+      <td>Graduation</td>
+      <td>65084</td>
+      <td>75</td>
+      <td>127</td>
+      <td>7</td>
+      <td>45</td>
+      <td>26</td>
+      <td>...</td>
+      <td>3160</td>
+      <td>223</td>
+      <td>6</td>
+      <td>5</td>
+      <td>2</td>
+      <td>1</td>
+      <td>2</td>
+      <td>0</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>10324</th>
+      <td>Single</td>
+      <td>0</td>
+      <td>0</td>
+      <td>PhD</td>
+      <td>60436</td>
+      <td>58</td>
+      <td>122</td>
+      <td>14</td>
+      <td>65</td>
+      <td>26</td>
+      <td>...</td>
+      <td>4725</td>
+      <td>239</td>
+      <td>3</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>4</td>
+      <td>0</td>
+      <td>3</td>
+      <td>11</td>
+    </tr>
+  </tbody>
+</table>
+<p>10325 rows × 31 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">### Codigo para explorar el dataset df_modificado</span>
+
+<span class="c1">#-- Esto continuará en clase</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Medidas%20Estadisticas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Medidas estadísticas</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Manipulaci%C3%B3n%2C%20Limpieza%20y%20Exploraci%C3%B3n%20de%20Datos.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Manipulación, Limpieza y Exploración de Datos</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#carga-de-datos">Carga de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-de-datos">Visualización de datos</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-de-datos-numericos">Gráficos de datos numéricos</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-para-dos-variables">Gráficos para dos variables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#graficos-para-variables-categoricas">Gráficos para variables categóricas</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cambio-dataset">Cambio dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Gráficos de datos numéricos</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Isaac Zainea
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

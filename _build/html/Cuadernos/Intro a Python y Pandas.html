@@ -1,0 +1,650 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Introducción a Python y Pandas &#8212; Introducción a Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Cuadernos/Intro a Python y Pandas';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Uso de Pandas" href="Minutos%20y%20segundos.html" />
+    <link rel="prev" title="Introducción al Machine Learning" href="introduccion.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="introduccion.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Introducción a Machine Learning - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Introducción a Machine Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="introduccion.html">
+                    Introducción al Machine Learning
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Introducción a Python y Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Minutos%20y%20segundos.html">Uso de Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Graficos.html">Trabajemos en algunos gráficos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Medidas%20Estadisticas.html">Medidas estadísticas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Visualizaci%C3%B3n%20en%20Python.html">Visualización de datos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Manipulaci%C3%B3n%2C%20Limpieza%20y%20Exploraci%C3%B3n%20de%20Datos.html">Manipulación, Limpieza y Exploración de Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aprendizaje%20Autom%C3%A1tico.html">Introducción al Aprendizaje Automático en Mercadeo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Estadisticos%20de%20Validaci%C3%B3n.html">Estadísticos de Validación de un Modelo de Clasificación Supervisada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modelos%20de%20Clasificaci%C3%B3n%20I.html">Primer resumen sobre modelos de clasificación supervisada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modelos%20de%20Clasificaci%C3%B3n%20II.html">Segundo resumen sobre modelos de clasificación supervisada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ejercicio%20K%20Means.html">Algoritmos Clúster</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Izainea/seminario-de-programacion" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Izainea/seminario-de-programacion/issues/new?title=Issue%20on%20page%20%2FCuadernos/Intro a Python y Pandas.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Cuadernos/Intro a Python y Pandas.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Introducción a Python y Pandas</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#los-datasets">Los datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab">Google Colab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copilotos-llm">Copilotos LLM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-datos">Análisis de datos</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="introduccion-a-python-y-pandas">
+<h1>Introducción a Python y Pandas<a class="headerlink" href="#introduccion-a-python-y-pandas" title="Link to this heading">#</a></h1>
+<section id="introduccion">
+<h2>Introducción<a class="headerlink" href="#introduccion" title="Link to this heading">#</a></h2>
+<p>En este capítulo se aborda el análisis de datos con pandas, una librería de Python que nos permite trabajar con tablas de datos de forma eficiente. <code class="docutils literal notranslate"><span class="pre">pandas</span></code> nos ofrece estructuras de datos flexibles y potentes para manipular y analizar datos, así como herramientas para importar y exportar datos desde diferentes fuentes. En este capítulo, veremos cómo cargar un dataset en un DataFrame de pandas, explorar los datos, limpiarlos, transformarlos y visualizarlos.</p>
+</section>
+<section id="los-datasets">
+<h2>Los datasets<a class="headerlink" href="#los-datasets" title="Link to this heading">#</a></h2>
+<p>Si bien hay muchas fuentes de datos disponibles en la web, para este curso usaremos datasets del repositorio de datos de la Universidad de California, Irvine (UCI). Este repositorio contiene una amplia variedad de datasets de diferentes dominios, como ciencia de datos, aprendizaje automático, inteligencia artificial, entre otros. Los datasets de UCI son ampliamente utilizados en la comunidad de aprendizaje automático para probar algoritmos y modelos en diferentes problemas.</p>
+<p>El enlace al repositorio de datos de UCI es el siguiente: <a class="reference external" href="https://archive.ics.uci.edu/ml/index.php">UCI Machine Learning Repository</a>. Varios de los datasets que se encuentran en este repositorio son utilizados en la literatura científica y en competencias de aprendizaje automático. En este capítulo, usaremos el dataset <strong>Adult</strong> de UCI para realizar un análisis de datos con pandas.</p>
+</section>
+<section id="google-colab">
+<h2>Google Colab<a class="headerlink" href="#google-colab" title="Link to this heading">#</a></h2>
+<p>Google Colab es una herramienta online que nos permite ejecutar código de Python en la nube, sin necesidad de instalar nada en nuestro ordenador. Además, podemos acceder a recursos de computación avanzados, como GPUs o TPUs, para procesar grandes cantidades de datos o entrenar modelos de aprendizaje automático. Google Colab también nos permite compartir nuestros notebooks con otros usuarios y colaborar en tiempo real.</p>
+<p>Para usar Google Colab, solo necesitamos una cuenta de Google y un navegador web. Podemos acceder a la página principal de Google Colab en <a class="reference external" href="https://colab.research.google.com/">https://colab.research.google.com/</a> y seguir estos pasos para crear o abrir un notebook:</p>
+<ul class="simple">
+<li><p>Para crear un nuevo notebook, hacemos clic en el botón “Nuevo notebook” en la esquina superior izquierda, o seleccionamos “Archivo” y luego “Nuevo notebook” en el menú superior.</p></li>
+<li><p>Para abrir un notebook existente desde Google Drive o Github, usamos las opciones que aparecen en la página principal.</p></li>
+</ul>
+<p>Un notebook es un documento que combina celdas de texto y de código, que se pueden ejecutar de forma interactiva. Las celdas de texto nos permiten explicar lo que hacemos con el código, usando el formato Markdown. Las celdas de código nos permiten escribir y ejecutar instrucciones de Python, usando el entorno de ejecución de Google Colab, que tiene instaladas muchas librerías útiles para el análisis de datos y el aprendizaje automático. Para ejecutar una celda de código, podemos usar el botón de play que aparece al lado de la celda, o presionar las teclas Ctrl+Enter. El resultado de la ejecución se mostrará debajo de la celda.</p>
+<p>Las <strong>celdas de texto</strong> son espacios donde podemos escribir texto enriquecido, usando el formato Markdown. El formato Markdown nos permite usar diferentes estilos de letra, como negrita o cursiva, insertar enlaces, imágenes, ecuaciones matemáticas o listas. Para editar una celda de texto, hacemos doble clic sobre ella y usamos la barra de herramientas que aparece encima. Para ver el resultado final, presionamos Shift+Enter o hacemos clic fuera de la celda.</p>
+<p><strong>Un tutorial elemental de cómo funciona Markdown</strong></p>
+<p>Para complementar el texto con formato Markdown, podemos usar celdas de texto en nuestro notebook. El formato Markdown es un lenguaje de marcado ligero que nos permite crear documentos con un aspecto profesional, usando una sintaxis sencilla y fácil de aprender. Algunas de las ventajas de usar Markdown son:</p>
+<p>- Es compatible con HTML, por lo que podemos insertar etiquetas HTML en nuestro texto si queremos usar alguna función que no esté disponible en Markdown.</p>
+<p>- Se puede convertir a otros formatos, como PDF, Word o LaTeX, usando herramientas externas.</p>
+<p>- Es ampliamente usado en plataformas de desarrollo y colaboración, como Github, Stack Overflow o Medium.</p>
+<p>A continuación, vamos a ver algunos ejemplos de cómo usar Markdown para dar formato a nuestro texto.</p>
+<p><strong>Encabezados</strong></p>
+<p>Para crear encabezados de diferentes niveles, usamos el símbolo # al principio de la línea, seguido de un espacio y el texto del encabezado. El número de # indica el nivel del encabezado, desde 1 (el más grande) hasta 6 (el más pequeño). Por ejemplo:</p>
+<p># Este es un encabezado de nivel 1</p>
+<p>## Este es un encabezado de nivel 2</p>
+<p>### Este es un encabezado de nivel 3</p>
+<p>#### Este es un encabezado de nivel 4</p>
+<p>##### Este es un encabezado de nivel 5</p>
+<p>###### Este es un encabezado de nivel 6</p>
+<p><strong>Estilos de letra</strong></p>
+<p>Para aplicar estilos de letra como negrita, cursiva o tachado, usamos los símbolos *, ** o ~~ alrededor del texto que queremos modificar. Por ejemplo:</p>
+<p>- Para escribir en **negrita** usamos dos asteriscos: <code class="docutils literal notranslate"><span class="pre">\*\*negrita\*\*</span></code>.</p>
+<p>- Para escribir en *cursiva* usamos un asterisco: <code class="docutils literal notranslate"><span class="pre">\*cursiva\*</span></code>.</p>
+<p>- Para escribir con ~~tachado~~ usamos dos virgulillas: <code class="docutils literal notranslate"><span class="pre">~~tachado~~</span></code>.</p>
+<p>- Podemos combinar estos estilos usando más de un símbolo: <code class="docutils literal notranslate"><span class="pre">\*\*\*negrita</span> <span class="pre">y</span> <span class="pre">cursiva\*\*\*</span></code>, <code class="docutils literal notranslate"><span class="pre">\*\*~negrita</span> <span class="pre">y</span> <span class="pre">tachado~\*\*</span></code> o <code class="docutils literal notranslate"><span class="pre">\*~cursiva</span> <span class="pre">y</span> <span class="pre">tachado~\*</span></code>.</p>
+<p><strong>Listas e imágenes</strong></p>
+<p>Para escribir una lista con viñetas, usamos el signo menos al comienzo de cada línea: <code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">elemento</span> <span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">-</span> <span class="pre">elemento</span> <span class="pre">2</span></code>, etc. Por ejemplo:</p>
+<ul class="simple">
+<li><p>Esta es una lista</p></li>
+<li><p>Con tres elementos</p></li>
+<li><p>Muy sencillos</p></li>
+</ul>
+<p>Para escribir una lista numerada, usamos un número seguido de un punto al comienzo de cada línea: <code class="docutils literal notranslate"><span class="pre">1.</span> <span class="pre">elemento</span> <span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">2.</span> <span class="pre">elemento</span> <span class="pre">2</span></code>, etc. Por ejemplo:</p>
+<ol class="arabic simple">
+<li><p>Este es el primer elemento</p></li>
+<li><p>Este es el segundo elemento</p></li>
+<li><p>Este es el tercer elemento</p></li>
+</ol>
+<p>Usamos la etiqueta <img> con el atributo <code class="docutils literal notranslate"><span class="pre">src</span></code> para insertar una imagen, indicando la dirección web donde se encuentra la imagen. También podemos modificar el tamaño de la imagen con los atributos <code class="docutils literal notranslate"><span class="pre">width</span></code> y <code class="docutils literal notranslate"><span class="pre">height</span></code>. Por ejemplo:</p>
+<p><img alt="logo" src="https://izainea.github.io/mercadeia/_static/logo.png" /></p>
+<p>Las <strong>celdas de código</strong> son espacios donde podemos escribir y ejecutar instrucciones de Python. Estas instrucciones pueden definir variables, funciones, clases, importar librerías, manipular datos, crear gráficos o aplicar algoritmos de aprendizaje automático. Para editar una celda de código, hacemos clic sobre ella y escribimos el código que queremos. Para ejecutarlo, usamos el botón de play o las teclas Ctrl+Enter. El resultado de la ejecución se mostrará debajo de la celda, junto con cualquier mensaje de error o advertencia que se produzca. Podemos usar la opción “Reiniciar entorno de ejecución” del menú “Entorno de ejecución” para borrar todas las variables y reiniciar el notebook.</p>
+<p>Python es un lenguaje de programación de alto nivel, que se caracteriza por su simplicidad y flexibilidad. Python tiene una sintaxis clara y consistente, que facilita la lectura y escritura del código. Además, Python es un lenguaje interpretado, lo que significa que no necesita ser compilado antes de ejecutarse, sino que el código se traduce a lenguaje máquina en tiempo real.</p>
+<p>Para escribir código en Python, debemos seguir algunas reglas básicas, como:</p>
+<ul class="simple">
+<li><p>Usar indentación para delimitar los bloques de código. La indentación consiste en agregar espacios o tabulaciones al inicio de cada línea de un bloque. Todos los bloques que pertenecen al mismo nivel deben tener la misma indentación.</p></li>
+<li><p>Usar dos puntos (:) para indicar el inicio de un bloque. Por ejemplo, después de una declaración if, for o def, se debe colocar dos puntos y luego indentar el bloque correspondiente.</p></li>
+<li><p>Usar comillas simples (’ ‘) o dobles (” “) para crear cadenas de texto. Por ejemplo: ‘Hola’, “Python”.</p></li>
+<li><p>Usar el símbolo # para crear comentarios. Los comentarios son líneas de texto que no se ejecutan y sirven para explicar el código o dejar notas. Por ejemplo: # Esto es un comentario</p></li>
+<li><p>Usar mayúsculas y minúsculas de forma consistente. Python distingue entre mayúsculas y minúsculas, lo que significa que las variables, funciones o clases con nombres diferentes según el uso de mayúsculas y minúsculas son tratadas como entidades distintas. Por ejemplo: nombre, Nombre y NOMBRE son tres variables diferentes.</p></li>
+</ul>
+<p>Estas son algunas de las reglas elementales de programación en Python. Para aprender más sobre este lenguaje, podemos consultar la documentación oficial o algún tutorial en línea. Google Colab nos ofrece un entorno interactivo para practicar y experimentar con Python sin necesidad de instalar nada en nuestro ordenador.</p>
+<p>Un ejemplo de cómo usar Google Colab para revisar nuestro dataset es el siguiente:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importar las librerías necesarias para el análisis de datos</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
+</div>
+<p>El anterior código importa las librerías necesarias para el análisis de datos. La librería pandas nos permite trabajar con tablas de datos, la librería numpy nos permite realizar operaciones matemáticas y la librería matplotlib nos permite crear gráficos. Estas librerías son muy útiles para el análisis de datos y la visualización de resultados.</p>
+<p>En el caso de los datasets de UCI, podemos cargarlos directamente con la herramienta de UCI, aprovechemos para repasar conceptos básicos de Python:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">### Instalación de librería ucimlrepo</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">ucimlrepo</span>
+</pre></div>
+</div>
+<p>Ahora cargamos los datasets de UCI con la librería ucimlrepo:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Cargar el dataset Adult de UCI</span>
+
+<span class="kn">from</span> <span class="nn">ucimlrepo</span> <span class="kn">import</span> <span class="n">fetch_ucirepo</span> 
+  
+<span class="c1"># fetch dataset (cuando decimos fetch, estamos diciendo que vamos a traer algo)</span>
+<span class="n">adult</span> <span class="o">=</span> <span class="n">fetch_ucirepo</span><span class="p">(</span><span class="nb">id</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> 
+  
+<span class="c1"># Datos (como dataframes de pandas) </span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">adult</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">features</span> 
+<span class="n">y</span> <span class="o">=</span> <span class="n">adult</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">targets</span> 
+  
+<span class="c1"># metadata </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">adult</span><span class="o">.</span><span class="n">metadata</span><span class="p">)</span> 
+  
+<span class="c1"># variable information </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">adult</span><span class="o">.</span><span class="n">variables</span><span class="p">)</span> 
+</pre></div>
+</div>
+<p>El código anterior carga el dataset Adult de UCI y muestra información sobre los datos y las variables. El dataset Adult contiene información sobre personas, como su edad, educación, ocupación, estado civil, etc. Este dataset es ampliamente utilizado en la comunidad de aprendizaje automático para probar algoritmos de clasificación y regresión.</p>
+</section>
+<section id="copilotos-llm">
+<h2>Copilotos LLM<a class="headerlink" href="#copilotos-llm" title="Link to this heading">#</a></h2>
+<p>Los copilotos LLM son asistentes de escritura inteligentes que nos ayudan a programar en diferentes lenguajes usando el lenguaje natural. En esta clase usaremos el copiloto LLM para Python, que nos permite escribir código en Python usando frases en español. Para usar el copiloto LLM para Python, debemos seguir las siguientes instrucciones:</p>
+<ul class="simple">
+<li><p>Escribir la frase en español que describe lo que queremos hacer con el código, precedida por el símbolo #.</p></li>
+<li><p>Presionar la tecla Tab para que el copiloto LLM genere el código en Python correspondiente a la frase.</p></li>
+<li><p>Revisar el código generado y modificarlo si es necesario.</p></li>
+<li><p>Repetir el proceso hasta completar el análisis de datos.</p></li>
+</ul>
+</section>
+<section id="analisis-de-datos">
+<h2>Análisis de datos<a class="headerlink" href="#analisis-de-datos" title="Link to this heading">#</a></h2>
+<p>Para realizar el análisis de datos de la tabla, seguiremos los siguientes pasos:</p>
+<ol class="arabic simple">
+<li><p>Importar las librerías necesarias para el análisis de datos.</p></li>
+<li><p>Cargar el dataset desde el archivo csv.</p></li>
+<li><p>Explorar el dataset y realizar un análisis exploratorio de datos (EDA).</p></li>
+<li><p>Visualizar el dataset y crear gráficos que muestren la distribución de las variables y las relaciones entre ellas.</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="introduccion.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Introducción al Machine Learning</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Minutos%20y%20segundos.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Uso de Pandas</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduccion">Introducción</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#los-datasets">Los datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#google-colab">Google Colab</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copilotos-llm">Copilotos LLM</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-de-datos">Análisis de datos</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Isaac Zainea
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

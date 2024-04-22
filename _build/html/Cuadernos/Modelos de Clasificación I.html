@@ -1,0 +1,962 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Primer resumen sobre modelos de clasificación supervisada &#8212; Introducción a Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Cuadernos/Modelos de Clasificación I';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Segundo resumen sobre modelos de clasificación supervisada" href="Modelos%20de%20Clasificaci%C3%B3n%20II.html" />
+    <link rel="prev" title="Estadísticos de Validación de un Modelo de Clasificación Supervisada" href="Estadisticos%20de%20Validaci%C3%B3n.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="introduccion.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Introducción a Machine Learning - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Introducción a Machine Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="introduccion.html">
+                    Introducción al Machine Learning
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Intro%20a%20Python%20y%20Pandas.html">Introducción a Python y Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Minutos%20y%20segundos.html">Uso de Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Graficos.html">Trabajemos en algunos gráficos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Medidas%20Estadisticas.html">Medidas estadísticas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Visualizaci%C3%B3n%20en%20Python.html">Visualización de datos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Manipulaci%C3%B3n%2C%20Limpieza%20y%20Exploraci%C3%B3n%20de%20Datos.html">Manipulación, Limpieza y Exploración de Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aprendizaje%20Autom%C3%A1tico.html">Introducción al Aprendizaje Automático en Mercadeo</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Estadisticos%20de%20Validaci%C3%B3n.html">Estadísticos de Validación de un Modelo de Clasificación Supervisada</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Primer resumen sobre modelos de clasificación supervisada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modelos%20de%20Clasificaci%C3%B3n%20II.html">Segundo resumen sobre modelos de clasificación supervisada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ejercicio%20K%20Means.html">Algoritmos Clúster</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Izainea/seminario-de-programacion" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Izainea/seminario-de-programacion/issues/new?title=Issue%20on%20page%20%2FCuadernos/Modelos de Clasificación I.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Cuadernos/Modelos de Clasificación I.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Primer resumen sobre modelos de clasificación supervisada</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-funciona-random-forest">Cómo Funciona Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionamiento-intuitivo-de-random-forest">Funcionamiento Intuitivo de Random Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-del-algoritmo-random-forest">Visualización del Algoritmo Random Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-importantes-de-random-forest">Hiperparámetros Importantes de Random Forest</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-funciona-la-regresion-logistica">Como funciona la Regresión Logística</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionamiento-intuitivo-de-la-regresion-logistica">Funcionamiento Intuitivo de la Regresión Logística</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-del-algoritmo-de-regresion-logistica">Visualización del Algoritmo de Regresión Logística</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-funciona-k-nearest-neighbors-k-nn">Como funciona K-Nearest Neighbors (K-NN)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionamiento-intuitivo-de-k-nn">Funcionamiento Intuitivo de K-NN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-del-algoritmo-k-nn">Visualización del Algoritmo K-NN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-importantes-de-k-nn">Hiperparámetros Importantes de K-NN</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones">Conclusiones</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="primer-resumen-sobre-modelos-de-clasificacion-supervisada">
+<h1>Primer resumen sobre modelos de clasificación supervisada<a class="headerlink" href="#primer-resumen-sobre-modelos-de-clasificacion-supervisada" title="Link to this heading">#</a></h1>
+<p>En este capítulo, nos adentraremos en el mundo de los métodos de clasificación supervisada utilizando Python. Comenzaremos nuestra exploración con Random Forest dando continuidad al que ya vimos: Árboles de decisión.</p>
+<p>La clasificación supervisada es un pilar fundamental del aprendizaje automático, se centra en construir modelos capaces de predecir etiquetas categóricas basándose en características observadas en los datos. Desde la detección de correos electrónicos no deseados hasta la predicción de enfermedades y la segmentación de clientes, los métodos de clasificación supervisada tienen una amplia gama de aplicaciones en el mundo real.</p>
+<p>Después de haber explorado los árboles de decisión, que sirven como bloques constructivos, estamos listos para avanzar hacia modelos más complejos y poderosos. Random Forest, o el “Bosque Aleatorio”, se destaca por su capacidad para operar como un conjunto, o “ensamble”, de árboles de decisión, trabajando juntos para superar las limitaciones de los árboles individuales y proporcionar predicciones más precisas y estables.</p>
+<p>A lo largo de este capítulo, no solo cubriremos la teoría y la intuición detrás de Random Forest y otros métodos de clasificación supervisada, sino que también proporcionaremos ejemplos prácticos y ejercicios en Python. Utilizaremos librerías populares como scikit-learn, que ofrece implementaciones eficientes y fáciles de usar de una variedad de algoritmos de aprendizaje automático.</p>
+<p>Además de Random Forest, exploraremos otros modelos esenciales en la clasificación supervisada, incluyendo:</p>
+<ul class="simple">
+<li><p><strong>Regresión Logística (Logistic Regression):</strong> Aunque su nombre pueda sugerirlo, la regresión logística es un método de clasificación ampliamente utilizado. Es especialmente efectivo para casos binarios y se utiliza para estimar probabilidades basadas en una función logística.</p></li>
+<li><p><strong>Vecinos más Cercanos (K-Nearest Neighbors, K-NN):</strong> Este modelo clasifica los nuevos puntos de datos basándose en la “vecindad” de los k puntos más cercanos en el espacio de características. Es un método intuitivo y no paramétrico que se adapta bien a muchas situaciones prácticas.</p></li>
+<li><p><strong>Máquinas de Vectores de Soporte (Support Vector Machines, SVM):</strong> Las SVM son particularmente potentes en espacios de alta dimensión y son adecuadas para casos donde la separación entre clases no es claramente definible. Funcionan construyendo el mejor hiperplano que separa las diferentes clases en el espacio de características.</p></li>
+<li><p><strong>Gradient Boosting (como XGBoost, LightGBM, CatBoost):</strong> Estos algoritmos construyen modelos de predicción de forma secuencial, donde cada nuevo modelo corrige los errores cometidos por los modelos anteriores. Son extremadamente efectivos en competiciones de ciencia de datos y en problemas donde la precisión predictiva es el objetivo principal.</p></li>
+<li><p><strong>Redes Neuronales Artificiales (Neural Networks):</strong> Las redes neuronales son sistemas que imitan la forma en que los humanos aprenden, capaces de modelar relaciones complejas y no lineales. Son particularmente útiles en la clasificación de imágenes, el procesamiento del lenguaje natural, y otras tareas de aprendizaje profundo.</p></li>
+<li><p><strong>Naive Bayes:</strong> Este es un conjunto de algoritmos de clasificación basados en el teorema de Bayes, con la “ingenua” suposición de independencia entre las características. A pesar de su simplicidad, los clasificadores Naive Bayes han funcionado bien en muchas situaciones reales, especialmente en la clasificación de textos.</p></li>
+<li><p><strong>AdaBoost:</strong> AdaBoost, o “Adaptive Boosting”, es un método de ensamble que ajusta los pesos de los clasificadores débiles (tipicamente árboles de decisión de un solo nivel) secuencialmente, enfocándose en los casos más difíciles hasta lograr un clasificador fuerte. Es bien conocido por su eficacia en la mejora de la precisión de cualquier clasificador.</p></li>
+</ul>
+<p>Cada uno de estos modelos tiene sus propias fortalezas y situaciones en las que es más adecuado. A lo largo de este capítulo, exploraremos en detalle cómo cada uno funciona, cómo se implementan en Python utilizando scikit-learn u otras bibliotecas relevantes, y en qué situaciones podrían ser la mejor opción para tus proyectos de clasificación supervisada.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Sintaxis General para Modelos de Clasificación en Scikit-learn</p>
+<p>En scikit-learn, la implementación de modelos de clasificación supervisada sigue un patrón consistente, lo que facilita la experimentación con diferentes algoritmos. Este patrón se puede describir en unos pocos pasos generales aplicables a cualquier modelo de clasificación. Aquí te muestro cómo se ve esta sintaxis de manera abstracta:</p>
+<h3 class="rubric" id="pasos-generales">Pasos Generales</h3>
+<ol class="arabic">
+<li><p><strong>Importar el Modelo:</strong> Primero, se importa la clase correspondiente al modelo que deseas utilizar desde scikit-learn.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.</span><span class="p">[</span><span class="n">modulo</span><span class="p">]</span> <span class="kn">import</span> <span class="p">[</span><span class="n">Modelo</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Instanciar el Modelo:</strong> Creas una instancia del modelo, donde puedes especificar varios hiperparámetros según tus necesidades. Si no estás seguro, puedes empezar con los valores predeterminados.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">modelo</span> <span class="o">=</span> <span class="p">[</span><span class="n">Modelo</span><span class="p">](</span><span class="n">hiperparametro1</span><span class="o">=</span><span class="n">valor1</span><span class="p">,</span> <span class="n">hiperparametro2</span><span class="o">=</span><span class="n">valor2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Entrenar el Modelo:</strong> Utilizas el método <code class="docutils literal notranslate"><span class="pre">.fit()</span></code> para entrenar el modelo con tus datos de entrenamiento. Esto ajustará los parámetros del modelo para minimizar el error de predicción.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">modelo</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>Hacer Predicciones:</strong> Una vez entrenado el modelo, puedes usar el método <code class="docutils literal notranslate"><span class="pre">.predict()</span></code> para hacer predicciones sobre nuevos datos.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">y_pred</span> <span class="o">=</span> <span class="n">modelo</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p><strong>Ejemplo Genérico</strong></p>
+<p>Aquí tienes un ejemplo genérico que muestra cómo aplicar estos pasos:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Paso 1: Importar el modelo</span>
+<span class="kn">from</span> <span class="nn">sklearn.</span><span class="p">[</span><span class="n">modulo</span><span class="p">]</span> <span class="kn">import</span> <span class="p">[</span><span class="n">Modelo</span><span class="p">]</span>
+
+<span class="c1"># Paso 2: Instanciar el modelo con los hiperparámetros deseados</span>
+<span class="n">modelo</span> <span class="o">=</span> <span class="p">[</span><span class="n">Modelo</span><span class="p">](</span><span class="n">hiperparametro1</span><span class="o">=</span><span class="n">valor1</span><span class="p">,</span> <span class="n">hiperparametro2</span><span class="o">=</span><span class="n">valor2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+
+<span class="c1"># Paso 3: Entrenar el modelo</span>
+<span class="n">modelo</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Paso 4: Hacer predicciones</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">modelo</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>Es importante recordar que <code class="docutils literal notranslate"><span class="pre">[modulo]</span></code>, <code class="docutils literal notranslate"><span class="pre">[Modelo]</span></code>, <code class="docutils literal notranslate"><span class="pre">hiperparametro1</span></code>, <code class="docutils literal notranslate"><span class="pre">valor1</span></code>, etc., son marcadores de posición. Deben reemplazarce con los nombres específicos y valores relevantes para el modelo que estás utilizando. Esta estructura te permite adaptar fácilmente el código para diferentes modelos de clasificación supervisada en scikit-learn.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<section id="como-funciona-random-forest">
+<h2>Cómo Funciona Random Forest<a class="headerlink" href="#como-funciona-random-forest" title="Link to this heading">#</a></h2>
+<p>Random Forest es un algoritmo de aprendizaje automático basado en ensambles que utiliza múltiples árboles de decisión para realizar sus predicciones. La “magia” de Random Forest radica en la combinación de la simplicidad de los árboles de decisión con la potencia de los modelos de ensamble, lo que resulta en un sistema robusto capaz de manejar tanto tareas de clasificación como de regresión con alta precisión.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La idea central detrás de Random Forest es crear un “bosque” de árboles de decisión donde cada árbol es un poco diferente de los demás. Al hacer una predicción, Random Forest toma las decisiones de todos estos árboles individuales y las combina para producir un resultado más preciso y confiable que el que obtendría un solo árbol de decisión.</p>
+</div>
+<section id="funcionamiento-intuitivo-de-random-forest">
+<h3>Funcionamiento Intuitivo de Random Forest<a class="headerlink" href="#funcionamiento-intuitivo-de-random-forest" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Selección de Muestras Aleatorias:</strong> Para cada árbol en el bosque, Random Forest selecciona una muestra aleatoria de los datos de entrenamiento. Esto se hace con reemplazo, lo que significa que algunos datos pueden ser seleccionados más de una vez, mientras que otros pueden no ser seleccionados en absoluto.</p></li>
+<li><p><strong>Construcción de Árboles con Características Aleatorias:</strong> Al construir cada árbol, Random Forest no considera todas las características (o variables) disponibles al hacer una división, sino que selecciona un subconjunto aleatorio de características. Esto asegura que los árboles sean diferentes y puedan capturar diversas relaciones en los datos.</p></li>
+<li><p><strong>Predicción y Votación:</strong> Para hacer una predicción, cada árbol en el bosque da su voto. En una tarea de clasificación, la clase más votada es la predicción final del bosque; en una tarea de regresión, el promedio de las predicciones de todos los árboles es el resultado final.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Este proceso de selección aleatoria tanto de muestras como de características, junto con la votación o promediación de las predicciones de los árboles, ayuda a aumentar la precisión y a reducir el sobreajuste, haciendo de Random Forest uno de los algoritmos más poderosos y versátiles en el campo del aprendizaje automático.</p>
+</div>
+</section>
+<section id="visualizacion-del-algoritmo-random-forest">
+<h3>Visualización del Algoritmo Random Forest<a class="headerlink" href="#visualizacion-del-algoritmo-random-forest" title="Link to this heading">#</a></h3>
+<img alt="Random Forest" class="align-center" src="../_images/RF.png" />
+<p>Random Forest es un algoritmo excepcionalmente potente que combina la simplicidad de los árboles de decisión con la robustez de los métodos de ensamble. Su capacidad para manejar grandes conjuntos de datos con alta dimensionalidad, su resistencia al sobreajuste y su facilidad de uso lo convierten en una herramienta valiosa para cualquier científico de datos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Ejemplo sencillo </span>
+
+<span class="c1">## Dataset de prueba [Iris]</span>
+
+<span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+<span class="n">iris_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">c_</span><span class="p">[</span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;data&#39;</span><span class="p">],</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)],</span>
+                        <span class="n">columns</span><span class="o">=</span> <span class="n">iris</span><span class="p">[</span><span class="s1">&#39;feature_names&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">])</span>
+
+<span class="n">iris_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal length (cm)</th>
+      <th>sepal width (cm)</th>
+      <th>petal length (cm)</th>
+      <th>petal width (cm)</th>
+      <th>target</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>target
+0    50
+1    50
+2    50
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Dividir el dataset en entrenamiento y prueba</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">iris_df</span><span class="p">[</span><span class="n">iris</span><span class="p">[</span><span class="s1">&#39;feature_names&#39;</span><span class="p">]],</span> <span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">iris_df</span><span class="p">[</span><span class="s1">&#39;target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">),</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;X train shape:&#39;</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;X test shape:&#39;</span><span class="p">,</span> <span class="n">X_test</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>X train shape: (90, 4)
+X test shape: (60, 4)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Ahora clasificación con Random Forest</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.ensemble</span> <span class="kn">import</span> <span class="n">RandomForestClassifier</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">RandomForestClassifier</span><span class="p">(</span><span class="n">n_estimators</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1">## Predicción</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1">## Evaluación</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">classification_report</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+         0.0       1.00      1.00      1.00        20
+         1.0       0.90      0.95      0.93        20
+         2.0       0.95      0.90      0.92        20
+
+    accuracy                           0.95        60
+   macro avg       0.95      0.95      0.95        60
+weighted avg       0.95      0.95      0.95        60
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hiperparametros-importantes-de-random-forest">
+<h3>Hiperparámetros Importantes de Random Forest<a class="headerlink" href="#hiperparametros-importantes-de-random-forest" title="Link to this heading">#</a></h3>
+<p>Random Forest tiene varios hiperparámetros que pueden ajustarse para optimizar su rendimiento en diferentes conjuntos de datos. Algunos de los hiperparámetros más importantes incluyen:</p>
+<ul class="simple">
+<li><p><strong>n_estimators:</strong> El número de árboles en el bosque. Un mayor número de árboles generalmente mejora el rendimiento, pero también aumenta el tiempo de entrenamiento y la complejidad del modelo.</p></li>
+<li><p><strong>max_depth:</strong> La profundidad máxima de cada árbol. Limitar la profundidad de los árboles puede ayudar a prevenir el sobreajuste.</p></li>
+<li><p><strong>min_samples_split:</strong> El número mínimo de muestras requeridas para dividir un nodo interno. Aumentar este valor puede ayudar a prevenir el sobreajuste.</p></li>
+<li><p><strong>min_samples_leaf:</strong> El número mínimo de muestras requeridas para ser una hoja. Al igual que <code class="docutils literal notranslate"><span class="pre">min_samples_split</span></code>, aumentar este valor puede ayudar a prevenir el sobreajuste.</p></li>
+<li><p><strong>max_features:</strong> El número de características a considerar al buscar la mejor división. Reducir este valor puede acelerar el entrenamiento y ayudar a prevenir el sobreajuste.</p></li>
+<li><p><strong>bootstrap:</strong> Indica si se deben usar muestras de arranque al construir árboles. Si es <code class="docutils literal notranslate"><span class="pre">True</span></code>, se utiliza el muestreo con reemplazo.</p></li>
+<li><p><strong>random_state:</strong> Controla la aleatoriedad del estimador. Establecer un valor fijo para <code class="docutils literal notranslate"><span class="pre">random_state</span></code> garantiza que los resultados sean reproducibles.</p></li>
+</ul>
+<p>Estos hiperparámetros y otros permiten ajustar la complejidad y el rendimiento de Random Forest para adaptarse a las necesidades específicas de tu problema de clasificación. Experimentar con diferentes valores y técnicas de validación cruzada te ayudará a encontrar la configuración óptima para tu conjunto de datos.</p>
+</section>
+</section>
+<section id="como-funciona-la-regresion-logistica">
+<h2>Como funciona la Regresión Logística<a class="headerlink" href="#como-funciona-la-regresion-logistica" title="Link to this heading">#</a></h2>
+<p>A pesar de su nombre, la regresión logística es un método de clasificación ampliamente utilizado en el aprendizaje automático. Es especialmente efectivo para problemas de clasificación binaria, donde el objetivo es predecir una de dos clases posibles, como “sí” o “no”, “spam” o “no spam”, “enfermo” o “sano”, etc.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La regresión logística se basa en el concepto de regresión lineal, pero en lugar de predecir valores continuos, estima la probabilidad de que un punto de datos pertenezca a una clase en particular. Utiliza una función logística para transformar la salida de un modelo lineal en una probabilidad entre 0 y 1.</p>
+</div>
+<section id="funcionamiento-intuitivo-de-la-regresion-logistica">
+<h3>Funcionamiento Intuitivo de la Regresión Logística<a class="headerlink" href="#funcionamiento-intuitivo-de-la-regresion-logistica" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Modelo Lineal:</strong> La regresión logística comienza con un modelo lineal que combina las características de entrada ponderadas por coeficientes. La salida de este modelo lineal se pasa a través de una función logística, que transforma los valores en el rango de 0 a 1.</p></li>
+<li><p><strong>Función Logística:</strong> La función logística, también conocida como función sigmoide, se define como:</p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\sigma(z) = \frac{1}{1 + e^{-z}}
+\]</div>
+<p>Donde <span class="math notranslate nohighlight">\(z\)</span> es la salida del modelo lineal. La función logística mapea cualquier valor real a un valor en el rango de 0 a 1, lo que se interpreta como la probabilidad de que un punto de datos pertenezca a la clase positiva.</p>
+<ol class="arabic simple" start="3">
+<li><p><strong>Umbral de Decisión:</strong> Para hacer predicciones, la regresión logística compara la probabilidad estimada con un umbral (generalmente 0.5). Si la probabilidad es mayor que el umbral, el punto de datos se clasifica como positivo; de lo contrario, se clasifica como negativo.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La regresión logística es un modelo lineal simple pero efectivo que se utiliza en una amplia variedad de aplicaciones de clasificación. Es fácil de interpretar, computacionalmente eficiente y se puede extender para manejar problemas de clasificación multiclase y no lineales.</p>
+</div>
+</section>
+<section id="visualizacion-del-algoritmo-de-regresion-logistica">
+<h3>Visualización del Algoritmo de Regresión Logística<a class="headerlink" href="#visualizacion-del-algoritmo-de-regresion-logistica" title="Link to this heading">#</a></h3>
+<img alt="Regresión Logística" class="align-center" src="../_images/RL.png" />
+<p>La regresión logística es un modelo lineal simple pero poderoso que se utiliza en una amplia variedad de aplicaciones de clasificación. Su capacidad para estimar probabilidades y su facilidad de interpretación lo convierten en una herramienta valiosa para cualquier científico de datos.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Regresón Logistica</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1">## Predicción</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1">## Evaluación</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+         0.0       1.00      1.00      1.00        20
+         1.0       1.00      0.95      0.97        20
+         2.0       0.95      1.00      0.98        20
+
+    accuracy                           0.98        60
+   macro avg       0.98      0.98      0.98        60
+weighted avg       0.98      0.98      0.98        60
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="como-funciona-k-nearest-neighbors-k-nn">
+<h2>Como funciona K-Nearest Neighbors (K-NN)<a class="headerlink" href="#como-funciona-k-nearest-neighbors-k-nn" title="Link to this heading">#</a></h2>
+<p>K-Nearest Neighbors (K-NN) es un algoritmo de clasificación simple y no paramétrico que se basa en la idea de que los puntos de datos similares tienden a pertenecer a la misma clase. En lugar de aprender explícitamente un modelo, K-NN clasifica los puntos de datos basándose en la similitud con los puntos de datos de entrenamiento más cercanos.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La “vecindad” en K-NN se define por una métrica de distancia, como la distancia euclidiana o la distancia de Manhattan. El hiperparámetro <code class="docutils literal notranslate"><span class="pre">k</span></code> especifica el número de vecinos más cercanos que se consideran al hacer una predicción.</p>
+</div>
+<section id="funcionamiento-intuitivo-de-k-nn">
+<h3>Funcionamiento Intuitivo de K-NN<a class="headerlink" href="#funcionamiento-intuitivo-de-k-nn" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Almacenamiento de Datos de Entrenamiento:</strong> K-NN almacena los datos de entrenamiento en memoria y no aprende explícitamente un modelo. Para hacer una predicción, calcula la distancia entre el punto de datos de entrada y todos los puntos de datos de entrenamiento.</p></li>
+<li><p><strong>Selección de Vecinos:</strong> K-NN identifica los <code class="docutils literal notranslate"><span class="pre">k</span></code> puntos de datos de entrenamiento más cercanos al punto de datos de entrada. La elección de <code class="docutils literal notranslate"><span class="pre">k</span></code> es un hiperparámetro crítico que afecta el rendimiento del algoritmo.</p></li>
+<li><p><strong>Votación de Vecinos:</strong> Para hacer una predicción, K-NN asigna la clase más común entre los <code class="docutils literal notranslate"><span class="pre">k</span></code> vecinos más cercanos al punto de datos de entrada. En una tarea de regresión, K-NN puede predecir el valor medio de los <code class="docutils literal notranslate"><span class="pre">k</span></code> vecinos más cercanos.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>K-NN es un algoritmo simple y fácil de entender que se puede utilizar para una variedad de problemas de clasificación y regresión. Sin embargo, su rendimiento puede verse afectado por la elección de <code class="docutils literal notranslate"><span class="pre">k</span></code> y la escala de las características, y puede ser computacionalmente costoso en conjuntos de datos grandes.</p>
+</div>
+</section>
+<section id="visualizacion-del-algoritmo-k-nn">
+<h3>Visualización del Algoritmo K-NN<a class="headerlink" href="#visualizacion-del-algoritmo-k-nn" title="Link to this heading">#</a></h3>
+<img alt="K-NN" class="align-center" src="../_images/KNN.png" />
+<p>K-NN es un algoritmo intuitivo y fácil de entender que se basa en la idea de que los puntos de datos similares tienden a pertenecer a la misma clase. Aunque es simple, K-NN puede ser efectivo en una variedad de situaciones y es un buen punto de partida para problemas de clasificación.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## KNN</span>
+
+<span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+
+<span class="n">clf</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1">## Predicción</span>
+
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+
+<span class="c1">## Evaluación</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">classification_report</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span> <span class="n">y_pred</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>              precision    recall  f1-score   support
+
+         0.0       1.00      1.00      1.00        20
+         1.0       1.00      1.00      1.00        20
+         2.0       1.00      1.00      1.00        20
+
+    accuracy                           1.00        60
+   macro avg       1.00      1.00      1.00        60
+weighted avg       1.00      1.00      1.00        60
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="hiperparametros-importantes-de-k-nn">
+<h3>Hiperparámetros Importantes de K-NN<a class="headerlink" href="#hiperparametros-importantes-de-k-nn" title="Link to this heading">#</a></h3>
+<p>K-NN tiene varios hiperparámetros que pueden ajustarse para optimizar su rendimiento en diferentes conjuntos de datos. Algunos de los hiperparámetros más importantes incluyen:</p>
+<ul class="simple">
+<li><p><strong>n_neighbors:</strong> El número de vecinos más cercanos que se consideran al hacer una predicción. Un valor más alto de <code class="docutils literal notranslate"><span class="pre">n_neighbors</span></code> suaviza la frontera de decisión, mientras que un valor más bajo puede llevar a un sobreajuste.</p></li>
+<li><p><strong>weights:</strong> La función de peso utilizada en la predicción. Las opciones comunes incluyen <code class="docutils literal notranslate"><span class="pre">uniform</span></code>, donde todos los vecinos tienen el mismo peso, y <code class="docutils literal notranslate"><span class="pre">distance</span></code>, donde los vecinos más cercanos tienen más peso.</p></li>
+<li><p><strong>metric:</strong> La métrica de distancia utilizada para calcular la similitud entre puntos de datos. Las opciones comunes incluyen la distancia euclidiana, la distancia de Manhattan y la distancia de Minkowski.</p></li>
+<li><p><strong>algorithm:</strong> El algoritmo utilizado para calcular los vecinos más cercanos. Las opciones comunes incluyen <code class="docutils literal notranslate"><span class="pre">brute</span></code>, que calcula todas las distancias, y <code class="docutils literal notranslate"><span class="pre">kd_tree</span></code> y <code class="docutils literal notranslate"><span class="pre">ball_tree</span></code>, que utilizan estructuras de datos especiales para acelerar el cálculo.</p></li>
+<li><p><strong>leaf_size:</strong> El tamaño de la hoja pasado a los algoritmos <code class="docutils literal notranslate"><span class="pre">kd_tree</span></code> y <code class="docutils literal notranslate"><span class="pre">ball_tree</span></code>. Un valor más bajo puede acelerar el cálculo, pero también puede aumentar el uso de memoria.</p></li>
+<li><p><strong>p:</strong> El parámetro de potencia para la métrica de Minkowski. Cuando <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">1</span></code>, esto equivale a la distancia de Manhattan; cuando <code class="docutils literal notranslate"><span class="pre">p</span> <span class="pre">=</span> <span class="pre">2</span></code>, esto equivale a la distancia euclidiana.</p></li>
+</ul>
+<p>Estos hiperparámetros y otros permiten ajustar la complejidad y el rendimiento de K-NN para adaptarse a las necesidades específicas de tu problema de clasificación. Experimentar con diferentes valores y técnicas de validación cruzada te ayudará a encontrar la configuración óptima para tu conjunto de datos.</p>
+</section>
+</section>
+<section id="conclusiones">
+<h2>Conclusiones<a class="headerlink" href="#conclusiones" title="Link to this heading">#</a></h2>
+<p>En este capítulo, exploramos varios modelos de clasificación supervisada esenciales en el aprendizaje automático, incluyendo Random Forest, Regresión Logística y K-Nearest Neighbors (K-NN). Cada uno de estos modelos tiene sus propias fortalezas y debilidades, y es adecuado para diferentes tipos de problemas de clasificación.</p>
+<p>Los demás modelos de clasificación supervisada que exploraremos en los siguientes capítulos, como Máquinas de Vectores de Soporte (SVM), Gradient Boosting, Redes Neuronales Artificiales y Naive Bayes, ampliarán aún más nuestro repertorio de herramientas de aprendizaje automático. Al comprender cómo funcionan estos modelos y cuándo es apropiado utilizarlos.</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="Estadisticos%20de%20Validaci%C3%B3n.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Estadísticos de Validación de un Modelo de Clasificación Supervisada</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="Modelos%20de%20Clasificaci%C3%B3n%20II.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Segundo resumen sobre modelos de clasificación supervisada</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-funciona-random-forest">Cómo Funciona Random Forest</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionamiento-intuitivo-de-random-forest">Funcionamiento Intuitivo de Random Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-del-algoritmo-random-forest">Visualización del Algoritmo Random Forest</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-importantes-de-random-forest">Hiperparámetros Importantes de Random Forest</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-funciona-la-regresion-logistica">Como funciona la Regresión Logística</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionamiento-intuitivo-de-la-regresion-logistica">Funcionamiento Intuitivo de la Regresión Logística</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-del-algoritmo-de-regresion-logistica">Visualización del Algoritmo de Regresión Logística</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-funciona-k-nearest-neighbors-k-nn">Como funciona K-Nearest Neighbors (K-NN)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#funcionamiento-intuitivo-de-k-nn">Funcionamiento Intuitivo de K-NN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-del-algoritmo-k-nn">Visualización del Algoritmo K-NN</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hiperparametros-importantes-de-k-nn">Hiperparámetros Importantes de K-NN</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusiones">Conclusiones</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Isaac Zainea
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
