@@ -10,11 +10,11 @@
 
 ![GitHub forks](https://img.shields.io/github/forks/Izainea/api_review?style=social)
 
-[[**REVISA EL ESCRITO AQUÍ**]](https://izainea.github.io/seminario-de.programacion/)
+[[**REVISA EL ESCRITO AQUÍ**]](https://izainea.github.io/seminario-de-programacion/)
 
 ## Descripción
 
-Este es un repositorio que aloja una serie de materiales introductorios para estudiar los conceptos básicos del Machine Learning, así como los algoritmos más comunes y su implementación en Python [[**Revisar jupyter-book aquí**]](). El objetivo es que el lector pueda comprender los conceptos básicos del Machine Learning y pueda implementar algoritmos de aprendizaje supervisado y no supervisado en Python. Para ello, se abordan los siguientes temas:
+Este es un repositorio que aloja una serie de materiales introductorios para estudiar los conceptos básicos del Machine Learning, así como los algoritmos más comunes y su implementación en Python [[**Revisar jupyter-book aquí**]](https://izainea.github.io/seminario-de-programacion/). El objetivo es que el lector pueda comprender los conceptos básicos del Machine Learning y pueda implementar algoritmos de aprendizaje supervisado y no supervisado en Python. Para ello, se abordan los siguientes temas:
 
 - Introducción al análisis de datos con Python
 - Introducción al Machine Learning
