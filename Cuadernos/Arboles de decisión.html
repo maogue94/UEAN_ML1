@@ -1,0 +1,1298 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Árboles de Decisión para Marketing Bancario &#8212; Introducción a Machine Learning</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Cuadernos/Arboles de decisión';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+
+<a class="navbar-brand logo" href="introduccion.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Introducción a Machine Learning - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Introducción a Machine Learning - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="introduccion.html">
+                    Introducción al Machine Learning
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="Intro%20a%20Python%20y%20Pandas.html">Introducción a Python y Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Minutos%20y%20segundos.html">Uso de Pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Graficos.html">Trabajemos en algunos gráficos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Medidas%20Estadisticas.html">Medidas estadísticas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Visualizaci%C3%B3n%20en%20Python.html">Visualización de datos con Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Manipulaci%C3%B3n%2C%20Limpieza%20y%20Exploraci%C3%B3n%20de%20Datos.html">Manipulación, Limpieza y Exploración de Datos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Aprendizaje%20Autom%C3%A1tico.html">Introducción al Aprendizaje Automático</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Estadisticos%20de%20Validaci%C3%B3n.html">Estadísticos de Validación de un Modelo de Clasificación Supervisada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modelos%20de%20Clasificaci%C3%B3n%20I.html">Primer resumen sobre modelos de clasificación supervisada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Modelos%20de%20Clasificaci%C3%B3n%20II.html">Segundo resumen sobre modelos de clasificación supervisada</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Ejercicio%20K%20Means.html">Algoritmos Clúster</a></li>
+
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/Izainea/seminario-de-programacion" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/Izainea/seminario-de-programacion/issues/new?title=Issue%20on%20page%20%2FCuadernos/Arboles de decisión.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Cuadernos/Arboles de decisión.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Árboles de Decisión para Marketing Bancario</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtencion-de-los-datos">Obtención de los Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos-eda">Análisis Exploratorio de Datos (EDA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento-de-datos">Preprocesamiento de Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-utiles-para-la-entrada">Variables utiles para la entrada</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-interesantes-para-el-modelo">Variables Interesantes para el Modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-a-considerar-quitar">Variables a Considerar Quitar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-adicionales">Consideraciones Adicionales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-objetivo">Variable objetivo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-funcionan-los-arboles-de-decision">Cómo Funcionan los Árboles de Decisión</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos-basicos">Conceptos Básicos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#division-de-los-datos">División de los Datos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criterios-de-division">Criterios de División</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#poda-del-arbol">Poda del Árbol</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-y-desventajas">Ventajas y Desventajas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-practicas">Aplicaciones Prácticas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-implementacion-en-python">Ejemplo de Implementación en Python</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-del-arbol">Visualización del Árbol</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="arboles-de-decision-para-marketing-bancario">
+<h1>Árboles de Decisión para Marketing Bancario<a class="headerlink" href="#arboles-de-decision-para-marketing-bancario" title="Link to this heading">#</a></h1>
+<p>En este capítulo, exploraremos el uso de árboles de decisión en el contexto del marketing bancario, utilizando el dataset disponible en el repositorio de UCI. Los árboles de decisión son herramientas poderosas para la clasificación y regresión, y son especialmente útiles por su facilidad de interpretación.</p>
+<section id="obtencion-de-los-datos">
+<h2>Obtención de los Datos<a class="headerlink" href="#obtencion-de-los-datos" title="Link to this heading">#</a></h2>
+<p>Primero, cargaremos el dataset de marketing bancario, como se mostró previamente:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">df_bank</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;bank_marketing.csv&#39;</span><span class="p">)</span>
+
+<span class="n">df_bank</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>job</th>
+      <th>marital</th>
+      <th>education</th>
+      <th>default</th>
+      <th>balance</th>
+      <th>housing</th>
+      <th>loan</th>
+      <th>contact</th>
+      <th>day_of_week</th>
+      <th>month</th>
+      <th>duration</th>
+      <th>campaign</th>
+      <th>pdays</th>
+      <th>previous</th>
+      <th>poutcome</th>
+      <th>HasTermDeposit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58</td>
+      <td>management</td>
+      <td>married</td>
+      <td>tertiary</td>
+      <td>no</td>
+      <td>2143</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>may</td>
+      <td>261</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>44</td>
+      <td>technician</td>
+      <td>single</td>
+      <td>secondary</td>
+      <td>no</td>
+      <td>29</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>may</td>
+      <td>151</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>33</td>
+      <td>entrepreneur</td>
+      <td>married</td>
+      <td>secondary</td>
+      <td>no</td>
+      <td>2</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>may</td>
+      <td>76</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>47</td>
+      <td>blue-collar</td>
+      <td>married</td>
+      <td>NaN</td>
+      <td>no</td>
+      <td>1506</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>may</td>
+      <td>92</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>33</td>
+      <td>NaN</td>
+      <td>single</td>
+      <td>NaN</td>
+      <td>no</td>
+      <td>1</td>
+      <td>no</td>
+      <td>no</td>
+      <td>NaN</td>
+      <td>5</td>
+      <td>may</td>
+      <td>198</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>NaN</td>
+      <td>no</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+<section id="analisis-exploratorio-de-datos-eda">
+<h2>Análisis Exploratorio de Datos (EDA)<a class="headerlink" href="#analisis-exploratorio-de-datos-eda" title="Link to this heading">#</a></h2>
+<p>Antes de proceder con la construcción de modelos, realizaremos un análisis exploratorio de los datos para comprender mejor las características y la distribución de los mismos.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>El EDA nos ayudará a identificar las variables más significativas y a entender la relación entre ellas y la variable objetivo. Esto es crucial para determinar cómo preprocesar los datos y qué variables incluir en el modelo de árbol de decisión.
+</pre></div>
+</div>
+</section>
+<section id="preprocesamiento-de-datos">
+<h2>Preprocesamiento de Datos<a class="headerlink" href="#preprocesamiento-de-datos" title="Link to this heading">#</a></h2>
+<p>El preprocesamiento incluirá la limpieza de datos, el manejo de valores faltantes, la codificación de variables categóricas y la normalización de variables numéricas, si es necesario.</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>Es importante preprocesar adecuadamente los datos para maximizar la efectividad del modelo de árbol de decisión. Esto incluye convertir variables categóricas a un formato que el modelo pueda interpretar y asegurar que todas las variables estén en una escala comparable.
+</pre></div>
+</div>
+<p>Iniciamos con la descripción de las variables del dataset:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Descripción de las variables</span>
+
+<span class="n">df_bank</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>job</th>
+      <th>marital</th>
+      <th>education</th>
+      <th>default</th>
+      <th>housing</th>
+      <th>loan</th>
+      <th>contact</th>
+      <th>month</th>
+      <th>poutcome</th>
+      <th>HasTermDeposit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>44923</td>
+      <td>45211</td>
+      <td>43354</td>
+      <td>45211</td>
+      <td>45211</td>
+      <td>45211</td>
+      <td>32191</td>
+      <td>45211</td>
+      <td>8252</td>
+      <td>45211</td>
+    </tr>
+    <tr>
+      <th>unique</th>
+      <td>11</td>
+      <td>3</td>
+      <td>3</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>2</td>
+      <td>12</td>
+      <td>3</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>top</th>
+      <td>blue-collar</td>
+      <td>married</td>
+      <td>secondary</td>
+      <td>no</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>cellular</td>
+      <td>may</td>
+      <td>failure</td>
+      <td>no</td>
+    </tr>
+    <tr>
+      <th>freq</th>
+      <td>9732</td>
+      <td>27214</td>
+      <td>23202</td>
+      <td>44396</td>
+      <td>25130</td>
+      <td>37967</td>
+      <td>29285</td>
+      <td>13766</td>
+      <td>4901</td>
+      <td>39922</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_bank</span><span class="o">.</span><span class="n">describe</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="s1">&#39;number&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>balance</th>
+      <th>day_of_week</th>
+      <th>duration</th>
+      <th>campaign</th>
+      <th>pdays</th>
+      <th>previous</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>45211.000000</td>
+      <td>45211.000000</td>
+      <td>45211.000000</td>
+      <td>45211.000000</td>
+      <td>45211.000000</td>
+      <td>45211.000000</td>
+      <td>45211.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>40.936210</td>
+      <td>1362.272058</td>
+      <td>15.806419</td>
+      <td>258.163080</td>
+      <td>2.763841</td>
+      <td>40.197828</td>
+      <td>0.580323</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>10.618762</td>
+      <td>3044.765829</td>
+      <td>8.322476</td>
+      <td>257.527812</td>
+      <td>3.098021</td>
+      <td>100.128746</td>
+      <td>2.303441</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>18.000000</td>
+      <td>-8019.000000</td>
+      <td>1.000000</td>
+      <td>0.000000</td>
+      <td>1.000000</td>
+      <td>-1.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>33.000000</td>
+      <td>72.000000</td>
+      <td>8.000000</td>
+      <td>103.000000</td>
+      <td>1.000000</td>
+      <td>-1.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>39.000000</td>
+      <td>448.000000</td>
+      <td>16.000000</td>
+      <td>180.000000</td>
+      <td>2.000000</td>
+      <td>-1.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>48.000000</td>
+      <td>1428.000000</td>
+      <td>21.000000</td>
+      <td>319.000000</td>
+      <td>3.000000</td>
+      <td>-1.000000</td>
+      <td>0.000000</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>95.000000</td>
+      <td>102127.000000</td>
+      <td>31.000000</td>
+      <td>4918.000000</td>
+      <td>63.000000</td>
+      <td>871.000000</td>
+      <td>275.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Exploremos las variables con problemas, miremos las que tienen valores faltantes:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Nulos</span>
+
+<span class="n">df_bank</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>age                   0
+job                 288
+marital               0
+education          1857
+default               0
+balance               0
+housing               0
+loan                  0
+contact           13020
+day_of_week           0
+month                 0
+duration              0
+campaign              0
+pdays                 0
+previous              0
+poutcome          36959
+HasTermDeposit        0
+dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<p>la variable <code class="docutils literal notranslate"><span class="pre">poutcome</span></code> tiene bastantes valores faltantes, por lo que la eliminaremos del dataset. Además, convertiremos las variables categóricas en variables dummy para que el modelo de árbol de decisión pueda interpretarlas.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La eliminación de la variable <code class="docutils literal notranslate"><span class="pre">poutcome</span></code> se realiza para simplificar el análisis. En un escenario real, se podrían explorar otras opciones para manejar los valores faltantes, como la imputación de valores o el uso de modelos más avanzados.</p>
+</div>
+<p>Ahora revisemos información sobre las variables, hagamos un análisi profundo para determinar cuales son realmente explicativas para la variable objetivo.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_bank</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 45211 entries, 0 to 45210
+Data columns (total 17 columns):
+ #   Column          Non-Null Count  Dtype 
+---  ------          --------------  ----- 
+ 0   age             45211 non-null  int64 
+ 1   job             44923 non-null  object
+ 2   marital         45211 non-null  object
+ 3   education       43354 non-null  object
+ 4   default         45211 non-null  object
+ 5   balance         45211 non-null  int64 
+ 6   housing         45211 non-null  object
+ 7   loan            45211 non-null  object
+ 8   contact         32191 non-null  object
+ 9   day_of_week     45211 non-null  int64 
+ 10  month           45211 non-null  object
+ 11  duration        45211 non-null  int64 
+ 12  campaign        45211 non-null  int64 
+ 13  pdays           45211 non-null  int64 
+ 14  previous        45211 non-null  int64 
+ 15  poutcome        8252 non-null   object
+ 16  HasTermDeposit  45211 non-null  object
+dtypes: int64(7), object(10)
+memory usage: 5.9+ MB
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="variables-utiles-para-la-entrada">
+<h2>Variables utiles para la entrada<a class="headerlink" href="#variables-utiles-para-la-entrada" title="Link to this heading">#</a></h2>
+<p>Cuando trabajamos con modelos de aprendizaje automático, especialmente árboles de decisión, es crucial elegir cuidadosamente las variables (características) que incluiremos en nuestro modelo. Esta elección se basa en la relevancia de las variables para la predicción, así como en consideraciones prácticas como la cantidad de valores faltantes y la naturaleza de los datos. Vamos a analizar las variables del dataset de marketing bancario y discutir cuáles podrían ser interesantes para el modelo y cuáles podríamos considerar quitar.</p>
+<section id="variables-interesantes-para-el-modelo">
+<h3>Variables Interesantes para el Modelo<a class="headerlink" href="#variables-interesantes-para-el-modelo" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>age</strong>: La edad del cliente puede influir en su decisión de suscribirse a un depósito a plazo.</p></li>
+<li><p><strong>job</strong>: La profesión podría tener una correlación con la propensión a suscribirse a un depósito a plazo.</p></li>
+<li><p><strong>marital</strong>: El estado civil podría influir en las decisiones financieras.</p></li>
+<li><p><strong>education</strong>: El nivel de educación podría correlacionarse con la decisión de suscribirse a un depósito a plazo.</p></li>
+<li><p><strong>default</strong>: Saber si el cliente tiene créditos en mora podría ser relevante para la decisión de marketing.</p></li>
+<li><p><strong>balance</strong>: El saldo de la cuenta podría indicar la solvencia económica del cliente y su propensión a invertir.</p></li>
+<li><p><strong>housing</strong>: Tener una hipoteca podría influir en la disponibilidad de fondos para invertir en un depósito a plazo.</p></li>
+<li><p><strong>loan</strong>: Similar a “housing”, tener préstamos personales podría afectar la capacidad de suscribirse a un depósito a plazo.</p></li>
+<li><p><strong>contact</strong>: El método de contacto podría influir en la efectividad de la campaña.</p></li>
+<li><p><strong>day_of_month</strong>, <strong>month</strong>: La fecha de último contacto puede tener efectos estacionales en la decisión del cliente.</p></li>
+<li><p><strong>duration</strong>: La duración de la última llamada puede ser un indicador del interés del cliente.</p></li>
+<li><p><strong>campaign</strong>: La cantidad de contactos durante la campaña puede afectar la decisión del cliente.</p></li>
+<li><p><strong>pdays</strong>, <strong>previous</strong>, <strong>poutcome</strong>: Estas relacionadas con campañas anteriores pueden ofrecer insights sobre la receptividad del cliente.</p></li>
+</ol>
+</section>
+<section id="variables-a-considerar-quitar">
+<h3>Variables a Considerar Quitar<a class="headerlink" href="#variables-a-considerar-quitar" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>poutcome</strong>: Aunque es interesante, tiene una gran cantidad de valores faltantes (solo 8252 no nulos de 45211), lo que podría dificultar su uso directo sin un manejo adecuado de los valores faltantes.</p></li>
+<li><p><strong>contact</strong>: Si bien el método de contacto podría ser relevante, la gran cantidad de valores faltantes (32191 no nulos de 45211) también puede limitar su utilidad a menos que se apliquen técnicas de imputación.</p></li>
+</ol>
+</section>
+<section id="consideraciones-adicionales">
+<h3>Consideraciones Adicionales<a class="headerlink" href="#consideraciones-adicionales" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Tratamiento de valores faltantes</strong>: Es importante decidir cómo manejar las variables con valores faltantes. En algunos casos, como <code class="docutils literal notranslate"><span class="pre">poutcome</span></code> y <code class="docutils literal notranslate"><span class="pre">contact</span></code>, podríamos optar por excluir la variable, imputar los valores faltantes, o incluso transformarla en una variable binaria que indique la presencia o ausencia de información.</p></li>
+<li><p><strong>Codificación de variables categóricas</strong>: Variables como <code class="docutils literal notranslate"><span class="pre">job</span></code>, <code class="docutils literal notranslate"><span class="pre">marital</span></code>, <code class="docutils literal notranslate"><span class="pre">education</span></code>, <code class="docutils literal notranslate"><span class="pre">default</span></code>, <code class="docutils literal notranslate"><span class="pre">housing</span></code>, <code class="docutils literal notranslate"><span class="pre">loan</span></code>, y <code class="docutils literal notranslate"><span class="pre">month</span></code> son categóricas y necesitarán ser transformadas a un formato numérico a través de técnicas como la codificación One-Hot antes de ser utilizadas en el modelo.</p></li>
+</ul>
+<p>La selección final de variables debería basarse en un análisis más detallado, incluyendo la importancia de las características y cómo afectan al rendimiento del modelo. Una técnica útil para esto podría ser el análisis de importancia de variables que ofrecen muchos modelos de árboles de decisión, lo que nos permite evaluar qué tan importantes son las distintas características para las predicciones del modelo.</p>
+</section>
+<section id="variable-objetivo">
+<h3>Variable objetivo<a class="headerlink" href="#variable-objetivo" title="Link to this heading">#</a></h3>
+<p>La variable objetivo ‘HasTermDeposit’ indica si un cliente se suscribió a un depósito a plazo o no. Esta es la variable que queremos predecir con nuestro modelo de árbol de decisión. Esta con yes o no, por lo que la convertiremos a 1 o 0 para que el modelo pueda interpretarla.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>La conversión de la variable objetivo a 1 y 0 es necesaria para que el modelo de árbol de decisión pueda interpretarla. En general, es importante asegurarse de que la variable objetivo esté en un formato que el modelo pueda entender.</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_bank</span><span class="p">[</span><span class="s1">&#39;HasTermDeposit&#39;</span><span class="p">]</span> <span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>HasTermDeposit
+no     39922
+yes     5289
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="c1"># Para &#39;poutcome&#39; y &#39;contact&#39;, consideraremos eliminar estas columnas debido a la alta cantidad de valores faltantes</span>
+<span class="n">df_bank</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;poutcome&#39;</span><span class="p">,</span> <span class="s1">&#39;contact&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># Si la variable objetivo &#39;HasTermDeposit&#39; es categórica (&#39;yes&#39;, &#39;no&#39;), la convertimos a numérica</span>
+<span class="n">df_bank</span><span class="p">[</span><span class="s1">&#39;HasTermDeposit&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df_bank</span><span class="p">[</span><span class="s1">&#39;HasTermDeposit&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;yes&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;no&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">})</span>
+
+<span class="n">df_bank</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>age</th>
+      <th>job</th>
+      <th>marital</th>
+      <th>education</th>
+      <th>default</th>
+      <th>balance</th>
+      <th>housing</th>
+      <th>loan</th>
+      <th>day_of_week</th>
+      <th>month</th>
+      <th>duration</th>
+      <th>campaign</th>
+      <th>pdays</th>
+      <th>previous</th>
+      <th>HasTermDeposit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>58</td>
+      <td>management</td>
+      <td>married</td>
+      <td>tertiary</td>
+      <td>no</td>
+      <td>2143</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>5</td>
+      <td>may</td>
+      <td>261</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>44</td>
+      <td>technician</td>
+      <td>single</td>
+      <td>secondary</td>
+      <td>no</td>
+      <td>29</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>5</td>
+      <td>may</td>
+      <td>151</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>33</td>
+      <td>entrepreneur</td>
+      <td>married</td>
+      <td>secondary</td>
+      <td>no</td>
+      <td>2</td>
+      <td>yes</td>
+      <td>yes</td>
+      <td>5</td>
+      <td>may</td>
+      <td>76</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>47</td>
+      <td>blue-collar</td>
+      <td>married</td>
+      <td>NaN</td>
+      <td>no</td>
+      <td>1506</td>
+      <td>yes</td>
+      <td>no</td>
+      <td>5</td>
+      <td>may</td>
+      <td>92</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>33</td>
+      <td>NaN</td>
+      <td>single</td>
+      <td>NaN</td>
+      <td>no</td>
+      <td>1</td>
+      <td>no</td>
+      <td>no</td>
+      <td>5</td>
+      <td>may</td>
+      <td>198</td>
+      <td>1</td>
+      <td>-1</td>
+      <td>0</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+</section>
+</section>
+<section id="como-funcionan-los-arboles-de-decision">
+<h2>Cómo Funcionan los Árboles de Decisión<a class="headerlink" href="#como-funcionan-los-arboles-de-decision" title="Link to this heading">#</a></h2>
+<p>Los árboles de decisión son una metodología de aprendizaje automático supervisado utilizada tanto para clasificación como para regresión, valorada por su claridad y facilidad de interpretación. A continuación, exploraremos los principios fundamentales detrás de los árboles de decisión y cómo pueden aplicarse en análisis predictivos.</p>
+<section id="conceptos-basicos">
+<h3>Conceptos Básicos<a class="headerlink" href="#conceptos-basicos" title="Link to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Un árbol de decisión representa un modelo de predicciones en forma de estructura de árbol, donde cada nodo interno simboliza una “pregunta” sobre una característica, cada rama la decisión tomada y cada hoja el resultado o predicción final.</p>
+</div>
+<section id="division-de-los-datos">
+<h4>División de los Datos<a class="headerlink" href="#division-de-los-datos" title="Link to this heading">#</a></h4>
+<p>La construcción de un árbol inicia en la raíz y se divide basándose en la selección de características que resulten en los subconjuntos más puros posibles.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>La “pureza” de un nodo se refiere a qué tan homogéneas son las muestras dentro de ese nodo respecto a la variable objetivo. Un nodo es completamente puro cuando todas sus muestras pertenecen a la misma categoría.</p>
+</div>
+</section>
+<section id="criterios-de-division">
+<h4>Criterios de División<a class="headerlink" href="#criterios-de-division" title="Link to this heading">#</a></h4>
+<p>Dos criterios predominantes para la división son la Ganancia de Información y el Índice Gini.</p>
+</section>
+<section id="poda-del-arbol">
+<h4>Poda del Árbol<a class="headerlink" href="#poda-del-arbol" title="Link to this heading">#</a></h4>
+<p>Limitar la complejidad del árbol es crucial para prevenir el sobreajuste, manteniendo el modelo generalizable a nuevos datos.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>El sobreajuste ocurre cuando un modelo aprende patrones del ruido en los datos de entrenamiento, afectando negativamente su rendimiento en datos no vistos.</p>
+</div>
+</section>
+</section>
+<section id="ventajas-y-desventajas">
+<h3>Ventajas y Desventajas<a class="headerlink" href="#ventajas-y-desventajas" title="Link to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Los árboles de decisión son intuitivos y pueden manejar datos categóricos y numéricos. Sin embargo, son propensos al sobreajuste y pueden ser sensibles a pequeñas variaciones en los datos de entrenamiento.</p>
+</div>
+</section>
+<section id="aplicaciones-practicas">
+<h3>Aplicaciones Prácticas<a class="headerlink" href="#aplicaciones-practicas" title="Link to this heading">#</a></h3>
+<p>En el marketing bancario, los árboles de decisión pueden ayudar a identificar perfiles de clientes propensos a adquirir un producto o a abandonar un servicio.</p>
+<section id="ejemplo-de-implementacion-en-python">
+<h4>Ejemplo de Implementación en Python<a class="headerlink" href="#ejemplo-de-implementacion-en-python" title="Link to this heading">#</a></h4>
+<p>A continuación, un breve ejemplo de cómo implementar un árbol de decisión utilizando scikit-learn en Python.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importando las bibliotecas necesarias</span>
+<span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">DecisionTreeClassifier</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
+
+<span class="c1"># Dividir el conjunto de datos y entrenar el modelo</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">modelo</span> <span class="o">=</span> <span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">max_depth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">modelo</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Evaluar el modelo</span>
+<span class="n">y_pred</span> <span class="o">=</span> <span class="n">modelo</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Exactitud del modelo: </span><span class="si">{</span><span class="n">accuracy_score</span><span class="p">(</span><span class="n">y_test</span><span class="p">,</span><span class="w"> </span><span class="n">y_pred</span><span class="p">)</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="visualizacion-del-arbol">
+<h4>Visualización del Árbol<a class="headerlink" href="#visualizacion-del-arbol" title="Link to this heading">#</a></h4>
+<p>Visualizar el árbol de decisión nos permite interpretar cómo el modelo toma sus decisiones.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.tree</span> <span class="kn">import</span> <span class="n">plot_tree</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="n">plot_tree</span><span class="p">(</span><span class="n">modelo</span><span class="p">,</span> <span class="n">filled</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">feature_names</span><span class="o">=</span><span class="n">X</span><span class="o">.</span><span class="n">columns</span><span class="p">,</span> <span class="n">class_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;No&#39;</span><span class="p">,</span> <span class="s1">&#39;Yes&#39;</span><span class="p">],</span> <span class="n">rounded</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">proportion</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>La visualización de un árbol de decisión facilita la comprensión de las decisiones del modelo y es una herramienta poderosa para explicar los resultados a partes interesadas no técnicas.</p>
+</div>
+<p>Con estos elementos, los árboles de decisión se presentan como una herramienta versátil y comprensible para el análisis predictivo en diversas aplicaciones, incluido el marketing bancario. Su capacidad para desglosar decisiones complejas en una serie de preguntas y respuestas simples los hace especialmente atractivos para la toma de decisiones basada en datos.</p>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./Cuadernos"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obtencion-de-los-datos">Obtención de los Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analisis-exploratorio-de-datos-eda">Análisis Exploratorio de Datos (EDA)</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preprocesamiento-de-datos">Preprocesamiento de Datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-utiles-para-la-entrada">Variables utiles para la entrada</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-interesantes-para-el-modelo">Variables Interesantes para el Modelo</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-a-considerar-quitar">Variables a Considerar Quitar</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#consideraciones-adicionales">Consideraciones Adicionales</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#variable-objetivo">Variable objetivo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#como-funcionan-los-arboles-de-decision">Cómo Funcionan los Árboles de Decisión</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptos-basicos">Conceptos Básicos</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#division-de-los-datos">División de los Datos</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#criterios-de-division">Criterios de División</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#poda-del-arbol">Poda del Árbol</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ventajas-y-desventajas">Ventajas y Desventajas</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#aplicaciones-practicas">Aplicaciones Prácticas</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#ejemplo-de-implementacion-en-python">Ejemplo de Implementación en Python</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizacion-del-arbol">Visualización del Árbol</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Isaac Zainea
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
