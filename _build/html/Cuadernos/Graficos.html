@@ -1096,6 +1096,207 @@ Name: Recency, dtype: float64
 </div>
 </div>
 <p>La columna <em><strong>Recency</strong></em>  se puede cambiar por cualquier otra columna que se desee analizar.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+
+<span class="n">penguins</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;penguins&quot;</span><span class="p">)</span>
+<span class="n">penguins</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>species</th>
+      <th>island</th>
+      <th>bill_length_mm</th>
+      <th>bill_depth_mm</th>
+      <th>flipper_length_mm</th>
+      <th>body_mass_g</th>
+      <th>sex</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>39.1</td>
+      <td>18.7</td>
+      <td>181.0</td>
+      <td>3750.0</td>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>39.5</td>
+      <td>17.4</td>
+      <td>186.0</td>
+      <td>3800.0</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>40.3</td>
+      <td>18.0</td>
+      <td>195.0</td>
+      <td>3250.0</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Adelie</td>
+      <td>Torgersen</td>
+      <td>36.7</td>
+      <td>19.3</td>
+      <td>193.0</td>
+      <td>3450.0</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>339</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>340</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>46.8</td>
+      <td>14.3</td>
+      <td>215.0</td>
+      <td>4850.0</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>341</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>50.4</td>
+      <td>15.7</td>
+      <td>222.0</td>
+      <td>5750.0</td>
+      <td>Male</td>
+    </tr>
+    <tr>
+      <th>342</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>45.2</td>
+      <td>14.8</td>
+      <td>212.0</td>
+      <td>5200.0</td>
+      <td>Female</td>
+    </tr>
+    <tr>
+      <th>343</th>
+      <td>Gentoo</td>
+      <td>Biscoe</td>
+      <td>49.9</td>
+      <td>16.1</td>
+      <td>213.0</td>
+      <td>5400.0</td>
+      <td>Male</td>
+    </tr>
+  </tbody>
+</table>
+<p>344 rows × 7 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Kidhome&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Kidhome
+0    1276
+1     883
+2      46
+Name: count, dtype: int64
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">## Describe la variable &#39;Kidhome&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Kidhome&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">describe</span><span class="p">())</span>
+
+<span class="c1"># Histograma de la variable &#39;Kidhome&#39;</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">catplot</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;Kidhome&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(),</span><span class="n">kind</span><span class="o">=</span><span class="s2">&quot;bar&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribución de Kidhome&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>count    2205.000000
+mean        0.442177
+std         0.537132
+min         0.000000
+25%         0.000000
+50%         0.000000
+75%         1.000000
+max         2.000000
+Name: Kidhome, dtype: float64
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 1000x600 with 0 Axes&gt;
+</pre></div>
+</div>
+<img alt="../_images/5a5ab00516a0db3c0b0e3ce3972d54290902ae51f0ed3ca4f8323ca67abb780c.png" src="../_images/5a5ab00516a0db3c0b0e3ce3972d54290902ae51f0ed3ca4f8323ca67abb780c.png" />
+</div>
+</div>
 <p><strong>Kidhome:</strong></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1127,11 +1328,11 @@ max         2.000000
 Name: Kidhome, dtype: float64
 </pre></div>
 </div>
-<img alt="../_images/4fafe46e7d088db0e09db2199ec4057d5a421dd07e067b6c8a1eefae33abb50c.png" src="../_images/4fafe46e7d088db0e09db2199ec4057d5a421dd07e067b6c8a1eefae33abb50c.png" />
+<img alt="../_images/378f87b660adacb0aae3ec8500de1da475a5ebf278cdbb9e31d26eae1452ac26.png" src="../_images/378f87b660adacb0aae3ec8500de1da475a5ebf278cdbb9e31d26eae1452ac26.png" />
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Text(0.5, 1.0, &#39;Boxplot de Kidhome&#39;)
 </pre></div>
 </div>
-<img alt="../_images/e8b58ed836cde984effcb8388323dec2a108a8f30e2a21a0bef32f5f254ded09.png" src="../_images/e8b58ed836cde984effcb8388323dec2a108a8f30e2a21a0bef32f5f254ded09.png" />
+<img alt="../_images/3e96871572ad866ec18650ea96ae86098dac3cc9954b47605078bef9ec377f0c.png" src="../_images/3e96871572ad866ec18650ea96ae86098dac3cc9954b47605078bef9ec377f0c.png" />
 </div>
 </div>
 <p><strong>Teenhome:</strong></p>
@@ -1166,8 +1367,8 @@ max         2.000000
 Name: Teenhome, dtype: float64
 </pre></div>
 </div>
-<img alt="../_images/78eae0b01a8194f44308c10b73fe721abe818c076c97c1f0c960f9b3b0ce2903.png" src="../_images/78eae0b01a8194f44308c10b73fe721abe818c076c97c1f0c960f9b3b0ce2903.png" />
-<img alt="../_images/fa2ba7c2cf82c5bc4d2d2de77137b15ae0d76e7eac4a83aefcef215f79167de8.png" src="../_images/fa2ba7c2cf82c5bc4d2d2de77137b15ae0d76e7eac4a83aefcef215f79167de8.png" />
+<img alt="../_images/ab9dd64510fdb18593af5262ab785c4ed1c84e1c6f8279197698021b0c60428d.png" src="../_images/ab9dd64510fdb18593af5262ab785c4ed1c84e1c6f8279197698021b0c60428d.png" />
+<img alt="../_images/159c30a451347c1ef81cc36364117dc39282fe75617da84355542693db23a4cf.png" src="../_images/159c30a451347c1ef81cc36364117dc39282fe75617da84355542693db23a4cf.png" />
 </div>
 </div>
 </section>

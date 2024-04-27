@@ -454,7 +454,8 @@ document.write(`
 <section id="exactitud-accuracy">
 <h3>Exactitud (Accuracy)<a class="headerlink" href="#exactitud-accuracy" title="Link to this heading">#</a></h3>
 <p>La exactitud es la proporción de predicciones correctas (tanto positivas como negativas) entre el total de casos examinados. Se calcula con la fórmula:</p>
-<p>[ \text{Exactitud} = \frac{VP + VN}{VP + FN + FP + VN} ]</p>
+<div class="math notranslate nohighlight">
+\[ \text{Exactitud} = \frac{VP + VN}{VP + FN + FP + VN} \]</div>
 <p>En scikit-learn, la exactitud se puede calcular fácilmente usando la función <code class="docutils literal notranslate"><span class="pre">accuracy_score</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">accuracy_score</span>
 
