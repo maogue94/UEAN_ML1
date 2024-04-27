@@ -1191,7 +1191,8 @@ datos_01</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Aprendizaje Automático.ipynb&#39;,
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;.ipynb_checkpoints&#39;,
+ &#39;Aprendizaje Automático.ipynb&#39;,
  &#39;bank_marketing.csv&#39;,
  &#39;Base Grande.csv&#39;,
  &#39;Clase 2&#39;,
@@ -1745,25 +1746,25 @@ dtype: object
   </thead>
   <tbody>
     <tr>
-      <th>1016239</th>
-      <td>5004.0</td>
-      <td>665.55</td>
+      <th>1060009</th>
+      <td>1511.0</td>
+      <td>581.15</td>
       <td>Y</td>
-      <td>765</td>
+      <td>382</td>
     </tr>
     <tr>
-      <th>1094230</th>
-      <td>3452.0</td>
-      <td>302.14</td>
+      <th>1041429</th>
+      <td>1836.0</td>
+      <td>579.43</td>
+      <td>Y</td>
+      <td>580</td>
+    </tr>
+    <tr>
+      <th>1049748</th>
+      <td>13184.0</td>
+      <td>1149.81</td>
       <td>N</td>
-      <td>210</td>
-    </tr>
-    <tr>
-      <th>1076511</th>
-      <td>2800.0</td>
-      <td>605.48</td>
-      <td>Y</td>
-      <td>223</td>
+      <td>62</td>
     </tr>
   </tbody>
 </table>
@@ -3733,8 +3734,299 @@ ocasiones se quiere saber que pasa con todos los registros de la primera tabla a
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Customer_ID</th>
+      <th>totmou</th>
+      <th>totrev</th>
+      <th>creditcd</th>
+      <th>eqpdays</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1082433</td>
+      <td>7269.0</td>
+      <td>906.58</td>
+      <td>Y</td>
+      <td>371</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1069242</td>
+      <td>13552.0</td>
+      <td>1172.25</td>
+      <td>N</td>
+      <td>83</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1031715</td>
+      <td>4152.0</td>
+      <td>577.39</td>
+      <td>Y</td>
+      <td>675</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1089816</td>
+      <td>1863.0</td>
+      <td>294.26</td>
+      <td>Y</td>
+      <td>218</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1076705</td>
+      <td>4155.0</td>
+      <td>433.16</td>
+      <td>N</td>
+      <td>222</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1091662</td>
+      <td>5441.0</td>
+      <td>578.80</td>
+      <td>Y</td>
+      <td>68</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1043856</td>
+      <td>7294.0</td>
+      <td>1495.18</td>
+      <td>Y</td>
+      <td>460</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1088977</td>
+      <td>4395.0</td>
+      <td>668.23</td>
+      <td>N</td>
+      <td>333</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1045249</td>
+      <td>11544.0</td>
+      <td>1012.64</td>
+      <td>Y</td>
+      <td>498</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1046594</td>
+      <td>3751.0</td>
+      <td>1199.89</td>
+      <td>Y</td>
+      <td>592</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DF_Derecha</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">agr_df</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;Customer_ID&#39;</span><span class="p">,</span><span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;Customer_ID&#39;</span><span class="p">)</span>
-<span class="n">DF_Derecha</span><span class="p">[</span><span class="n">DF_Derecha</span><span class="p">[</span><span class="s1">&#39;totmou&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
+<span class="n">DF_Derecha</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Customer_ID</th>
+      <th>totmou</th>
+      <th>totrev</th>
+      <th>creditcd_x</th>
+      <th>eqpdays</th>
+      <th>custcare_Mean</th>
+      <th>new_cell</th>
+      <th>area</th>
+      <th>creditcd_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1000014</td>
+      <td>642.00000</td>
+      <td>1370.94</td>
+      <td>N</td>
+      <td>354.0</td>
+      <td>0.000000</td>
+      <td>Y</td>
+      <td>CENTRAL-SOUTH TEXAS</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1000016</td>
+      <td>15226.03000</td>
+      <td>2311.08</td>
+      <td>Y</td>
+      <td>697.0</td>
+      <td>1.000000</td>
+      <td>N</td>
+      <td>DALLAS</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1000021</td>
+      <td>79406.01667</td>
+      <td>6751.70</td>
+      <td>Y</td>
+      <td>143.0</td>
+      <td>0.333333</td>
+      <td>U</td>
+      <td>TENNESSEE</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1000023</td>
+      <td>64174.80667</td>
+      <td>7419.73</td>
+      <td>N</td>
+      <td>350.0</td>
+      <td>0.000000</td>
+      <td>N</td>
+      <td>NORTHWEST-ROCKY MOUNTAIN</td>
+      <td>N</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1000029</td>
+      <td>42715.00000</td>
+      <td>3829.33</td>
+      <td>Y</td>
+      <td>183.0</td>
+      <td>0.000000</td>
+      <td>N</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9992</th>
+      <td>1099907</td>
+      <td>17843.00000</td>
+      <td>1457.01</td>
+      <td>Y</td>
+      <td>184.0</td>
+      <td>17.333333</td>
+      <td>U</td>
+      <td>LOS ANGELES</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>9993</th>
+      <td>1099932</td>
+      <td>14079.00000</td>
+      <td>1538.55</td>
+      <td>Y</td>
+      <td>275.0</td>
+      <td>0.000000</td>
+      <td>U</td>
+      <td>LOS ANGELES</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>9994</th>
+      <td>1099963</td>
+      <td>9722.00000</td>
+      <td>1559.16</td>
+      <td>Y</td>
+      <td>946.0</td>
+      <td>0.000000</td>
+      <td>U</td>
+      <td>SOUTHWEST</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>9995</th>
+      <td>1099981</td>
+      <td>7248.00000</td>
+      <td>1417.30</td>
+      <td>Y</td>
+      <td>882.0</td>
+      <td>0.333333</td>
+      <td>U</td>
+      <td>SOUTHWEST</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>9996</th>
+      <td>1099992</td>
+      <td>7338.00000</td>
+      <td>1198.48</td>
+      <td>Y</td>
+      <td>773.0</td>
+      <td>0.000000</td>
+      <td>Y</td>
+      <td>LOS ANGELES</td>
+      <td>Y</td>
+    </tr>
+  </tbody>
+</table>
+<p>9997 rows × 9 columns</p>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DF_Derecha</span><span class="p">[</span><span class="n">DF_Derecha</span><span class="p">[</span><span class="s1">&#39;totmou&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()]</span>
 </pre></div>
 </div>
 </div>
@@ -3888,6 +4180,123 @@ ocasiones se quiere saber que pasa con todos los registros de la primera tabla a
       <td>U</td>
       <td>NEW YORK CITY</td>
       <td>Y</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Customer_ID</th>
+      <th>totmou</th>
+      <th>totrev</th>
+      <th>creditcd</th>
+      <th>eqpdays</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1082433</td>
+      <td>7269.0</td>
+      <td>906.58</td>
+      <td>Y</td>
+      <td>371</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1069242</td>
+      <td>13552.0</td>
+      <td>1172.25</td>
+      <td>N</td>
+      <td>83</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1031715</td>
+      <td>4152.0</td>
+      <td>577.39</td>
+      <td>Y</td>
+      <td>675</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1089816</td>
+      <td>1863.0</td>
+      <td>294.26</td>
+      <td>Y</td>
+      <td>218</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1076705</td>
+      <td>4155.0</td>
+      <td>433.16</td>
+      <td>N</td>
+      <td>222</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1091662</td>
+      <td>5441.0</td>
+      <td>578.80</td>
+      <td>Y</td>
+      <td>68</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1043856</td>
+      <td>7294.0</td>
+      <td>1495.18</td>
+      <td>Y</td>
+      <td>460</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>1088977</td>
+      <td>4395.0</td>
+      <td>668.23</td>
+      <td>N</td>
+      <td>333</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>1045249</td>
+      <td>11544.0</td>
+      <td>1012.64</td>
+      <td>Y</td>
+      <td>498</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>1046594</td>
+      <td>3751.0</td>
+      <td>1199.89</td>
+      <td>Y</td>
+      <td>592</td>
     </tr>
   </tbody>
 </table>
@@ -4067,6 +4476,18 @@ ocasiones se quiere saber que pasa con todos los registros de la primera tabla a
 </table>
 <p>10000 rows × 9 columns</p>
 </div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DF_Izq</span><span class="p">[</span><span class="s1">&#39;area&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>13
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -4420,7 +4841,7 @@ ocasiones se quiere saber que pasa con todos los registros de la primera tabla a
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">agr_df</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;creditcd&#39;</span><span class="p">,</span><span class="s1">&#39;Customer_ID&#39;</span><span class="p">],</span><span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;creditcd&#39;</span><span class="p">,</span><span class="s1">&#39;Customer_ID&#39;</span><span class="p">])</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="o">=</span><span class="n">df2</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">agr_df</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;left&#39;</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;creditcd&#39;</span><span class="p">,</span><span class="s1">&#39;Customer_ID&#39;</span><span class="p">],</span><span class="n">right_on</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;creditcd&#39;</span><span class="p">,</span><span class="s1">&#39;Customer_ID&#39;</span><span class="p">])</span>
 <span class="n">df3</span>
 </pre></div>
 </div>
@@ -4457,58 +4878,58 @@ ocasiones se quiere saber que pasa con todos los registros de la primera tabla a
   <tbody>
     <tr>
       <th>0</th>
-      <td>1082433</td>
+      <td>1082423</td>
       <td>7269.0</td>
       <td>906.58</td>
       <td>Y</td>
       <td>371</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>14.333333</td>
+      <td>U</td>
+      <td>NEW ENGLAND</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1069242</td>
+      <td>1069232</td>
       <td>13552.0</td>
       <td>1172.25</td>
       <td>N</td>
       <td>83</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>3.666667</td>
+      <td>U</td>
+      <td>ATLANTIC SOUTH</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1031715</td>
+      <td>1031705</td>
       <td>4152.0</td>
       <td>577.39</td>
       <td>Y</td>
       <td>675</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>3.000000</td>
+      <td>U</td>
+      <td>NEW YORK CITY</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1089816</td>
+      <td>1089806</td>
       <td>1863.0</td>
       <td>294.26</td>
       <td>Y</td>
       <td>218</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>11.000000</td>
+      <td>U</td>
+      <td>CHICAGO</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1076705</td>
+      <td>1076695</td>
       <td>4155.0</td>
       <td>433.16</td>
       <td>N</td>
       <td>222</td>
-      <td>NaN</td>
-      <td>NaN</td>
-      <td>NaN</td>
+      <td>0.000000</td>
+      <td>U</td>
+      <td>NORTH FLORIDA</td>
     </tr>
     <tr>
       <th>...</th>
@@ -4583,7 +5004,7 @@ ocasiones se quiere saber que pasa con todos los registros de la primera tabla a
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">agr_df</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;Customer_ID&#39;</span><span class="p">,</span><span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;Customer_ID&#39;</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="o">=</span><span class="n">df2</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">agr_df</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;Customer_ID&#39;</span><span class="p">,</span><span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;Customer_ID&#39;</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s2">&quot;inner&quot;</span><span class="p">)</span>
 <span class="n">df3</span>
 <span class="n">df3</span><span class="p">[</span><span class="n">df3</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)]</span>
 <span class="n">df3</span><span class="p">[</span><span class="s1">&#39;area&#39;</span><span class="p">]</span><span class="o">=</span><span class="p">[</span><span class="n">i</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;AREA.csv&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;Bases/&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df3</span><span class="p">[</span><span class="s1">&#39;area&#39;</span><span class="p">]]</span>
@@ -4624,63 +5045,63 @@ ocasiones se quiere saber que pasa con todos los registros de la primera tabla a
   <tbody>
     <tr>
       <th>0</th>
-      <td>1076771</td>
-      <td>288.0</td>
-      <td>374.98</td>
+      <td>1082423</td>
+      <td>7269.0</td>
+      <td>906.58</td>
       <td>Y</td>
-      <td>284</td>
-      <td>0.000000</td>
+      <td>371</td>
+      <td>14.333333</td>
       <td>U</td>
       <td>NEW ENGLAND</td>
       <td>Y</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1057800</td>
-      <td>2030.0</td>
-      <td>1026.31</td>
-      <td>Y</td>
-      <td>439</td>
-      <td>0.000000</td>
-      <td>Y</td>
-      <td>NORTHWEST-ROCKY MOUNTAIN</td>
-      <td>Y</td>
+      <td>1069232</td>
+      <td>13552.0</td>
+      <td>1172.25</td>
+      <td>N</td>
+      <td>83</td>
+      <td>3.666667</td>
+      <td>U</td>
+      <td>ATLANTIC SOUTH</td>
+      <td>N</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1083737</td>
-      <td>1928.0</td>
-      <td>396.78</td>
+      <td>1031705</td>
+      <td>4152.0</td>
+      <td>577.39</td>
       <td>Y</td>
-      <td>261</td>
-      <td>0.000000</td>
+      <td>675</td>
+      <td>3.000000</td>
       <td>U</td>
-      <td>NEW ENGLAND</td>
+      <td>NEW YORK CITY</td>
       <td>Y</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1008539</td>
-      <td>4078.0</td>
-      <td>1257.05</td>
+      <td>1089806</td>
+      <td>1863.0</td>
+      <td>294.26</td>
       <td>Y</td>
-      <td>1019</td>
-      <td>0.000000</td>
-      <td>N</td>
-      <td>ATLANTIC SOUTH</td>
+      <td>218</td>
+      <td>11.000000</td>
+      <td>U</td>
+      <td>CHICAGO</td>
       <td>Y</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1056697</td>
-      <td>4874.0</td>
-      <td>246.77</td>
-      <td>Y</td>
-      <td>507</td>
+      <td>1076695</td>
+      <td>4155.0</td>
+      <td>433.16</td>
+      <td>N</td>
+      <td>222</td>
       <td>0.000000</td>
       <td>U</td>
-      <td>MIDWEST</td>
-      <td>Y</td>
+      <td>NORTH FLORIDA</td>
+      <td>N</td>
     </tr>
     <tr>
       <th>...</th>
@@ -4695,7 +5116,7 @@ ocasiones se quiere saber que pasa con todos los registros de la primera tabla a
       <td>...</td>
     </tr>
     <tr>
-      <th>9982</th>
+      <th>9992</th>
       <td>1027614</td>
       <td>2570.0</td>
       <td>484.31</td>
@@ -4707,7 +5128,7 @@ ocasiones se quiere saber que pasa con todos los registros de la primera tabla a
       <td>Y</td>
     </tr>
     <tr>
-      <th>9983</th>
+      <th>9993</th>
       <td>1098422</td>
       <td>2105.0</td>
       <td>583.36</td>
@@ -4719,7 +5140,7 @@ ocasiones se quiere saber que pasa con todos los registros de la primera tabla a
       <td>Y</td>
     </tr>
     <tr>
-      <th>9984</th>
+      <th>9994</th>
       <td>1096497</td>
       <td>3690.0</td>
       <td>294.29</td>
@@ -4731,7 +5152,7 @@ ocasiones se quiere saber que pasa con todos los registros de la primera tabla a
       <td>Y</td>
     </tr>
     <tr>
-      <th>9985</th>
+      <th>9995</th>
       <td>1087248</td>
       <td>3333.0</td>
       <td>233.08</td>
@@ -4743,7 +5164,7 @@ ocasiones se quiere saber que pasa con todos los registros de la primera tabla a
       <td>Y</td>
     </tr>
     <tr>
-      <th>9986</th>
+      <th>9996</th>
       <td>1099003</td>
       <td>5025.0</td>
       <td>1436.49</td>
@@ -4756,7 +5177,7 @@ ocasiones se quiere saber que pasa con todos los registros de la primera tabla a
     </tr>
   </tbody>
 </table>
-<p>9987 rows × 9 columns</p>
+<p>9997 rows × 9 columns</p>
 </div></div></div>
 </div>
 </section>
@@ -5151,7 +5572,8 @@ memory usage: 702.3+ KB
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="o">=</span><span class="n">DF_Bien</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">DF_Bien</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df2</span><span class="p">,</span><span class="n">agr_df</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s1">&#39;inner&#39;</span><span class="p">,</span><span class="n">left_on</span><span class="o">=</span><span class="s1">&#39;Customer_ID&#39;</span><span class="p">,</span><span class="n">right_on</span><span class="o">=</span><span class="s1">&#39;Customer_ID&#39;</span><span class="p">)</span>
+<span class="n">df3</span><span class="o">=</span><span class="n">DF_Bien</span>
 </pre></div>
 </div>
 </div>
@@ -5201,28 +5623,202 @@ memory usage: 702.3+ KB
 <p>El comando   <code class="docutils literal notranslate"><span class="pre">df3[&quot;area&quot;]==&quot;NEW</span> <span class="pre">ENGLAND</span> <span class="pre">AREA&quot;</span></code></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;NEW ENGLAND AREA&quot;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;NEW ENGLAND&quot;</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0       False
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0        True
 1       False
 2       False
 3       False
 4       False
         ...  
-9982    False
-9983    False
-9984    False
-9985    False
-9986    False
-Name: area, Length: 9987, dtype: bool
+9992    False
+9993    False
+9994     True
+9995    False
+9996    False
+Name: area, Length: 9997, dtype: bool
 </pre></div>
 </div>
 </div>
 </div>
 <p>devuelve una serie boleana  con el mismo número de filas de la base<code class="docutils literal notranslate"><span class="pre">df3</span></code>, donde cada valor es <code class="docutils literal notranslate"><span class="pre">True</span></code> o <code class="docutils literal notranslate"><span class="pre">False</span></code> dependiendo si el valor de <code class="docutils literal notranslate"><span class="pre">area</span></code> de un registro  toma el valor de “NEW ENGLAND AREA”</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="p">[</span><span class="n">df3</span><span class="p">[</span><span class="s2">&quot;area&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;NEW ENGLAND&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Customer_ID</th>
+      <th>totmou</th>
+      <th>totrev</th>
+      <th>creditcd_x</th>
+      <th>eqpdays</th>
+      <th>custcare_Mean</th>
+      <th>new_cell</th>
+      <th>area</th>
+      <th>creditcd_y</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1082423</td>
+      <td>7269.0</td>
+      <td>906.58</td>
+      <td>Y</td>
+      <td>371</td>
+      <td>14.333333</td>
+      <td>U</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>1076771</td>
+      <td>288.0</td>
+      <td>374.98</td>
+      <td>Y</td>
+      <td>284</td>
+      <td>0.000000</td>
+      <td>U</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1083737</td>
+      <td>1928.0</td>
+      <td>396.78</td>
+      <td>Y</td>
+      <td>261</td>
+      <td>0.000000</td>
+      <td>U</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>1078557</td>
+      <td>2781.0</td>
+      <td>590.26</td>
+      <td>Y</td>
+      <td>276</td>
+      <td>0.000000</td>
+      <td>N</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>1018015</td>
+      <td>24069.0</td>
+      <td>2129.74</td>
+      <td>Y</td>
+      <td>199</td>
+      <td>2.000000</td>
+      <td>N</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+      <td>...</td>
+    </tr>
+    <tr>
+      <th>9898</th>
+      <td>1059454</td>
+      <td>942.0</td>
+      <td>625.98</td>
+      <td>Y</td>
+      <td>323</td>
+      <td>0.000000</td>
+      <td>U</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>9900</th>
+      <td>1036973</td>
+      <td>2538.0</td>
+      <td>981.41</td>
+      <td>Y</td>
+      <td>688</td>
+      <td>0.000000</td>
+      <td>U</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>9959</th>
+      <td>1073829</td>
+      <td>2812.0</td>
+      <td>454.64</td>
+      <td>Y</td>
+      <td>342</td>
+      <td>0.000000</td>
+      <td>U</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>9990</th>
+      <td>1083458</td>
+      <td>10628.0</td>
+      <td>965.57</td>
+      <td>Y</td>
+      <td>262</td>
+      <td>6.666667</td>
+      <td>U</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+    </tr>
+    <tr>
+      <th>9994</th>
+      <td>1096497</td>
+      <td>3690.0</td>
+      <td>294.29</td>
+      <td>Y</td>
+      <td>212</td>
+      <td>0.666667</td>
+      <td>Y</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+    </tr>
+  </tbody>
+</table>
+<p>525 rows × 9 columns</p>
+</div></div></div>
+</div>
 </section>
 <section id="agrupacion-por-area-geografica">
 <h3>Agrupación por área geográfica<a class="headerlink" href="#agrupacion-por-area-geografica" title="Link to this heading">#</a></h3>
@@ -5230,38 +5826,25 @@ Name: area, Length: 9987, dtype: bool
 <p>Para nuestro desarrollo es de interés el revisar si el comportamiento de las variables se mantiene en cada una de las áreas geográficas.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_lam</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">:</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span> 
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">f_lam</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="p">[</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;area&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;CALIFORNIA NORTH&#39;</span><span class="p">][</span><span class="s1">&#39;creditcd_x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>5
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>creditcd_x
+Y    407
+N    192
+Name: count, dtype: int64
 </pre></div>
 </div>
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df3</span><span class="p">[</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;area&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;CALIFORNIA NORTH&#39;</span><span class="p">][</span><span class="s1">&#39;creditcd_x&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">(</span><span class="n">dropna</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span><span class="o">.</span><span class="n">index</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Index([&#39;Y&#39;, &#39;N&#39;], dtype=&#39;object&#39;, name=&#39;creditcd_x&#39;)
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Agrupacion</span><span class="o">=</span><span class="n">df3</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;area&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;Customer_ID&#39;</span><span class="p">:</span><span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="s1">&#39;totmou&#39;</span><span class="p">:[</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span><span class="s1">&#39;mean&#39;</span><span class="p">],</span><span class="s1">&#39;creditcd_x&#39;</span><span class="p">:[(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">Y</span><span class="p">),(</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">N</span><span class="p">)]})</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fun_si</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">Y</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+<span class="n">fun_no</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span> <span class="p">:</span> <span class="n">x</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">N</span><span class="o">/</span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+
+<span class="n">Agrupacion</span><span class="o">=</span><span class="n">df3</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;area&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">agg</span><span class="p">({</span><span class="s1">&#39;Customer_ID&#39;</span><span class="p">:</span><span class="s1">&#39;count&#39;</span><span class="p">,</span><span class="s1">&#39;totmou&#39;</span><span class="p">:[</span><span class="s1">&#39;sum&#39;</span><span class="p">,</span><span class="s1">&#39;mean&#39;</span><span class="p">],</span><span class="s1">&#39;creditcd_x&#39;</span><span class="p">:[</span><span class="n">fun_si</span><span class="p">,</span><span class="n">fun_no</span><span class="p">]})</span>
 <span class="n">Agrupacion</span><span class="o">.</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Número de clientes&#39;</span><span class="p">,</span><span class="s1">&#39;Consumo total de minutos&#39;</span><span class="p">,</span><span class="s1">&#39;Consumo Promedio Minutos&#39;</span><span class="p">,</span><span class="s1">&#39;Con Credito&#39;</span><span class="p">,</span><span class="s1">&#39;Sin Credito&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
@@ -5310,159 +5893,173 @@ Name: area, Length: 9987, dtype: bool
   <tbody>
     <tr>
       <th>ATLANTIC SOUTH</th>
-      <td>590</td>
-      <td>4.037036e+06</td>
-      <td>6842.434288</td>
-      <td>380</td>
-      <td>210</td>
+      <td>592</td>
+      <td>4.057882e+06</td>
+      <td>6854.530794</td>
+      <td>0.643581</td>
+      <td>0.356419</td>
     </tr>
     <tr>
       <th>CALIFORNIA NORTH</th>
       <td>599</td>
       <td>4.531287e+06</td>
       <td>7564.752666</td>
-      <td>407</td>
-      <td>192</td>
+      <td>0.679466</td>
+      <td>0.320534</td>
     </tr>
     <tr>
       <th>CENTRAL-SOUTH TEXAS</th>
       <td>409</td>
       <td>3.834537e+06</td>
       <td>9375.395933</td>
-      <td>287</td>
-      <td>122</td>
+      <td>0.701711</td>
+      <td>0.298289</td>
     </tr>
     <tr>
       <th>CHICAGO</th>
-      <td>494</td>
-      <td>3.237595e+06</td>
-      <td>6553.836451</td>
-      <td>328</td>
-      <td>166</td>
+      <td>496</td>
+      <td>3.243853e+06</td>
+      <td>6540.026626</td>
+      <td>0.663306</td>
+      <td>0.336694</td>
     </tr>
     <tr>
       <th>DALLAS</th>
       <td>518</td>
       <td>4.791310e+06</td>
       <td>9249.633771</td>
-      <td>373</td>
-      <td>145</td>
+      <td>0.720077</td>
+      <td>0.279923</td>
     </tr>
     <tr>
       <th>DC-MARYLAND-VIRGINIA</th>
-      <td>639</td>
-      <td>4.275720e+06</td>
-      <td>6691.267606</td>
-      <td>436</td>
-      <td>203</td>
+      <td>640</td>
+      <td>4.287264e+06</td>
+      <td>6698.850000</td>
+      <td>0.682813</td>
+      <td>0.317188</td>
     </tr>
     <tr>
       <th>GREAT LAKES</th>
-      <td>487</td>
-      <td>3.661186e+06</td>
-      <td>7517.835729</td>
-      <td>361</td>
-      <td>126</td>
+      <td>488</td>
+      <td>3.664937e+06</td>
+      <td>7510.116803</td>
+      <td>0.741803</td>
+      <td>0.258197</td>
     </tr>
     <tr>
       <th>HOUSTON</th>
       <td>458</td>
       <td>4.303245e+06</td>
       <td>9395.732285</td>
-      <td>338</td>
-      <td>120</td>
+      <td>0.737991</td>
+      <td>0.262009</td>
     </tr>
     <tr>
       <th>LOS ANGELES</th>
       <td>671</td>
       <td>5.055043e+06</td>
       <td>7533.596125</td>
-      <td>461</td>
-      <td>210</td>
+      <td>0.687034</td>
+      <td>0.312966</td>
     </tr>
     <tr>
       <th>MIDWEST</th>
       <td>685</td>
       <td>5.153547e+06</td>
       <td>7523.426866</td>
-      <td>504</td>
-      <td>181</td>
+      <td>0.735766</td>
+      <td>0.264234</td>
     </tr>
     <tr>
       <th>NEW ENGLAND</th>
-      <td>524</td>
-      <td>3.492546e+06</td>
-      <td>6665.164962</td>
-      <td>370</td>
-      <td>154</td>
+      <td>525</td>
+      <td>3.499815e+06</td>
+      <td>6666.315124</td>
+      <td>0.706667</td>
+      <td>0.293333</td>
     </tr>
     <tr>
       <th>NEW YORK CITY</th>
-      <td>1143</td>
-      <td>9.530299e+06</td>
-      <td>8337.969577</td>
-      <td>786</td>
-      <td>357</td>
+      <td>1145</td>
+      <td>9.539892e+06</td>
+      <td>8331.783604</td>
+      <td>0.688210</td>
+      <td>0.311790</td>
     </tr>
     <tr>
       <th>NORTH FLORIDA</th>
-      <td>441</td>
-      <td>2.863325e+06</td>
-      <td>6492.800454</td>
-      <td>305</td>
-      <td>136</td>
+      <td>442</td>
+      <td>2.867480e+06</td>
+      <td>6487.511312</td>
+      <td>0.690045</td>
+      <td>0.309955</td>
     </tr>
     <tr>
       <th>NORTHWEST-ROCKY MOUNTAIN</th>
       <td>429</td>
       <td>3.315077e+06</td>
       <td>7727.451562</td>
-      <td>281</td>
-      <td>148</td>
+      <td>0.655012</td>
+      <td>0.344988</td>
     </tr>
     <tr>
       <th>OHIO</th>
       <td>437</td>
       <td>2.927894e+06</td>
       <td>6699.986857</td>
-      <td>330</td>
-      <td>107</td>
+      <td>0.755149</td>
+      <td>0.244851</td>
     </tr>
     <tr>
       <th>PHILADELPHIA</th>
       <td>245</td>
       <td>1.728323e+06</td>
       <td>7054.378748</td>
-      <td>177</td>
-      <td>68</td>
+      <td>0.722449</td>
+      <td>0.277551</td>
     </tr>
     <tr>
       <th>SOUTH FLORIDA</th>
       <td>366</td>
       <td>3.406319e+06</td>
       <td>9306.883761</td>
-      <td>257</td>
-      <td>109</td>
+      <td>0.702186</td>
+      <td>0.297814</td>
     </tr>
     <tr>
       <th>SOUTHWEST</th>
       <td>584</td>
       <td>4.589988e+06</td>
       <td>7859.568516</td>
-      <td>371</td>
-      <td>213</td>
+      <td>0.635274</td>
+      <td>0.364726</td>
     </tr>
     <tr>
       <th>TENNESSEE</th>
       <td>268</td>
       <td>2.110056e+06</td>
       <td>7873.344950</td>
-      <td>187</td>
-      <td>81</td>
+      <td>0.697761</td>
+      <td>0.302239</td>
     </tr>
   </tbody>
 </table>
 </div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conteo</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
+
+<span class="n">conteo</span><span class="p">(</span><span class="n">df3</span><span class="p">[</span><span class="s1">&#39;creditcd_x&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>6946
+</pre></div>
+</div>
+</div>
 </div>
 <p>Aquí, el objeto DataFrameGroupBy  contiene un objeto DataFrame para cada grupo (en este caso, un objeto DataFrame para cada símbolo). Específicamente, cada elemento del objeto es una tupla que contiene el identificador de grupo (en este caso el símbolo), y las filas correspondientes del DataFrame que tienen ese símbolo).</p>
 <p>La librería <code class="docutils literal notranslate"><span class="pre">pandas</span></code>  permite iterar sobre el objeto groupby() para ver lo que hay dentro:</p>
@@ -5480,289 +6077,289 @@ Name: area, Length: 9987, dtype: bool
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;class &#39;tuple&#39;&gt;
 (&#39;ATLANTIC SOUTH&#39;,)
-     Customer_ID  totmou   totrev creditcd_x  eqpdays  custcare_Mean new_cell  \
-3        1008539  4078.0  1257.05          Y     1019       0.000000        N   
-38       1068315  5124.0   652.27          N      377       0.000000        U   
-73       1074220  6648.0   590.21          N      295       1.666667        U   
-83       1079315  3968.0   464.62          N      381       1.666667        U   
-106      1049228  8462.0   350.98          Y      282       2.000000        U   
+    Customer_ID   totmou   totrev creditcd_x  eqpdays  custcare_Mean new_cell  \
+1       1069232  13552.0  1172.25          N       83       3.666667        U   
+6       1043846   7294.0  1495.18          Y      460       0.000000        U   
+13      1008539   4078.0  1257.05          Y     1019       0.000000        N   
+48      1068315   5124.0   652.27          N      377       0.000000        U   
+83      1074220   6648.0   590.21          N      295       1.666667        U   
 
-               area creditcd_y  
-3    ATLANTIC SOUTH          Y  
-38   ATLANTIC SOUTH          N  
-73   ATLANTIC SOUTH          N  
-83   ATLANTIC SOUTH          N  
-106  ATLANTIC SOUTH          Y  
+              area creditcd_y  
+1   ATLANTIC SOUTH          N  
+6   ATLANTIC SOUTH          Y  
+13  ATLANTIC SOUTH          Y  
+48  ATLANTIC SOUTH          N  
+83  ATLANTIC SOUTH          N  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;CALIFORNIA NORTH&#39;,)
      Customer_ID   totmou   totrev creditcd_x  eqpdays  custcare_Mean  \
-19       1064411   6282.0   729.54          Y      357      15.666667   
-22       1029380   1834.0   610.87          Y      575       0.000000   
-35       1056368  10517.0  1108.00          N      307       0.666667   
-68       1046285  18750.0  1485.02          Y      534       2.000000   
-108      1010813  19030.0  2275.21          N      198       1.333333   
+29       1064411   6282.0   729.54          Y      357      15.666667   
+32       1029380   1834.0   610.87          Y      575       0.000000   
+45       1056368  10517.0  1108.00          N      307       0.666667   
+78       1046285  18750.0  1485.02          Y      534       2.000000   
+118      1010813  19030.0  2275.21          N      198       1.333333   
 
     new_cell              area creditcd_y  
-19         U  CALIFORNIA NORTH          Y  
-22         U  CALIFORNIA NORTH          Y  
-35         Y  CALIFORNIA NORTH          N  
-68         Y  CALIFORNIA NORTH          Y  
-108        U  CALIFORNIA NORTH          N  
+29         U  CALIFORNIA NORTH          Y  
+32         U  CALIFORNIA NORTH          Y  
+45         Y  CALIFORNIA NORTH          N  
+78         Y  CALIFORNIA NORTH          Y  
+118        U  CALIFORNIA NORTH          N  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;CENTRAL-SOUTH TEXAS&#39;,)
      Customer_ID  totmou   totrev creditcd_x  eqpdays  custcare_Mean new_cell  \
-20       1016302  6721.0   926.03          Y      893      13.666667        N   
-61       1002366  2892.0  1102.53          Y      219       1.000000        U   
-77       1062599  3187.0   590.87          Y       16       0.000000        N   
-97       1059746  1312.0   488.51          Y      491       0.000000        U   
-103      1016781  1928.0  1051.33          Y      779       0.000000        N   
+30       1016302  6721.0   926.03          Y      893      13.666667        N   
+71       1002366  2892.0  1102.53          Y      219       1.000000        U   
+87       1062599  3187.0   590.87          Y       16       0.000000        N   
+107      1059746  1312.0   488.51          Y      491       0.000000        U   
+113      1016781  1928.0  1051.33          Y      779       0.000000        N   
 
                     area creditcd_y  
-20   CENTRAL-SOUTH TEXAS          Y  
-61   CENTRAL-SOUTH TEXAS          Y  
-77   CENTRAL-SOUTH TEXAS          Y  
-97   CENTRAL-SOUTH TEXAS          Y  
-103  CENTRAL-SOUTH TEXAS          Y  
+30   CENTRAL-SOUTH TEXAS          Y  
+71   CENTRAL-SOUTH TEXAS          Y  
+87   CENTRAL-SOUTH TEXAS          Y  
+107  CENTRAL-SOUTH TEXAS          Y  
+113  CENTRAL-SOUTH TEXAS          Y  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;CHICAGO&#39;,)
     Customer_ID  totmou   totrev creditcd_x  eqpdays  custcare_Mean new_cell  \
-54      1085074  1636.0   543.83          Y      363       0.000000        U   
-56      1053959  5871.0   468.14          Y      254       6.666667        Y   
-67      1046932  9213.0  1141.79          N      420       1.000000        U   
-69      1068224  8167.0   672.36          N      332       3.000000        U   
-72      1055525  4668.0   873.59          Y      408       0.333333        U   
+3       1089806  1863.0   294.26          Y      218      11.000000        U   
+7       1088967  4395.0   668.23          N      333       0.666667        U   
+64      1085074  1636.0   543.83          Y      363       0.000000        U   
+66      1053959  5871.0   468.14          Y      254       6.666667        Y   
+77      1046932  9213.0  1141.79          N      420       1.000000        U   
 
        area creditcd_y  
-54  CHICAGO          Y  
-56  CHICAGO          Y  
-67  CHICAGO          N  
-69  CHICAGO          N  
-72  CHICAGO          Y  
+3   CHICAGO          Y  
+7   CHICAGO          N  
+64  CHICAGO          Y  
+66  CHICAGO          Y  
+77  CHICAGO          N  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;DALLAS&#39;,)
      Customer_ID   totmou   totrev creditcd_x  eqpdays  custcare_Mean  \
-24       1008208  36302.0  5020.37          Y      257            2.0   
-42       1013047   4957.0   826.92          Y      790            0.0   
-65       1089778   1320.0   445.91          Y      325            0.0   
-79       1007540   3841.0   998.41          Y      931            0.0   
-146      1023169   3204.0  1181.96          Y      807            0.0   
+34       1008208  36302.0  5020.37          Y      257            2.0   
+52       1013047   4957.0   826.92          Y      790            0.0   
+75       1089778   1320.0   445.91          Y      325            0.0   
+89       1007540   3841.0   998.41          Y      931            0.0   
+156      1023169   3204.0  1181.96          Y      807            0.0   
 
     new_cell    area creditcd_y  
-24         N  DALLAS          Y  
-42         U  DALLAS          Y  
-65         U  DALLAS          Y  
-79         Y  DALLAS          Y  
-146        N  DALLAS          Y  
+34         N  DALLAS          Y  
+52         U  DALLAS          Y  
+75         U  DALLAS          Y  
+89         Y  DALLAS          Y  
+156        N  DALLAS          Y  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;DC-MARYLAND-VIRGINIA&#39;,)
-     Customer_ID  totmou   totrev creditcd_x  eqpdays  custcare_Mean new_cell  \
-9        1016607   284.0   825.15          Y        4       0.000000        Y   
-10       1015068  5960.0  1902.45          Y      809       0.000000        N   
-46       1076198  4787.0  1173.96          Y      333       2.333333        U   
-53       1028649  7533.0  1250.63          Y      641       0.000000        U   
-109      1077754  1481.0   266.54          N      280       0.000000        Y   
+    Customer_ID   totmou   totrev creditcd_x  eqpdays  custcare_Mean new_cell  \
+8       1045239  11544.0  1012.64          Y      498       0.000000        U   
+19      1016607    284.0   825.15          Y        4       0.000000        Y   
+20      1015068   5960.0  1902.45          Y      809       0.000000        N   
+56      1076198   4787.0  1173.96          Y      333       2.333333        U   
+63      1028649   7533.0  1250.63          Y      641       0.000000        U   
 
-                     area creditcd_y  
-9    DC-MARYLAND-VIRGINIA          Y  
-10   DC-MARYLAND-VIRGINIA          Y  
-46   DC-MARYLAND-VIRGINIA          Y  
-53   DC-MARYLAND-VIRGINIA          Y  
-109  DC-MARYLAND-VIRGINIA          N  
+                    area creditcd_y  
+8   DC-MARYLAND-VIRGINIA          Y  
+19  DC-MARYLAND-VIRGINIA          Y  
+20  DC-MARYLAND-VIRGINIA          Y  
+56  DC-MARYLAND-VIRGINIA          Y  
+63  DC-MARYLAND-VIRGINIA          Y  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;GREAT LAKES&#39;,)
      Customer_ID   totmou   totrev creditcd_x  eqpdays  custcare_Mean  \
-26       1023685  12620.0  1959.49          Y      509       0.000000   
-27       1035097   1502.0   690.12          Y      603       0.000000   
-104      1011051   5886.0   558.61          Y      151       1.666667   
-107      1011205  32828.0  2712.13          N      184       7.000000   
-110      1015584   1702.0   684.68          Y      845       0.000000   
+9        1046584   3751.0  1199.89          Y      592       0.000000   
+36       1023685  12620.0  1959.49          Y      509       0.000000   
+37       1035097   1502.0   690.12          Y      603       0.000000   
+114      1011051   5886.0   558.61          Y      151       1.666667   
+117      1011205  32828.0  2712.13          N      184       7.000000   
 
     new_cell         area creditcd_y  
-26         U  GREAT LAKES          Y  
-27         U  GREAT LAKES          Y  
-104        Y  GREAT LAKES          Y  
-107        N  GREAT LAKES          N  
-110        U  GREAT LAKES          Y  
+9          U  GREAT LAKES          Y  
+36         U  GREAT LAKES          Y  
+37         U  GREAT LAKES          Y  
+114        Y  GREAT LAKES          Y  
+117        N  GREAT LAKES          N  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;HOUSTON&#39;,)
     Customer_ID    totmou   totrev creditcd_x  eqpdays  custcare_Mean  \
-13      1088984  10194.00  1089.04          N      209       6.333333   
-21      1013751   6346.00  1453.43          Y      460       0.000000   
-32      1001867  21518.05  2769.67          Y      657      11.333333   
-51      1007086   2097.00  1421.31          Y      569       0.000000   
-87      1049782  26249.00  2254.27          N      144       0.000000   
+23      1088984  10194.00  1089.04          N      209       6.333333   
+31      1013751   6346.00  1453.43          Y      460       0.000000   
+42      1001867  21518.05  2769.67          Y      657      11.333333   
+61      1007086   2097.00  1421.31          Y      569       0.000000   
+97      1049782  26249.00  2254.27          N      144       0.000000   
 
    new_cell     area creditcd_y  
-13        U  HOUSTON          N  
-21        U  HOUSTON          Y  
-32        Y  HOUSTON          Y  
-51        N  HOUSTON          Y  
-87        N  HOUSTON          N  
+23        U  HOUSTON          N  
+31        U  HOUSTON          Y  
+42        Y  HOUSTON          Y  
+61        N  HOUSTON          Y  
+97        N  HOUSTON          N  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;LOS ANGELES&#39;,)
     Customer_ID   totmou   totrev creditcd_x  eqpdays  custcare_Mean new_cell  \
-6       1020126   4411.0  1252.91          Y      741       0.000000        Y   
-17      1040941   9195.0   959.63          N      486       1.000000        Y   
-28      1015658  59449.0  3531.09          Y      380       0.000000        U   
-50      1088347   4060.0   503.72          Y      340      14.333333        U   
-59      1019146   2038.0  1000.84          N      796       0.000000        U   
+16      1020126   4411.0  1252.91          Y      741       0.000000        Y   
+27      1040941   9195.0   959.63          N      486       1.000000        Y   
+38      1015658  59449.0  3531.09          Y      380       0.000000        U   
+60      1088347   4060.0   503.72          Y      340      14.333333        U   
+69      1019146   2038.0  1000.84          N      796       0.000000        U   
 
            area creditcd_y  
-6   LOS ANGELES          Y  
-17  LOS ANGELES          N  
-28  LOS ANGELES          Y  
-50  LOS ANGELES          Y  
-59  LOS ANGELES          N  
+16  LOS ANGELES          Y  
+27  LOS ANGELES          N  
+38  LOS ANGELES          Y  
+60  LOS ANGELES          Y  
+69  LOS ANGELES          N  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;MIDWEST&#39;,)
-    Customer_ID   totmou   totrev creditcd_x  eqpdays  custcare_Mean new_cell  \
-4       1056697   4874.0   246.77          Y      507       0.000000        U   
-34      1072218   5684.0   857.65          Y      244       4.000000        U   
-39      1005704  21991.0  2809.08          Y      241       0.000000        Y   
-92      1040496   2230.0   588.61          N      543       0.000000        U   
-93      1050396   8190.0  1190.50          N      235       1.666667        N   
+     Customer_ID   totmou   totrev creditcd_x  eqpdays  custcare_Mean  \
+14       1056697   4874.0   246.77          Y      507       0.000000   
+44       1072218   5684.0   857.65          Y      244       4.000000   
+49       1005704  21991.0  2809.08          Y      241       0.000000   
+102      1040496   2230.0   588.61          N      543       0.000000   
+103      1050396   8190.0  1190.50          N      235       1.666667   
 
-       area creditcd_y  
-4   MIDWEST          Y  
-34  MIDWEST        NaN  
-39  MIDWEST          Y  
-92  MIDWEST          N  
-93  MIDWEST          N  
+    new_cell     area creditcd_y  
+14         U  MIDWEST          Y  
+44         U  MIDWEST        NaN  
+49         Y  MIDWEST          Y  
+102        U  MIDWEST          N  
+103        N  MIDWEST          N  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;NEW ENGLAND&#39;,)
     Customer_ID   totmou   totrev creditcd_x  eqpdays  custcare_Mean new_cell  \
-0       1076771    288.0   374.98          Y      284            0.0        U   
-2       1083737   1928.0   396.78          Y      261            0.0        U   
-7       1078557   2781.0   590.26          Y      276            0.0        N   
-8       1018015  24069.0  2129.74          Y      199            2.0        N   
-18      1005998   1489.0   982.18          Y      958            0.0        U   
+0       1082423   7269.0   906.58          Y      371      14.333333        U   
+10      1076771    288.0   374.98          Y      284       0.000000        U   
+12      1083737   1928.0   396.78          Y      261       0.000000        U   
+17      1078557   2781.0   590.26          Y      276       0.000000        N   
+18      1018015  24069.0  2129.74          Y      199       2.000000        N   
 
            area creditcd_y  
 0   NEW ENGLAND          Y  
-2   NEW ENGLAND          Y  
-7   NEW ENGLAND          Y  
-8   NEW ENGLAND          Y  
+10  NEW ENGLAND          Y  
+12  NEW ENGLAND          Y  
+17  NEW ENGLAND          Y  
 18  NEW ENGLAND          Y  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;NEW YORK CITY&#39;,)
-    Customer_ID   totmou   totrev creditcd_x  eqpdays  custcare_Mean new_cell  \
-11      1013855   1330.0   898.34          Y      877       0.333333        Y   
-30      1055064   2066.0   499.82          N      168      11.666667        Y   
-33      1062755   1438.0   445.47          Y      304       0.000000        U   
-49      1086911  10267.0   804.71          Y      353       1.000000        U   
-57      1027630  15067.0  1705.50          Y       45       2.000000        U   
+    Customer_ID  totmou  totrev creditcd_x  eqpdays  custcare_Mean new_cell  \
+2       1031705  4152.0  577.39          Y      675       3.000000        U   
+5       1091652  5441.0  578.80          Y       68       7.000000        U   
+21      1013855  1330.0  898.34          Y      877       0.333333        Y   
+40      1055064  2066.0  499.82          N      168      11.666667        Y   
+43      1062755  1438.0  445.47          Y      304       0.000000        U   
 
              area creditcd_y  
-11  NEW YORK CITY          Y  
-30  NEW YORK CITY          N  
-33  NEW YORK CITY          Y  
-49  NEW YORK CITY          Y  
-57  NEW YORK CITY          Y  
+2   NEW YORK CITY          Y  
+5   NEW YORK CITY          Y  
+21  NEW YORK CITY          Y  
+40  NEW YORK CITY          N  
+43  NEW YORK CITY          Y  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;NORTH FLORIDA&#39;,)
      Customer_ID  totmou   totrev creditcd_x  eqpdays  custcare_Mean new_cell  \
-15       1045505  5699.0  1052.28          Y      109       0.000000        U   
-66       1019639  2863.0   809.41          Y      618       1.333333        U   
-98       1011394  2242.0  1494.23          Y      940       0.000000        N   
-141      1063735  1973.0   543.95          N      406       0.000000        U   
-170      1013735  6592.0  1475.35          Y      880       0.333333        Y   
+4        1076695  4155.0   433.16          N      222       0.000000        U   
+25       1045505  5699.0  1052.28          Y      109       0.000000        U   
+76       1019639  2863.0   809.41          Y      618       1.333333        U   
+108      1011394  2242.0  1494.23          Y      940       0.000000        N   
+151      1063735  1973.0   543.95          N      406       0.000000        U   
 
               area creditcd_y  
-15   NORTH FLORIDA          Y  
-66   NORTH FLORIDA          Y  
-98   NORTH FLORIDA          Y  
-141  NORTH FLORIDA          N  
-170  NORTH FLORIDA          Y  
+4    NORTH FLORIDA          N  
+25   NORTH FLORIDA          Y  
+76   NORTH FLORIDA          Y  
+108  NORTH FLORIDA          Y  
+151  NORTH FLORIDA          N  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;NORTHWEST-ROCKY MOUNTAIN&#39;,)
     Customer_ID  totmou   totrev creditcd_x  eqpdays  custcare_Mean new_cell  \
-1       1057800  2030.0  1026.31          Y      439       0.000000        Y   
-16      1021478  3706.0   734.30          Y      255       0.000000        U   
-23      1091059  9703.0   952.30          N      135       0.000000        U   
-25      1091061  1989.0   388.85          N      206       0.000000        U   
-41      1068378  3981.0   643.93          Y      331       0.666667        U   
+11      1057800  2030.0  1026.31          Y      439       0.000000        Y   
+26      1021478  3706.0   734.30          Y      255       0.000000        U   
+33      1091059  9703.0   952.30          N      135       0.000000        U   
+35      1091061  1989.0   388.85          N      206       0.000000        U   
+51      1068378  3981.0   643.93          Y      331       0.666667        U   
 
                         area creditcd_y  
-1   NORTHWEST-ROCKY MOUNTAIN          Y  
-16  NORTHWEST-ROCKY MOUNTAIN          Y  
-23  NORTHWEST-ROCKY MOUNTAIN          N  
-25  NORTHWEST-ROCKY MOUNTAIN          N  
-41  NORTHWEST-ROCKY MOUNTAIN          Y  
+11  NORTHWEST-ROCKY MOUNTAIN          Y  
+26  NORTHWEST-ROCKY MOUNTAIN          Y  
+33  NORTHWEST-ROCKY MOUNTAIN          N  
+35  NORTHWEST-ROCKY MOUNTAIN          N  
+51  NORTHWEST-ROCKY MOUNTAIN          Y  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;OHIO&#39;,)
     Customer_ID  totmou   totrev creditcd_x  eqpdays  custcare_Mean new_cell  \
-43      1011089  4120.0  1186.64          Y      902       0.000000        N   
-47      1056196  1737.0   522.76          Y      403       0.333333        U   
-76      1071184  3456.0   514.72          Y       18       0.000000        U   
-84      1090228  1566.0   492.35          Y      321       0.000000        U   
-86      1004669  4707.0  1692.76          Y      345       0.000000        N   
+53      1011089  4120.0  1186.64          Y      902       0.000000        N   
+57      1056196  1737.0   522.76          Y      403       0.333333        U   
+86      1071184  3456.0   514.72          Y       18       0.000000        U   
+94      1090228  1566.0   492.35          Y      321       0.000000        U   
+96      1004669  4707.0  1692.76          Y      345       0.000000        N   
 
     area creditcd_y  
-43  OHIO          Y  
-47  OHIO          Y  
-76  OHIO          Y  
-84  OHIO          Y  
+53  OHIO          Y  
+57  OHIO          Y  
 86  OHIO          Y  
+94  OHIO          Y  
+96  OHIO          Y  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;PHILADELPHIA&#39;,)
      Customer_ID   totmou   totrev creditcd_x  eqpdays  custcare_Mean  \
-36       1032592   2842.0   606.76          Y      564       0.000000   
-172      1024580  36563.0  2053.30          Y       81       2.333333   
-218      1044265    331.0   217.04          N      507       0.000000   
-232      1075560   9608.0   876.60          N        8      16.000000   
-245      1026798   5738.0  1094.67          Y      573       4.333333   
+46       1032592   2842.0   606.76          Y      564       0.000000   
+182      1024580  36563.0  2053.30          Y       81       2.333333   
+228      1044265    331.0   217.04          N      507       0.000000   
+242      1075560   9608.0   876.60          N        8      16.000000   
+255      1026798   5738.0  1094.67          Y      573       4.333333   
 
     new_cell          area creditcd_y  
-36         U  PHILADELPHIA          Y  
-172        Y  PHILADELPHIA          Y  
-218        U  PHILADELPHIA          N  
-232        U  PHILADELPHIA          N  
-245        N  PHILADELPHIA          Y  
+46         U  PHILADELPHIA          Y  
+182        Y  PHILADELPHIA          Y  
+228        U  PHILADELPHIA          N  
+242        U  PHILADELPHIA          N  
+255        N  PHILADELPHIA          Y  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;SOUTH FLORIDA&#39;,)
      Customer_ID   totmou   totrev creditcd_x  eqpdays  custcare_Mean  \
-63       1070208   3275.0   324.41          Y      318       0.000000   
-74       1051859   9579.0  1261.47          Y      194       1.000000   
-99       1035282  14566.0  1579.38          N       84       2.333333   
-115      1025479   2254.0   439.67          Y      608       0.000000   
-150      1023124  21199.0  1927.83          Y      451       0.000000   
+73       1070208   3275.0   324.41          Y      318       0.000000   
+84       1051859   9579.0  1261.47          Y      194       1.000000   
+109      1035282  14566.0  1579.38          N       84       2.333333   
+125      1025479   2254.0   439.67          Y      608       0.000000   
+160      1023124  21199.0  1927.83          Y      451       0.000000   
 
     new_cell           area creditcd_y  
-63         U  SOUTH FLORIDA          Y  
-74         U  SOUTH FLORIDA          Y  
-99         N  SOUTH FLORIDA          N  
-115        U  SOUTH FLORIDA          Y  
-150        U  SOUTH FLORIDA          Y  
+73         U  SOUTH FLORIDA          Y  
+84         U  SOUTH FLORIDA          Y  
+109        N  SOUTH FLORIDA          N  
+125        U  SOUTH FLORIDA          Y  
+160        U  SOUTH FLORIDA          Y  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;SOUTHWEST&#39;,)
     Customer_ID   totmou   totrev creditcd_x  eqpdays  custcare_Mean new_cell  \
-5       1097730    810.0   240.94          N      131       0.000000        U   
-12      1044329  12625.0   992.67          Y      552       0.333333        U   
-14      1029191   9223.0  1452.24          N      745       0.000000        N   
-29      1068005  11271.0   671.80          N      440       0.000000        Y   
-31      1091273   3385.0   428.99          N      311       0.666667        U   
+15      1097730    810.0   240.94          N      131       0.000000        U   
+22      1044329  12625.0   992.67          Y      552       0.333333        U   
+24      1029191   9223.0  1452.24          N      745       0.000000        N   
+39      1068005  11271.0   671.80          N      440       0.000000        Y   
+41      1091273   3385.0   428.99          N      311       0.666667        U   
 
          area creditcd_y  
-5   SOUTHWEST          N  
-12  SOUTHWEST          Y  
-14  SOUTHWEST          N  
-29  SOUTHWEST          N  
-31  SOUTHWEST          N  
+15  SOUTHWEST          N  
+22  SOUTHWEST          Y  
+24  SOUTHWEST          N  
+39  SOUTHWEST          N  
+41  SOUTHWEST          N  
 &lt;class &#39;tuple&#39;&gt;
 (&#39;TENNESSEE&#39;,)
      Customer_ID   totmou   totrev creditcd_x  eqpdays  custcare_Mean  \
-40       1047767   2524.0   196.84          N      580            0.0   
-64       1019471  14502.0  1776.55          N      748            5.0   
-151      1060278   2820.0   519.21          Y      488            3.0   
-213      1085161   2821.0   483.02          N      362            0.0   
-256      1046324   2529.0  1391.70          Y      426            0.0   
+50       1047767   2524.0   196.84          N      580            0.0   
+74       1019471  14502.0  1776.55          N      748            5.0   
+161      1060278   2820.0   519.21          Y      488            3.0   
+223      1085161   2821.0   483.02          N      362            0.0   
+266      1046324   2529.0  1391.70          Y      426            0.0   
 
     new_cell       area creditcd_y  
-40         U  TENNESSEE          N  
-64         N  TENNESSEE          N  
-151        Y  TENNESSEE          Y  
-213        U  TENNESSEE          N  
-256        U  TENNESSEE          Y  
+50         U  TENNESSEE          N  
+74         N  TENNESSEE          N  
+161        Y  TENNESSEE          Y  
+223        U  TENNESSEE          N  
+266        U  TENNESSEE          Y  
 </pre></div>
 </div>
 </div>
@@ -5778,19 +6375,19 @@ analizar la distribución de las características la variable —-.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>area
-ATLANTIC SOUTH              6842.434288
+ATLANTIC SOUTH              6854.530794
 CALIFORNIA NORTH            7564.752666
 CENTRAL-SOUTH TEXAS         9375.395933
-CHICAGO                     6553.836451
+CHICAGO                     6540.026626
 DALLAS                      9249.633771
-DC-MARYLAND-VIRGINIA        6691.267606
-GREAT LAKES                 7517.835729
+DC-MARYLAND-VIRGINIA        6698.850000
+GREAT LAKES                 7510.116803
 HOUSTON                     9395.732285
 LOS ANGELES                 7533.596125
 MIDWEST                     7523.426866
-NEW ENGLAND                 6665.164962
-NEW YORK CITY               8337.969577
-NORTH FLORIDA               6492.800454
+NEW ENGLAND                 6666.315124
+NEW YORK CITY               8331.783604
+NORTH FLORIDA               6487.511312
 NORTHWEST-ROCKY MOUNTAIN    7727.451562
 OHIO                        6699.986857
 PHILADELPHIA                7054.378748
@@ -5860,13 +6457,13 @@ Name: (totmou, mean), dtype: float64
   <tbody>
     <tr>
       <th>ATLANTIC SOUTH</th>
-      <td>590.0</td>
-      <td>902.039034</td>
-      <td>697.865216</td>
+      <td>592.0</td>
+      <td>903.497399</td>
+      <td>697.197572</td>
       <td>106.95</td>
-      <td>464.7625</td>
-      <td>716.920</td>
-      <td>1127.1725</td>
+      <td>464.9875</td>
+      <td>718.370</td>
+      <td>1135.3050</td>
       <td>8171.47</td>
     </tr>
     <tr>
@@ -5893,13 +6490,13 @@ Name: (totmou, mean), dtype: float64
     </tr>
     <tr>
       <th>CHICAGO</th>
-      <td>494.0</td>
-      <td>893.796721</td>
-      <td>669.805270</td>
+      <td>496.0</td>
+      <td>892.133206</td>
+      <td>669.068444</td>
       <td>59.90</td>
-      <td>474.4650</td>
-      <td>721.975</td>
-      <td>1087.9750</td>
+      <td>474.0675</td>
+      <td>718.855</td>
+      <td>1086.9250</td>
       <td>5710.44</td>
     </tr>
     <tr>
@@ -5915,24 +6512,24 @@ Name: (totmou, mean), dtype: float64
     </tr>
     <tr>
       <th>DC-MARYLAND-VIRGINIA</th>
-      <td>639.0</td>
-      <td>941.581158</td>
-      <td>634.622581</td>
+      <td>640.0</td>
+      <td>941.692188</td>
+      <td>634.132033</td>
       <td>86.78</td>
-      <td>523.2500</td>
-      <td>786.500</td>
-      <td>1192.2850</td>
+      <td>525.7200</td>
+      <td>787.360</td>
+      <td>1191.5525</td>
       <td>5029.68</td>
     </tr>
     <tr>
       <th>GREAT LAKES</th>
-      <td>487.0</td>
-      <td>987.278645</td>
-      <td>734.212473</td>
+      <td>488.0</td>
+      <td>987.714324</td>
+      <td>733.521417</td>
       <td>126.56</td>
-      <td>503.5450</td>
-      <td>767.040</td>
-      <td>1212.3800</td>
+      <td>503.7325</td>
+      <td>767.960</td>
+      <td>1211.8900</td>
       <td>5624.71</td>
     </tr>
     <tr>
@@ -5970,35 +6567,35 @@ Name: (totmou, mean), dtype: float64
     </tr>
     <tr>
       <th>NEW ENGLAND</th>
-      <td>524.0</td>
-      <td>941.833187</td>
-      <td>706.245432</td>
+      <td>525.0</td>
+      <td>941.766038</td>
+      <td>705.572889</td>
       <td>118.51</td>
-      <td>497.0900</td>
-      <td>744.430</td>
-      <td>1186.1700</td>
+      <td>497.5700</td>
+      <td>747.130</td>
+      <td>1185.8000</td>
       <td>6939.19</td>
     </tr>
     <tr>
       <th>NEW YORK CITY</th>
-      <td>1143.0</td>
-      <td>1077.135232</td>
-      <td>869.883561</td>
+      <td>1145.0</td>
+      <td>1076.263546</td>
+      <td>869.372842</td>
       <td>74.01</td>
-      <td>562.3050</td>
-      <td>872.940</td>
-      <td>1298.2750</td>
+      <td>562.3400</td>
+      <td>870.310</td>
+      <td>1297.9700</td>
       <td>10590.01</td>
     </tr>
     <tr>
       <th>NORTH FLORIDA</th>
-      <td>441.0</td>
-      <td>896.537823</td>
-      <td>643.080535</td>
+      <td>442.0</td>
+      <td>895.489457</td>
+      <td>642.729028</td>
       <td>37.39</td>
-      <td>483.2400</td>
-      <td>759.550</td>
-      <td>1135.0000</td>
+      <td>481.5225</td>
+      <td>758.190</td>
+      <td>1134.1950</td>
       <td>6009.01</td>
     </tr>
     <tr>
@@ -6090,19 +6687,19 @@ Name: (totmou, mean), dtype: float64
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>area
-ATLANTIC SOUTH              716.920
+ATLANTIC SOUTH              718.370
 CALIFORNIA NORTH            892.340
 CENTRAL-SOUTH TEXAS         895.090
-CHICAGO                     721.975
+CHICAGO                     718.855
 DALLAS                      965.650
-DC-MARYLAND-VIRGINIA        786.500
-GREAT LAKES                 767.040
+DC-MARYLAND-VIRGINIA        787.360
+GREAT LAKES                 767.960
 HOUSTON                     892.180
 LOS ANGELES                 836.770
 MIDWEST                     854.350
-NEW ENGLAND                 744.430
-NEW YORK CITY               872.940
-NORTH FLORIDA               759.550
+NEW ENGLAND                 747.130
+NEW YORK CITY               870.310
+NORTH FLORIDA               758.190
 NORTHWEST-ROCKY MOUNTAIN    805.020
 OHIO                        781.040
 PHILADELPHIA                849.340
@@ -6136,23 +6733,23 @@ tercer argumento.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Etiqueta por área: NEW ENGLAND
-Etiqueta por área: NORTHWEST-ROCKY MOUNTAIN
 Etiqueta por área: ATLANTIC SOUTH
+Etiqueta por área: NEW YORK CITY
+Etiqueta por área: CHICAGO
+Etiqueta por área: NORTH FLORIDA
+Etiqueta por área: DC-MARYLAND-VIRGINIA
+Etiqueta por área: GREAT LAKES
+Etiqueta por área: NORTHWEST-ROCKY MOUNTAIN
 Etiqueta por área: MIDWEST
 Etiqueta por área: SOUTHWEST
 Etiqueta por área: LOS ANGELES
-Etiqueta por área: DC-MARYLAND-VIRGINIA
-Etiqueta por área: NEW YORK CITY
 Etiqueta por área: HOUSTON
-Etiqueta por área: NORTH FLORIDA
 Etiqueta por área: CALIFORNIA NORTH
 Etiqueta por área: CENTRAL-SOUTH TEXAS
 Etiqueta por área: DALLAS
-Etiqueta por área: GREAT LAKES
 Etiqueta por área: PHILADELPHIA
 Etiqueta por área: TENNESSEE
 Etiqueta por área: OHIO
-Etiqueta por área: CHICAGO
 Etiqueta por área: SOUTH FLORIDA
 </pre></div>
 </div>
@@ -6198,65 +6795,65 @@ Etiqueta por área: SOUTH FLORIDA
   <tbody>
     <tr>
       <th>0</th>
-      <td>1076771</td>
-      <td>288.0</td>
-      <td>374.98</td>
+      <td>1082423</td>
+      <td>7269.0</td>
+      <td>906.58</td>
       <td>Y</td>
-      <td>284</td>
-      <td>0.0</td>
+      <td>371</td>
+      <td>14.333333</td>
       <td>U</td>
-      <td>NEW ENGLAND</td>
-      <td>Y</td>
-      <td>Bajo</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1083737</td>
-      <td>1928.0</td>
-      <td>396.78</td>
-      <td>Y</td>
-      <td>261</td>
-      <td>0.0</td>
-      <td>U</td>
-      <td>NEW ENGLAND</td>
-      <td>Y</td>
-      <td>Bajo</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>1078557</td>
-      <td>2781.0</td>
-      <td>590.26</td>
-      <td>Y</td>
-      <td>276</td>
-      <td>0.0</td>
-      <td>N</td>
-      <td>NEW ENGLAND</td>
-      <td>Y</td>
-      <td>Bajo</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>1018015</td>
-      <td>24069.0</td>
-      <td>2129.74</td>
-      <td>Y</td>
-      <td>199</td>
-      <td>2.0</td>
-      <td>N</td>
       <td>NEW ENGLAND</td>
       <td>Y</td>
       <td>Alto</td>
     </tr>
     <tr>
-      <th>18</th>
-      <td>1005998</td>
-      <td>1489.0</td>
-      <td>982.18</td>
+      <th>10</th>
+      <td>1076771</td>
+      <td>288.0</td>
+      <td>374.98</td>
       <td>Y</td>
-      <td>958</td>
-      <td>0.0</td>
+      <td>284</td>
+      <td>0.000000</td>
       <td>U</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+      <td>Bajo</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1083737</td>
+      <td>1928.0</td>
+      <td>396.78</td>
+      <td>Y</td>
+      <td>261</td>
+      <td>0.000000</td>
+      <td>U</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+      <td>Bajo</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>1078557</td>
+      <td>2781.0</td>
+      <td>590.26</td>
+      <td>Y</td>
+      <td>276</td>
+      <td>0.000000</td>
+      <td>N</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+      <td>Bajo</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>1018015</td>
+      <td>24069.0</td>
+      <td>2129.74</td>
+      <td>Y</td>
+      <td>199</td>
+      <td>2.000000</td>
+      <td>N</td>
       <td>NEW ENGLAND</td>
       <td>Y</td>
       <td>Alto</td>
@@ -6305,65 +6902,65 @@ Etiqueta por área: SOUTH FLORIDA
   <tbody>
     <tr>
       <th>0</th>
-      <td>1076771</td>
-      <td>288.0</td>
-      <td>374.98</td>
+      <td>1082423</td>
+      <td>7269.0</td>
+      <td>906.58</td>
       <td>Y</td>
-      <td>284</td>
-      <td>0.0</td>
+      <td>371</td>
+      <td>14.333333</td>
       <td>U</td>
-      <td>NEW ENGLAND</td>
-      <td>Y</td>
-      <td>Bajo</td>
-    </tr>
-    <tr>
-      <th>2</th>
-      <td>1083737</td>
-      <td>1928.0</td>
-      <td>396.78</td>
-      <td>Y</td>
-      <td>261</td>
-      <td>0.0</td>
-      <td>U</td>
-      <td>NEW ENGLAND</td>
-      <td>Y</td>
-      <td>Bajo</td>
-    </tr>
-    <tr>
-      <th>7</th>
-      <td>1078557</td>
-      <td>2781.0</td>
-      <td>590.26</td>
-      <td>Y</td>
-      <td>276</td>
-      <td>0.0</td>
-      <td>N</td>
-      <td>NEW ENGLAND</td>
-      <td>Y</td>
-      <td>Bajo</td>
-    </tr>
-    <tr>
-      <th>8</th>
-      <td>1018015</td>
-      <td>24069.0</td>
-      <td>2129.74</td>
-      <td>Y</td>
-      <td>199</td>
-      <td>2.0</td>
-      <td>N</td>
       <td>NEW ENGLAND</td>
       <td>Y</td>
       <td>Alto</td>
     </tr>
     <tr>
-      <th>18</th>
-      <td>1005998</td>
-      <td>1489.0</td>
-      <td>982.18</td>
+      <th>10</th>
+      <td>1076771</td>
+      <td>288.0</td>
+      <td>374.98</td>
       <td>Y</td>
-      <td>958</td>
-      <td>0.0</td>
+      <td>284</td>
+      <td>0.000000</td>
       <td>U</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+      <td>Bajo</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>1083737</td>
+      <td>1928.0</td>
+      <td>396.78</td>
+      <td>Y</td>
+      <td>261</td>
+      <td>0.000000</td>
+      <td>U</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+      <td>Bajo</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>1078557</td>
+      <td>2781.0</td>
+      <td>590.26</td>
+      <td>Y</td>
+      <td>276</td>
+      <td>0.000000</td>
+      <td>N</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+      <td>Bajo</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>1018015</td>
+      <td>24069.0</td>
+      <td>2129.74</td>
+      <td>Y</td>
+      <td>199</td>
+      <td>2.000000</td>
+      <td>N</td>
       <td>NEW ENGLAND</td>
       <td>Y</td>
       <td>Alto</td>
@@ -6416,11 +7013,11 @@ Nivel_totrev y miremos ingreso total promedio por cada +area geográfica.</p>
     <tr>
       <th rowspan="2" valign="top">ATLANTIC SOUTH</th>
       <th>Alto</th>
-      <td>10262.065186</td>
+      <td>10287.102128</td>
     </tr>
     <tr>
       <th>Bajo</th>
-      <td>3422.803390</td>
+      <td>3421.959459</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">CALIFORNIA NORTH</th>
@@ -6443,11 +7040,11 @@ Nivel_totrev y miremos ingreso total promedio por cada +area geográfica.</p>
     <tr>
       <th rowspan="2" valign="top">CHICAGO</th>
       <th>Alto</th>
-      <td>9756.183023</td>
+      <td>9733.863737</td>
     </tr>
     <tr>
       <th>Bajo</th>
-      <td>3351.489879</td>
+      <td>3346.189516</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">DALLAS</th>
@@ -6461,20 +7058,20 @@ Nivel_totrev y miremos ingreso total promedio por cada +area geográfica.</p>
     <tr>
       <th rowspan="2" valign="top">DC-MARYLAND-VIRGINIA</th>
       <th>Alto</th>
-      <td>9789.028125</td>
+      <td>9822.787500</td>
     </tr>
     <tr>
       <th>Bajo</th>
-      <td>3583.796238</td>
+      <td>3574.912500</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">GREAT LAKES</th>
       <th>Alto</th>
-      <td>11385.356557</td>
+      <td>11343.180328</td>
     </tr>
     <tr>
       <th>Bajo</th>
-      <td>3634.399177</td>
+      <td>3677.053279</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">HOUSTON</th>
@@ -6506,7 +7103,7 @@ Nivel_totrev y miremos ingreso total promedio por cada +area geográfica.</p>
     <tr>
       <th rowspan="2" valign="top">NEW ENGLAND</th>
       <th>Alto</th>
-      <td>9946.055115</td>
+      <td>9935.876198</td>
     </tr>
     <tr>
       <th>Bajo</th>
@@ -6515,11 +7112,11 @@ Nivel_totrev y miremos ingreso total promedio por cada +area geográfica.</p>
     <tr>
       <th rowspan="2" valign="top">NEW YORK CITY</th>
       <th>Alto</th>
-      <td>12439.809837</td>
+      <td>12424.576312</td>
     </tr>
     <tr>
       <th>Bajo</th>
-      <td>4228.945709</td>
+      <td>4231.835664</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">NORTH FLORIDA</th>
@@ -6528,7 +7125,7 @@ Nivel_totrev y miremos ingreso total promedio por cada +area geográfica.</p>
     </tr>
     <tr>
       <th>Bajo</th>
-      <td>3415.400000</td>
+      <td>3418.746606</td>
     </tr>
     <tr>
       <th rowspan="2" valign="top">NORTHWEST-ROCKY MOUNTAIN</th>
@@ -6628,23 +7225,23 @@ Nivel_totrev y miremos ingreso total promedio por cada +area geográfica.</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Etiqueta por área: NEW ENGLAND
-Etiqueta por área: NORTHWEST-ROCKY MOUNTAIN
 Etiqueta por área: ATLANTIC SOUTH
+Etiqueta por área: NEW YORK CITY
+Etiqueta por área: CHICAGO
+Etiqueta por área: NORTH FLORIDA
+Etiqueta por área: DC-MARYLAND-VIRGINIA
+Etiqueta por área: GREAT LAKES
+Etiqueta por área: NORTHWEST-ROCKY MOUNTAIN
 Etiqueta por área: MIDWEST
 Etiqueta por área: SOUTHWEST
 Etiqueta por área: LOS ANGELES
-Etiqueta por área: DC-MARYLAND-VIRGINIA
-Etiqueta por área: NEW YORK CITY
 Etiqueta por área: HOUSTON
-Etiqueta por área: NORTH FLORIDA
 Etiqueta por área: CALIFORNIA NORTH
 Etiqueta por área: CENTRAL-SOUTH TEXAS
 Etiqueta por área: DALLAS
-Etiqueta por área: GREAT LAKES
 Etiqueta por área: PHILADELPHIA
 Etiqueta por área: TENNESSEE
 Etiqueta por área: OHIO
-Etiqueta por área: CHICAGO
 Etiqueta por área: SOUTH FLORIDA
 </pre></div>
 </div>
@@ -6690,6 +7287,19 @@ Etiqueta por área: SOUTH FLORIDA
   <tbody>
     <tr>
       <th>0</th>
+      <td>1082423</td>
+      <td>7269.0</td>
+      <td>906.58</td>
+      <td>Y</td>
+      <td>371</td>
+      <td>14.333333</td>
+      <td>U</td>
+      <td>NEW ENGLAND</td>
+      <td>Y</td>
+      <td>Medio</td>
+    </tr>
+    <tr>
+      <th>10</th>
       <td>1076771</td>
       <td>288.0</td>
       <td>374.98</td>
@@ -6702,7 +7312,7 @@ Etiqueta por área: SOUTH FLORIDA
       <td>Bajo</td>
     </tr>
     <tr>
-      <th>2</th>
+      <th>12</th>
       <td>1083737</td>
       <td>1928.0</td>
       <td>396.78</td>
@@ -6715,7 +7325,7 @@ Etiqueta por área: SOUTH FLORIDA
       <td>Bajo</td>
     </tr>
     <tr>
-      <th>7</th>
+      <th>17</th>
       <td>1078557</td>
       <td>2781.0</td>
       <td>590.26</td>
@@ -6728,7 +7338,7 @@ Etiqueta por área: SOUTH FLORIDA
       <td>Medio</td>
     </tr>
     <tr>
-      <th>8</th>
+      <th>18</th>
       <td>1018015</td>
       <td>24069.0</td>
       <td>2129.74</td>
@@ -6739,19 +7349,6 @@ Etiqueta por área: SOUTH FLORIDA
       <td>NEW ENGLAND</td>
       <td>Y</td>
       <td>Alto</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td>1005998</td>
-      <td>1489.0</td>
-      <td>982.18</td>
-      <td>Y</td>
-      <td>958</td>
-      <td>0.000000</td>
-      <td>U</td>
-      <td>NEW ENGLAND</td>
-      <td>Y</td>
-      <td>Medio</td>
     </tr>
     <tr>
       <th>...</th>
@@ -6767,7 +7364,7 @@ Etiqueta por área: SOUTH FLORIDA
       <td>...</td>
     </tr>
     <tr>
-      <th>9785</th>
+      <th>9795</th>
       <td>1085316</td>
       <td>7637.0</td>
       <td>744.81</td>
@@ -6780,7 +7377,7 @@ Etiqueta por área: SOUTH FLORIDA
       <td>Medio</td>
     </tr>
     <tr>
-      <th>9828</th>
+      <th>9838</th>
       <td>1096235</td>
       <td>8731.0</td>
       <td>556.88</td>
@@ -6793,7 +7390,7 @@ Etiqueta por área: SOUTH FLORIDA
       <td>Bajo</td>
     </tr>
     <tr>
-      <th>9856</th>
+      <th>9866</th>
       <td>1075355</td>
       <td>5891.0</td>
       <td>696.77</td>
@@ -6806,7 +7403,7 @@ Etiqueta por área: SOUTH FLORIDA
       <td>Medio</td>
     </tr>
     <tr>
-      <th>9937</th>
+      <th>9947</th>
       <td>1068658</td>
       <td>2923.0</td>
       <td>871.30</td>
@@ -6819,7 +7416,7 @@ Etiqueta por área: SOUTH FLORIDA
       <td>Medio</td>
     </tr>
     <tr>
-      <th>9976</th>
+      <th>9986</th>
       <td>1007937</td>
       <td>3875.0</td>
       <td>1157.80</td>
@@ -6833,7 +7430,7 @@ Etiqueta por área: SOUTH FLORIDA
     </tr>
   </tbody>
 </table>
-<p>9987 rows × 10 columns</p>
+<p>9997 rows × 10 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -6874,7 +7471,7 @@ Etiqueta por área: SOUTH FLORIDA
     <tr>
       <th rowspan="3" valign="top">ATLANTIC SOUTH</th>
       <th>Alto</th>
-      <td>13831.150203</td>
+      <td>13926.143446</td>
     </tr>
     <tr>
       <th>Bajo</th>
@@ -6882,7 +7479,7 @@ Etiqueta por área: SOUTH FLORIDA
     </tr>
     <tr>
       <th>Medio</th>
-      <td>5434.397959</td>
+      <td>5420.608108</td>
     </tr>
     <tr>
       <th rowspan="3" valign="top">CALIFORNIA NORTH</th>
@@ -6917,11 +7514,11 @@ Etiqueta por área: SOUTH FLORIDA
     </tr>
     <tr>
       <th>Bajo</th>
-      <td>2825.508065</td>
+      <td>2816.330645</td>
     </tr>
     <tr>
       <th>Medio</th>
-      <td>5008.048780</td>
+      <td>4997.483871</td>
     </tr>
     <tr>
       <th rowspan="3" valign="top">DALLAS</th>
@@ -6947,7 +7544,7 @@ Etiqueta por área: SOUTH FLORIDA
     </tr>
     <tr>
       <th>Medio</th>
-      <td>5494.432602</td>
+      <td>5513.337500</td>
     </tr>
     <tr>
       <th rowspan="3" valign="top">GREAT LAKES</th>
@@ -6960,7 +7557,7 @@ Etiqueta por área: SOUTH FLORIDA
     </tr>
     <tr>
       <th>Medio</th>
-      <td>5929.757202</td>
+      <td>5920.827869</td>
     </tr>
     <tr>
       <th rowspan="3" valign="top">HOUSTON</th>
@@ -7004,7 +7601,7 @@ Etiqueta por área: SOUTH FLORIDA
     <tr>
       <th rowspan="3" valign="top">NEW ENGLAND</th>
       <th>Alto</th>
-      <td>13724.446107</td>
+      <td>13696.321515</td>
     </tr>
     <tr>
       <th>Bajo</th>
@@ -7012,12 +7609,12 @@ Etiqueta por área: SOUTH FLORIDA
     </tr>
     <tr>
       <th>Medio</th>
-      <td>5166.145038</td>
+      <td>5155.675573</td>
     </tr>
     <tr>
       <th rowspan="3" valign="top">NEW YORK CITY</th>
       <th>Alto</th>
-      <td>16756.196352</td>
+      <td>16748.160825</td>
     </tr>
     <tr>
       <th>Bajo</th>
@@ -7025,7 +7622,7 @@ Etiqueta por área: SOUTH FLORIDA
     </tr>
     <tr>
       <th>Medio</th>
-      <td>6801.940578</td>
+      <td>6781.557815</td>
     </tr>
     <tr>
       <th rowspan="3" valign="top">NORTH FLORIDA</th>
@@ -7034,7 +7631,7 @@ Etiqueta por área: SOUTH FLORIDA
     </tr>
     <tr>
       <th>Bajo</th>
-      <td>2385.363636</td>
+      <td>2401.306306</td>
     </tr>
     <tr>
       <th>Medio</th>
@@ -7139,7 +7736,7 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Agrupacion&#39;, &#39;DF_Bien&#39;, &#39;DF_Derecha&#39;, &#39;DF_Full&#39;, &#39;DF_Izq&#39;, &#39;DF_filtrado&#39;, &#39;Data_Frame&#39;, &#39;In&#39;, &#39;Out&#39;, &#39;Serie1&#39;, &#39;_&#39;, &#39;_10&#39;, &#39;_101&#39;, &#39;_102&#39;, &#39;_11&#39;, &#39;_12&#39;, &#39;_13&#39;, &#39;_19&#39;, &#39;_21&#39;, &#39;_22&#39;, &#39;_23&#39;, &#39;_25&#39;, &#39;_26&#39;, &#39;_27&#39;, &#39;_29&#39;, &#39;_3&#39;, &#39;_30&#39;, &#39;_31&#39;, &#39;_32&#39;, &#39;_33&#39;, &#39;_35&#39;, &#39;_36&#39;, &#39;_37&#39;, &#39;_4&#39;, &#39;_41&#39;, &#39;_42&#39;, &#39;_43&#39;, &#39;_44&#39;, &#39;_45&#39;, &#39;_46&#39;, &#39;_48&#39;, &#39;_49&#39;, &#39;_5&#39;, &#39;_50&#39;, &#39;_51&#39;, &#39;_52&#39;, &#39;_53&#39;, &#39;_54&#39;, &#39;_55&#39;, &#39;_56&#39;, &#39;_57&#39;, &#39;_58&#39;, &#39;_59&#39;, &#39;_6&#39;, &#39;_60&#39;, &#39;_61&#39;, &#39;_62&#39;, &#39;_63&#39;, &#39;_65&#39;, &#39;_67&#39;, &#39;_68&#39;, &#39;_69&#39;, &#39;_72&#39;, &#39;_74&#39;, &#39;_75&#39;, &#39;_76&#39;, &#39;_77&#39;, &#39;_78&#39;, &#39;_79&#39;, &#39;_8&#39;, &#39;_80&#39;, &#39;_81&#39;, &#39;_84&#39;, &#39;_85&#39;, &#39;_87&#39;, &#39;_88&#39;, &#39;_90&#39;, &#39;_92&#39;, &#39;_93&#39;, &#39;_96&#39;, &#39;_97&#39;, &#39;_98&#39;, &#39;__&#39;, &#39;___&#39;, &#39;__builtin__&#39;, &#39;__builtins__&#39;, &#39;__doc__&#39;, &#39;__loader__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;__spec__&#39;, &#39;_dh&#39;, &#39;_exit_code&#39;, &#39;_i&#39;, &#39;_i1&#39;, &#39;_i10&#39;, &#39;_i100&#39;, &#39;_i101&#39;, &#39;_i102&#39;, &#39;_i103&#39;, &#39;_i11&#39;, &#39;_i12&#39;, &#39;_i13&#39;, &#39;_i14&#39;, &#39;_i15&#39;, &#39;_i16&#39;, &#39;_i17&#39;, &#39;_i18&#39;, &#39;_i19&#39;, &#39;_i2&#39;, &#39;_i20&#39;, &#39;_i21&#39;, &#39;_i22&#39;, &#39;_i23&#39;, &#39;_i24&#39;, &#39;_i25&#39;, &#39;_i26&#39;, &#39;_i27&#39;, &#39;_i28&#39;, &#39;_i29&#39;, &#39;_i3&#39;, &#39;_i30&#39;, &#39;_i31&#39;, &#39;_i32&#39;, &#39;_i33&#39;, &#39;_i34&#39;, &#39;_i35&#39;, &#39;_i36&#39;, &#39;_i37&#39;, &#39;_i38&#39;, &#39;_i39&#39;, &#39;_i4&#39;, &#39;_i40&#39;, &#39;_i41&#39;, &#39;_i42&#39;, &#39;_i43&#39;, &#39;_i44&#39;, &#39;_i45&#39;, &#39;_i46&#39;, &#39;_i47&#39;, &#39;_i48&#39;, &#39;_i49&#39;, &#39;_i5&#39;, &#39;_i50&#39;, &#39;_i51&#39;, &#39;_i52&#39;, &#39;_i53&#39;, &#39;_i54&#39;, &#39;_i55&#39;, &#39;_i56&#39;, &#39;_i57&#39;, &#39;_i58&#39;, &#39;_i59&#39;, &#39;_i6&#39;, &#39;_i60&#39;, &#39;_i61&#39;, &#39;_i62&#39;, &#39;_i63&#39;, &#39;_i64&#39;, &#39;_i65&#39;, &#39;_i66&#39;, &#39;_i67&#39;, &#39;_i68&#39;, &#39;_i69&#39;, &#39;_i7&#39;, &#39;_i70&#39;, &#39;_i71&#39;, &#39;_i72&#39;, &#39;_i73&#39;, &#39;_i74&#39;, &#39;_i75&#39;, &#39;_i76&#39;, &#39;_i77&#39;, &#39;_i78&#39;, &#39;_i79&#39;, &#39;_i8&#39;, &#39;_i80&#39;, &#39;_i81&#39;, &#39;_i82&#39;, &#39;_i83&#39;, &#39;_i84&#39;, &#39;_i85&#39;, &#39;_i86&#39;, &#39;_i87&#39;, &#39;_i88&#39;, &#39;_i89&#39;, &#39;_i9&#39;, &#39;_i90&#39;, &#39;_i91&#39;, &#39;_i92&#39;, &#39;_i93&#39;, &#39;_i94&#39;, &#39;_i95&#39;, &#39;_i96&#39;, &#39;_i97&#39;, &#39;_i98&#39;, &#39;_i99&#39;, &#39;_ih&#39;, &#39;_ii&#39;, &#39;_iii&#39;, &#39;_oh&#39;, &#39;agr_df&#39;, &#39;areas&#39;, &#39;df&#39;, &#39;df2&#39;, &#39;df3&#39;, &#39;df_con_etiquetas&#39;, &#39;exit&#39;, &#39;f_lam&#39;, &#39;get_ipython&#39;, &#39;group_df&#39;, &#39;i&#39;, &#39;item&#39;, &#39;lista_de_df&#39;, &#39;lista_df&#39;, &#39;lv&#39;, &#39;new_england&#39;, &#39;np&#39;, &#39;open&#39;, &#39;os&#39;, &#39;pd&#39;, &#39;pencentiles25&#39;, &#39;pencentiles50&#39;, &#39;pencentiles75&#39;, &#39;perd&#39;, &#39;perdidos&#39;, &#39;plt&#39;, &#39;promedio&#39;, &#39;quit&#39;, &#39;temp_df&#39;, &#39;texto&#39;, &#39;umbral_punto&#39;, &#39;umbral_punto1&#39;, &#39;umbral_punto2&#39;, &#39;warnings&#39;]
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;Agrupacion&#39;, &#39;DF_Bien&#39;, &#39;DF_Derecha&#39;, &#39;DF_Full&#39;, &#39;DF_Izq&#39;, &#39;DF_filtrado&#39;, &#39;Data_Frame&#39;, &#39;In&#39;, &#39;Out&#39;, &#39;Serie1&#39;, &#39;_&#39;, &#39;_10&#39;, &#39;_100&#39;, &#39;_101&#39;, &#39;_102&#39;, &#39;_105&#39;, &#39;_106&#39;, &#39;_11&#39;, &#39;_12&#39;, &#39;_13&#39;, &#39;_19&#39;, &#39;_21&#39;, &#39;_22&#39;, &#39;_23&#39;, &#39;_25&#39;, &#39;_26&#39;, &#39;_27&#39;, &#39;_29&#39;, &#39;_3&#39;, &#39;_30&#39;, &#39;_31&#39;, &#39;_32&#39;, &#39;_33&#39;, &#39;_35&#39;, &#39;_36&#39;, &#39;_37&#39;, &#39;_4&#39;, &#39;_41&#39;, &#39;_42&#39;, &#39;_43&#39;, &#39;_44&#39;, &#39;_45&#39;, &#39;_46&#39;, &#39;_48&#39;, &#39;_49&#39;, &#39;_5&#39;, &#39;_50&#39;, &#39;_51&#39;, &#39;_52&#39;, &#39;_53&#39;, &#39;_54&#39;, &#39;_55&#39;, &#39;_56&#39;, &#39;_57&#39;, &#39;_58&#39;, &#39;_59&#39;, &#39;_6&#39;, &#39;_60&#39;, &#39;_61&#39;, &#39;_62&#39;, &#39;_63&#39;, &#39;_65&#39;, &#39;_67&#39;, &#39;_68&#39;, &#39;_69&#39;, &#39;_72&#39;, &#39;_74&#39;, &#39;_75&#39;, &#39;_76&#39;, &#39;_77&#39;, &#39;_78&#39;, &#39;_79&#39;, &#39;_8&#39;, &#39;_80&#39;, &#39;_81&#39;, &#39;_82&#39;, &#39;_83&#39;, &#39;_84&#39;, &#39;_85&#39;, &#39;_88&#39;, &#39;_89&#39;, &#39;_90&#39;, &#39;_91&#39;, &#39;_93&#39;, &#39;_94&#39;, &#39;_96&#39;, &#39;_97&#39;, &#39;__&#39;, &#39;___&#39;, &#39;__builtin__&#39;, &#39;__builtins__&#39;, &#39;__doc__&#39;, &#39;__loader__&#39;, &#39;__name__&#39;, &#39;__package__&#39;, &#39;__spec__&#39;, &#39;_dh&#39;, &#39;_exit_code&#39;, &#39;_i&#39;, &#39;_i1&#39;, &#39;_i10&#39;, &#39;_i100&#39;, &#39;_i101&#39;, &#39;_i102&#39;, &#39;_i103&#39;, &#39;_i104&#39;, &#39;_i105&#39;, &#39;_i106&#39;, &#39;_i107&#39;, &#39;_i11&#39;, &#39;_i12&#39;, &#39;_i13&#39;, &#39;_i14&#39;, &#39;_i15&#39;, &#39;_i16&#39;, &#39;_i17&#39;, &#39;_i18&#39;, &#39;_i19&#39;, &#39;_i2&#39;, &#39;_i20&#39;, &#39;_i21&#39;, &#39;_i22&#39;, &#39;_i23&#39;, &#39;_i24&#39;, &#39;_i25&#39;, &#39;_i26&#39;, &#39;_i27&#39;, &#39;_i28&#39;, &#39;_i29&#39;, &#39;_i3&#39;, &#39;_i30&#39;, &#39;_i31&#39;, &#39;_i32&#39;, &#39;_i33&#39;, &#39;_i34&#39;, &#39;_i35&#39;, &#39;_i36&#39;, &#39;_i37&#39;, &#39;_i38&#39;, &#39;_i39&#39;, &#39;_i4&#39;, &#39;_i40&#39;, &#39;_i41&#39;, &#39;_i42&#39;, &#39;_i43&#39;, &#39;_i44&#39;, &#39;_i45&#39;, &#39;_i46&#39;, &#39;_i47&#39;, &#39;_i48&#39;, &#39;_i49&#39;, &#39;_i5&#39;, &#39;_i50&#39;, &#39;_i51&#39;, &#39;_i52&#39;, &#39;_i53&#39;, &#39;_i54&#39;, &#39;_i55&#39;, &#39;_i56&#39;, &#39;_i57&#39;, &#39;_i58&#39;, &#39;_i59&#39;, &#39;_i6&#39;, &#39;_i60&#39;, &#39;_i61&#39;, &#39;_i62&#39;, &#39;_i63&#39;, &#39;_i64&#39;, &#39;_i65&#39;, &#39;_i66&#39;, &#39;_i67&#39;, &#39;_i68&#39;, &#39;_i69&#39;, &#39;_i7&#39;, &#39;_i70&#39;, &#39;_i71&#39;, &#39;_i72&#39;, &#39;_i73&#39;, &#39;_i74&#39;, &#39;_i75&#39;, &#39;_i76&#39;, &#39;_i77&#39;, &#39;_i78&#39;, &#39;_i79&#39;, &#39;_i8&#39;, &#39;_i80&#39;, &#39;_i81&#39;, &#39;_i82&#39;, &#39;_i83&#39;, &#39;_i84&#39;, &#39;_i85&#39;, &#39;_i86&#39;, &#39;_i87&#39;, &#39;_i88&#39;, &#39;_i89&#39;, &#39;_i9&#39;, &#39;_i90&#39;, &#39;_i91&#39;, &#39;_i92&#39;, &#39;_i93&#39;, &#39;_i94&#39;, &#39;_i95&#39;, &#39;_i96&#39;, &#39;_i97&#39;, &#39;_i98&#39;, &#39;_i99&#39;, &#39;_ih&#39;, &#39;_ii&#39;, &#39;_iii&#39;, &#39;_oh&#39;, &#39;agr_df&#39;, &#39;areas&#39;, &#39;conteo&#39;, &#39;df&#39;, &#39;df2&#39;, &#39;df3&#39;, &#39;df_con_etiquetas&#39;, &#39;exit&#39;, &#39;fun_no&#39;, &#39;fun_si&#39;, &#39;get_ipython&#39;, &#39;group_df&#39;, &#39;i&#39;, &#39;item&#39;, &#39;lista_de_df&#39;, &#39;lista_df&#39;, &#39;lv&#39;, &#39;new_england&#39;, &#39;np&#39;, &#39;open&#39;, &#39;os&#39;, &#39;pd&#39;, &#39;pencentiles25&#39;, &#39;pencentiles50&#39;, &#39;pencentiles75&#39;, &#39;perd&#39;, &#39;perdidos&#39;, &#39;plt&#39;, &#39;promedio&#39;, &#39;quit&#39;, &#39;temp_df&#39;, &#39;texto&#39;, &#39;umbral_punto&#39;, &#39;umbral_punto1&#39;, &#39;umbral_punto2&#39;, &#39;warnings&#39;]
 </pre></div>
 </div>
 </div>
@@ -7166,7 +7763,7 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b030ec8d9325b0b27758a207910956ad7f69978ba70662a154bb82a96398f759.png" src="../_images/b030ec8d9325b0b27758a207910956ad7f69978ba70662a154bb82a96398f759.png" />
+<img alt="../_images/e11edc451ef753071b96e36ebe3b64e674f3cbafa6d7b1708f681b18bfca118a.png" src="../_images/e11edc451ef753071b96e36ebe3b64e674f3cbafa6d7b1708f681b18bfca118a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -7194,7 +7791,7 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/b5e9c77289976aa8f4bf4d50746b37156491e610f51006dcd9cb5f4d87695b21.png" src="../_images/b5e9c77289976aa8f4bf4d50746b37156491e610f51006dcd9cb5f4d87695b21.png" />
+<img alt="../_images/c44af30adbb9da617695cd55cac1bbb205a23a948d9e6619555ce2cbff437a63.png" src="../_images/c44af30adbb9da617695cd55cac1bbb205a23a948d9e6619555ce2cbff437a63.png" />
 </div>
 </div>
 </section>
@@ -7209,7 +7806,7 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/8cdefa49dd994f4c8d437e44d9632f4b7cc63eb7326892162c44e40d654911ce.png" src="../_images/8cdefa49dd994f4c8d437e44d9632f4b7cc63eb7326892162c44e40d654911ce.png" />
+<img alt="../_images/40f46e87a36ae85f13b09ae1a161e3e3dbf71dcca5e8cc2bc7415fd75c9a7c7f.png" src="../_images/40f46e87a36ae85f13b09ae1a161e3e3dbf71dcca5e8cc2bc7415fd75c9a7c7f.png" />
 </div>
 </div>
 </section>
@@ -7250,7 +7847,7 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/7dbb4695c5102067278fefe92ae4c019b0c7e0fc5c697d75b584ff9d7495efa2.png" src="../_images/7dbb4695c5102067278fefe92ae4c019b0c7e0fc5c697d75b584ff9d7495efa2.png" />
+<img alt="../_images/d1a6e24d04f2629b7e64990634a3b3976394193373bf84d2f9286b2801c3af65.png" src="../_images/d1a6e24d04f2629b7e64990634a3b3976394193373bf84d2f9286b2801c3af65.png" />
 </div>
 </div>
 <p>Revisando la relación entre las dos variables <code class="docutils literal notranslate"><span class="pre">totrev</span></code> y <code class="docutils literal notranslate"><span class="pre">totmou</span></code></p>
@@ -7288,7 +7885,7 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/546e441e5886ddefffdae538602e988c18f2c3f2caa1e706601a68643426f028.png" src="../_images/546e441e5886ddefffdae538602e988c18f2c3f2caa1e706601a68643426f028.png" />
+<img alt="../_images/22ecf2e19031221bcdb11f139ee7febed7ca0c9e7bc2b2e2b8e123bec606671f.png" src="../_images/22ecf2e19031221bcdb11f139ee7febed7ca0c9e7bc2b2e2b8e123bec606671f.png" />
 </div>
 </div>
 </section>
@@ -7333,63 +7930,63 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
   <tbody>
     <tr>
       <th>0</th>
-      <td>1076771</td>
-      <td>288.0</td>
-      <td>374.98</td>
+      <td>1082423</td>
+      <td>7269.0</td>
+      <td>906.58</td>
       <td>Y</td>
-      <td>284</td>
-      <td>0.000000</td>
+      <td>371</td>
+      <td>14.333333</td>
       <td>U</td>
       <td>NEW ENGLAND</td>
       <td>Y</td>
     </tr>
     <tr>
       <th>1</th>
-      <td>1057800</td>
-      <td>2030.0</td>
-      <td>1026.31</td>
-      <td>Y</td>
-      <td>439</td>
-      <td>0.000000</td>
-      <td>Y</td>
-      <td>NORTHWEST-ROCKY MOUNTAIN</td>
-      <td>Y</td>
+      <td>1069232</td>
+      <td>13552.0</td>
+      <td>1172.25</td>
+      <td>N</td>
+      <td>83</td>
+      <td>3.666667</td>
+      <td>U</td>
+      <td>ATLANTIC SOUTH</td>
+      <td>N</td>
     </tr>
     <tr>
       <th>2</th>
-      <td>1083737</td>
-      <td>1928.0</td>
-      <td>396.78</td>
+      <td>1031705</td>
+      <td>4152.0</td>
+      <td>577.39</td>
       <td>Y</td>
-      <td>261</td>
-      <td>0.000000</td>
+      <td>675</td>
+      <td>3.000000</td>
       <td>U</td>
-      <td>NEW ENGLAND</td>
+      <td>NEW YORK CITY</td>
       <td>Y</td>
     </tr>
     <tr>
       <th>3</th>
-      <td>1008539</td>
-      <td>4078.0</td>
-      <td>1257.05</td>
+      <td>1089806</td>
+      <td>1863.0</td>
+      <td>294.26</td>
       <td>Y</td>
-      <td>1019</td>
-      <td>0.000000</td>
-      <td>N</td>
-      <td>ATLANTIC SOUTH</td>
+      <td>218</td>
+      <td>11.000000</td>
+      <td>U</td>
+      <td>CHICAGO</td>
       <td>Y</td>
     </tr>
     <tr>
       <th>4</th>
-      <td>1056697</td>
-      <td>4874.0</td>
-      <td>246.77</td>
-      <td>Y</td>
-      <td>507</td>
+      <td>1076695</td>
+      <td>4155.0</td>
+      <td>433.16</td>
+      <td>N</td>
+      <td>222</td>
       <td>0.000000</td>
       <td>U</td>
-      <td>MIDWEST</td>
-      <td>Y</td>
+      <td>NORTH FLORIDA</td>
+      <td>N</td>
     </tr>
     <tr>
       <th>...</th>
@@ -7404,7 +8001,7 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
       <td>...</td>
     </tr>
     <tr>
-      <th>9982</th>
+      <th>9992</th>
       <td>1027614</td>
       <td>2570.0</td>
       <td>484.31</td>
@@ -7416,7 +8013,7 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
       <td>Y</td>
     </tr>
     <tr>
-      <th>9983</th>
+      <th>9993</th>
       <td>1098422</td>
       <td>2105.0</td>
       <td>583.36</td>
@@ -7428,7 +8025,7 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
       <td>Y</td>
     </tr>
     <tr>
-      <th>9984</th>
+      <th>9994</th>
       <td>1096497</td>
       <td>3690.0</td>
       <td>294.29</td>
@@ -7440,7 +8037,7 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
       <td>Y</td>
     </tr>
     <tr>
-      <th>9985</th>
+      <th>9995</th>
       <td>1087248</td>
       <td>3333.0</td>
       <td>233.08</td>
@@ -7452,7 +8049,7 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
       <td>Y</td>
     </tr>
     <tr>
-      <th>9986</th>
+      <th>9996</th>
       <td>1099003</td>
       <td>5025.0</td>
       <td>1436.49</td>
@@ -7465,7 +8062,7 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
     </tr>
   </tbody>
 </table>
-<p>9987 rows × 9 columns</p>
+<p>9997 rows × 9 columns</p>
 </div></div></div>
 </div>
 <div class="cell docutils container">
@@ -7481,7 +8078,7 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;Figure size 11600x400 with 0 Axes&gt;
 </pre></div>
 </div>
-<img alt="../_images/62232da50b7ac467d13822fe9089b7d9e16dd5fa7afc7ae98e5112be7a1d858c.png" src="../_images/62232da50b7ac467d13822fe9089b7d9e16dd5fa7afc7ae98e5112be7a1d858c.png" />
+<img alt="../_images/2b2700ab0b068c1c2f2b29f58f64c98e6c223bb1d435a5288a8f5afc6fd66f5a.png" src="../_images/2b2700ab0b068c1c2f2b29f58f64c98e6c223bb1d435a5288a8f5afc6fd66f5a.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -7494,7 +8091,7 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/d9933f38bef63c8c5d3898dac200243d059f634247918572bd5dc03af2edb233.png" src="../_images/d9933f38bef63c8c5d3898dac200243d059f634247918572bd5dc03af2edb233.png" />
+<img alt="../_images/fdd422505060a60dff95f5684d129e7b47fe5558d1d4fcac763cf73eface66b7.png" src="../_images/fdd422505060a60dff95f5684d129e7b47fe5558d1d4fcac763cf73eface66b7.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -7505,11 +8102,11 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x2883b847550&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;seaborn.axisgrid.FacetGrid at 0x190cb0da690&gt;
 </pre></div>
 </div>
-<img alt="../_images/0926a697c59337150a782e3c7a0c4f36ae9e75b9dd5455f8b254ba856c9f25f0.png" src="../_images/0926a697c59337150a782e3c7a0c4f36ae9e75b9dd5455f8b254ba856c9f25f0.png" />
-<img alt="../_images/fc8a87fe199eb3c2df2bd122e7f94e79ccdc07d98b879941103c553343370dbb.png" src="../_images/fc8a87fe199eb3c2df2bd122e7f94e79ccdc07d98b879941103c553343370dbb.png" />
+<img alt="../_images/7b960aec068e6599d182843b4bd50008a042d216623744b33498d005dbd463b8.png" src="../_images/7b960aec068e6599d182843b4bd50008a042d216623744b33498d005dbd463b8.png" />
+<img alt="../_images/ab86129aa5e3e1f3b5b9beac5f13e4dbcd45939335783904561140ea41110879.png" src="../_images/ab86129aa5e3e1f3b5b9beac5f13e4dbcd45939335783904561140ea41110879.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -7520,8 +8117,8 @@ la pantalla del cuaderno para que podamos verlos mientras ejecutamos el código)
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/c6215e733569e284ca50f45acc9a8d2b9c345d91b9f88e33c975f2d904450560.png" src="../_images/c6215e733569e284ca50f45acc9a8d2b9c345d91b9f88e33c975f2d904450560.png" />
-<img alt="../_images/ef5e4a805e29b4d79633170e48bb1615de8287eb1c511a8147e9f00cc16c333e.png" src="../_images/ef5e4a805e29b4d79633170e48bb1615de8287eb1c511a8147e9f00cc16c333e.png" />
+<img alt="../_images/e543fead13112c054e87e06b24acaa212de1955ec6016ca71d737c130ebd88a0.png" src="../_images/e543fead13112c054e87e06b24acaa212de1955ec6016ca71d737c130ebd88a0.png" />
+<img alt="../_images/b9aacb58f4db574fe280aca479697e3b7ef981a1da41c3f7d5c50fabdb024403.png" src="../_images/b9aacb58f4db574fe280aca479697e3b7ef981a1da41c3f7d5c50fabdb024403.png" />
 </div>
 </div>
 </section>
